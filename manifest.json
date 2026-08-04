@@ -1,0 +1,14 @@
+{
+  "name": "WeArt Index",
+  "short_name": "WeArt Index",
+  "description": "当代艺术话语权平台 · 每日全球艺术情报",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#F7F7F7",
+  "theme_color": "#1A1A1A",
+  "orientation": "any",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

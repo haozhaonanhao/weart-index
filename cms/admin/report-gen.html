@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>日报生成 · WeArt Index CMS</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    .admin-layout { display:grid; grid-template-columns:220px 1fr; min-height:100vh; }
+    .admin-sidebar { background:var(--ink); color:var(--white); padding:28px 20px; }
+    .admin-sidebar .logo { font-weight:800; font-size:18px; letter-spacing:0.04em; margin-bottom:36px; display:block; color:var(--white) }
+    .admin-sidebar nav a { display:flex; align-items:center; gap:10px; padding:11px 14px; margin-bottom:4px; color:rgba(255,255,255,0.65); border-radius:4px; font-size:13.5px; transition:0.15s }
+    .admin-sidebar nav a:hover,.admin-sidebar nav a.on { background:rgba(255,255,255,0.08); color:var(--white) }
+    .admin-main { padding:36px 40px; background:var(--paper); max-width:900px }
+  </style>
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <a class="logo" href="dashboard.html">WeArt<span style="color:var(--accent)">·</span>Index <small style="font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.4)">CMS</small></a>
+      <nav>
+        <a href="dashboard.html">📊 控制台</a>
+        <a href="news-list.html">📰 新闻管理</a>
+        <a href="news-editor.html">✏️ 发布新闻</a>
+        <a href="report-gen.html" class="on">📋 日报生成</a>
+        <a href="source-mgr.html">🔗 来源管理</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <div class="section-head" style="padding:0;margin-bottom:28px">
+        <div><div class="kicker">Report Generator · 日报生成</div><h2 class="h2" style="font-size:22px">AI 日报生成引擎</h2></div>
+      </div>
+
+      <div class="widget" style="padding:28px;margin-bottom:28px">
+        <div class="form-group" style="margin-bottom:20px">
+          <label style="font-size:12px;font-weight:600;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;display:block">报告类型</label>
+          <div class="chips">
+            <span class="chip on">每日日报</span>
+            <span class="chip">每周周报</span>
+            <span class="chip">每月月报</span>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:20px">
+          <label style="font-size:12px;font-weight:600;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;display:block">日期范围</label>
+          <div style="display:flex;gap:14px;align-items:center">
+            <input type="date" value="2026-08-04" style="border:1px solid var(--line);border-radius:2px;padding:10px 14px;font-family:inherit" />
+            <span style="color:var(--muted)">至</span>
+            <input type="date" value="2026-08-04" style="border:1px solid var(--line);border-radius:2px;padding:10px 14px;font-family:inherit" />
+          </div>
+        </div>
+        <button class="btn btn-accent btn-lg" style="width:100%;justify-content:center" onclick="alert('日报生成中...\n\nAI 将自动聚合当天已发布新闻，按模板生成速览、复盘、数据精选与趋势小结。\n\n生成后可在编辑器内人工校对并发布。（原型演示）')">🤖 AI 生成日报初稿</button>
+      </div>
+
+      <div class="placeholder-banner" style="border-style:solid;padding:24px">
+        <span>📋</span>
+        <div>
+          <b>生成流程</b>
+          <p style="font-size:13px;color:var(--muted);margin-top:8px">
+            ① 选择报告类型与日期范围 → ② AI 聚合当天全部已发布新闻 → ③ 自动填充模板（速览 TOP5 / 六大赛道复盘 / 交易数据 / 趋势小结 / 活动预告）→ ④ <b>人工校对 + 修改</b> → ⑤ 一键发布 → ⑥ 推送订阅用户
+          </p>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

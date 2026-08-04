@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>发布新闻 · WeArt Index CMS</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    .admin-layout { display:grid; grid-template-columns:220px 1fr; min-height:100vh; }
+    .admin-sidebar { background:var(--ink); color:var(--white); padding:28px 20px; }
+    .admin-sidebar .logo { font-weight:800; font-size:18px; letter-spacing:0.04em; margin-bottom:36px; display:block; color:var(--white) }
+    .admin-sidebar nav a { display:flex; align-items:center; gap:10px; padding:11px 14px; margin-bottom:4px; color:rgba(255,255,255,0.65); border-radius:4px; font-size:13.5px; transition:0.15s }
+    .admin-sidebar nav a:hover,.admin-sidebar nav a.on { background:rgba(255,255,255,0.08); color:var(--white) }
+    .admin-main { padding:36px 40px; background:var(--paper); max-width:840px; }
+    .form-group { margin-bottom:22px; }
+    .form-group label { display:block; font-size:12px; font-weight:600; letter-spacing:0.1em; color:var(--muted); margin-bottom:8px; }
+    .form-group input, .form-group textarea, .form-group select { width:100%; border:1px solid var(--line); border-radius:var(--radius); padding:12px 14px; font-size:14px; font-family:inherit; background:var(--white) }
+    .form-group textarea { min-height:100px; resize:vertical }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:20px }
+    .chips-wrap { display:flex; gap:8px; flex-wrap:wrap }
+    @media (max-width:768px){ .admin-layout{grid-template-columns:1fr}; .form-row{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <a class="logo" href="dashboard.html">WeArt<span style="color:var(--accent)">·</span>Index <small style="font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.4)">CMS</small></a>
+      <nav>
+        <a href="dashboard.html">📊 控制台</a>
+        <a href="news-list.html">📰 新闻管理</a>
+        <a href="news-editor.html" class="on">✏️ 发布新闻</a>
+        <a href="report-gen.html">📋 日报生成</a>
+        <a href="source-mgr.html">🔗 来源管理</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <div class="section-head" style="padding:0;margin-bottom:28px">
+        <div><div class="kicker">News Editor · 新闻编辑</div><h2 class="h2" style="font-size:22px">发布新新闻</h2></div>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-ghost btn-sm" onclick="alert('已保存为草稿（原型演示）')">保存草稿</button>
+          <button class="btn btn-accent btn-sm" onclick="alert('已发布（原型演示）')">发布</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>标题（中文化）*</label>
+        <input type="text" placeholder="输入新闻标题" value="大都会美术馆悄然挂出达·芬奇《纺车边的圣母》" />
+      </div>
+
+      <div class="form-group">
+        <label>摘要</label>
+        <textarea placeholder="一句话摘要（AI 可自动填充）">大都会春季未发任何新闻稿，就在二楼挂出约 1505 年的达·芬奇画作；这是馆内目前在展的唯一一件达·芬奇作品。</textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>赛道分类 *</label>
+          <select>
+            <option value="exhibition">展览</option>
+            <option value="event">事件</option>
+            <option value="release">作品发布</option>
+            <option value="partner">品牌合作</option>
+            <option value="trade">交易</option>
+            <option value="toy">艺术潮玩</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>地区</label>
+          <select>
+            <option value="cn">国内</option>
+            <option value="us-eu" selected>欧美</option>
+            <option value="asia">日韩 / 东南亚</option>
+            <option value="me">中东 / 其他</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>城市</label>
+          <input type="text" placeholder="纽约" value="纽约" />
+        </div>
+        <div class="form-group">
+          <label>来源名称</label>
+          <input type="text" placeholder="ARTnews" value="ARTnews" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>原文链接 *</label>
+        <input type="url" placeholder="https://..." value="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" />
+      </div>
+
+      <div class="form-group">
+        <label>标签（逗号分隔）</label>
+        <input type="text" placeholder="达·芬奇, 大都会, 借展" value="达·芬奇, 大都会, 借展" />
+      </div>
+
+      <div class="form-group">
+        <label>影响指数</label>
+        <input type="number" step="0.1" min="1" max="10" value="9.1" style="width:120px" />
+      </div>
+    </main>
+  </div>
+</body>
+</html>

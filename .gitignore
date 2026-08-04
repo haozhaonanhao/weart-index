@@ -1,0 +1,10 @@
+# WeArt Index · Git 忽略文件
+# 不超过 1MB 的页面推送，临时和构建文件忽略
+
+_build/
+build-single.ps1
+news-gen.ps1
+apply-toy.ps1
+extract.ps1
+_raw_*.html
+*.tmp

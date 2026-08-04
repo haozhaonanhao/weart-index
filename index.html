@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeWeArt Index — 当代艺术价值发现引擎 · 今日艺术日报</title>
+  <meta name="description" content="全球当代艺术每日资讯、行业日报、艺术家与机构数据库 —— 当代艺术世界的信息第一入口与价值定义者。" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1A1A1A" />
+</head>
+<body data-page="index">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+
+  <!-- 导航由 main.js 注入 -->
+  <div id="site-header"></div>
+
+  <!-- ================= Hero：今日要闻轮播 + 今日日报入口 ================= -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <!-- 左侧：今日核心要闻轮播 -->
+      <div class="carousel">
+        <div class="carousel-dots"></div>
+
+        <article class="carousel-slide active">
+          <img class="slide-bg" src="assets/images/hero-1.jpg" alt="达·芬奇《纺车边的圣母》" />
+          <div class="slide-tags">
+            <span class="tag tag-exhibition">展览</span>
+            <span class="tag-city">纽约 · 北美</span>
+          </div>
+          <p class="slide-meta">TOP 01 · ARTnews 报道</p>
+          <h3><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">大都会美术馆悄然挂出达·芬奇《纺车边的圣母》，借展自藏家肯·格里芬</a></h3>
+        </article>
+
+        <article class="carousel-slide">
+          <img class="slide-bg" src="assets/images/hero-2.jpg" alt="高古轩画廊空间" />
+          <div class="slide-tags">
+            <span class="tag tag-trade">交易</span>
+            <span class="tag-city">伦敦 / 巴塞尔 · 欧洲</span>
+          </div>
+          <p class="slide-meta">TOP 02 · ARTnews 报道</p>
+          <h3><a href="https://www.artnews.com/art-news/news/gagosian-london-basel-gallery-closures-1234794210/" target="_blank" rel="noopener noreferrer">高古轩放弃伦敦与巴塞尔空间，超级画廊重新思考全球版图</a></h3>
+        </article>
+
+        <article class="carousel-slide">
+          <img class="slide-bg" src="assets/images/hero-3.jpg" alt="景德镇手工制瓷" />
+          <div class="slide-tags">
+            <span class="tag tag-event">事件</span>
+            <span class="tag-city">景德镇 · 中国</span>
+          </div>
+          <p class="slide-meta">TOP 03 · 雅昌艺术网报道</p>
+          <h3><a href="https://news.artron.net/20260728/n1152674.html" target="_blank" rel="noopener noreferrer">刷屏！「景德镇手工瓷业遗存」申遗成功</a></h3>
+        </article>
+
+        <div class="carousel-arrows">
+          <button class="carousel-prev" aria-label="上一条">←</button>
+          <button class="carousel-next" aria-label="下一条">→</button>
+        </div>
+      </div>
+
+      <!-- 右侧：今日日报入口（核心 C 位） -->
+      <aside class="daily-card">
+        <span class="issue">DAILY ART REPORT · <span class="js-vol">042</span></span>
+        <div class="vol">VOL.<span class="js-vol">042</span></div>
+        <div class="date" id="today">——</div>
+        <ul>
+          <li><b>速览</b>66 篇真实报道 · 六大赛道复盘</li>
+          <li><b>数据</b>报道最高成交 $62M · 来源 3 家媒体</li>
+          <li><b>预告</b>近期 5 场真实活动（艺博会 / 展览）</li>
+        </ul>
+        <a class="btn btn-primary btn-lg" href="archive/index.html" target="_blank">立即阅读今日艺术日报 →</a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= 五大资讯分类快捷入口 ================= -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Channels · 五大赛道</div>
+          <h2 class="h2">今日全球动态 <em>/ 实时更新</em></h2>
+        </div>
+        <a class="sec-link" href="news.html">进入全球资讯频道 →</a>
+      </div>
+      <div class="grid grid-3">
+        <a class="cat-card" href="news.html">
+          <span class="cat-no">01</span>
+          <h3>艺术展览</h3>
+          <div class="cat-en">Exhibition</div>
+          <div class="cat-count">报道 25 篇</div>
+        </a>
+        <a class="cat-card" href="news.html">
+          <span class="cat-no">02</span>
+          <h3>艺术事件</h3>
+          <div class="cat-en">Event</div>
+          <div class="cat-count">报道 16 篇</div>
+        </a>
+        <a class="cat-card" href="news.html">
+          <span class="cat-no">03</span>
+          <h3>作品发布</h3>
+          <div class="cat-en">Release</div>
+          <div class="cat-count">报道 3 篇</div>
+        </a>
+        <a class="cat-card" href="news.html">
+          <span class="cat-no">04</span>
+          <h3>品牌合作</h3>
+          <div class="cat-en">Partner</div>
+          <div class="cat-count">报道 4 篇</div>
+        </a>
+        <a class="cat-card" href="news.html">
+          <span class="cat-no">05</span>
+          <h3>艺术交易</h3>
+          <div class="cat-en">Trade</div>
+          <div class="cat-count">报道 4 篇</div>
+        </a>
+        <a class="cat-card" href="news.html">
+          <span class="cat-no">06</span>
+          <h3>艺术潮玩</h3>
+          <div class="cat-en">Art Toys</div>
+          <div class="cat-count">报道 14 篇</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 数据速览 ================= -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Data Snapshot · 今日数据速览</div>
+          <h2 class="h2">以数据感知行业脉搏</h2>
+        </div>
+        <span class="sec-link">更新于 <span id="today2">——</span></span>
+      </div>
+      <div class="grid grid-5">
+        <div class="data-card">
+          <div class="d-label">已收录真实报道</div>
+          <div class="d-value"><span data-count="66">0</span><span class="unit"> 篇</span></div>
+          <div class="d-sub">ARTnews / 雅昌 / Hypebeast</div>
+        </div>
+        <div class="data-card">
+          <div class="d-label">覆盖城市与地区</div>
+          <div class="d-value"><span data-count="20">0</span><span class="unit">+</span></div>
+          <div class="d-sub">纽约 / 伦敦 / 东京 / 上海等</div>
+        </div>
+        <div class="data-card accent">
+          <div class="d-label">报道最高成交额</div>
+          <div class="d-value">$<span data-count="62" data-suffix="M">0</span></div>
+          <div class="d-sub">全球最大画作慈善拍（真实报道）</div>
+        </div>
+        <div class="data-card">
+          <div class="d-label">报道频次最高艺术家</div>
+          <div class="d-value" style="font-size:24px;font-family:var(--font)">KAWS</div>
+          <div class="d-sub">本期 4 篇相关真实报道</div>
+        </div>
+        <div class="data-card">
+          <div class="d-label">报道来源分布</div>
+          <div class="d-value" style="font-size:24px;font-family:var(--font)">Hypebeast</div>
+          <div class="d-sub">26 篇 · 潮玩与流行文化</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 热门榜单 ================= -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="grid grid-2">
+        <div>
+          <div class="section-head" style="margin-bottom:20px">
+            <div>
+              <div class="kicker">Hot · 阅读榜</div>
+              <h2 class="h2" style="font-size:20px">今日阅读榜 TOP 5</h2>
+            </div>
+          </div>
+          <div class="rank-list">
+            <div class="rank-item">
+              <span class="no">01</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">大都会挂出达·芬奇借展之作</a><small>展览 · 纽约 · ARTnews</small></div>
+              <span class="heat">ARTnews</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">02</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/gagosian-london-basel-gallery-closures-1234794210/" target="_blank" rel="noopener noreferrer">高古轩收缩伦敦与巴塞尔空间</a><small>交易 · 伦敦 · ARTnews</small></div>
+              <span class="heat">ARTnews</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">03</span>
+              <div class="t"><a href="https://news.artron.net/20260728/n1152674.html" target="_blank" rel="noopener noreferrer">「景德镇手工瓷业遗存」申遗成功</a><small>事件 · 景德镇 · 雅昌</small></div>
+              <span class="heat">雅昌</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">04</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/sacha-jafri-auctioned-world-largest-painting-for-charity-but-the-62-m-owed-is-missing-1234794219/" target="_blank" rel="noopener noreferrer">6200 万美元慈善善款去向成谜</a><small>交易 · 迪拜 · ARTnews</small></div>
+              <span class="heat">ARTnews</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">05</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/taryn-simon-guggenheim-show-new-work-rotunda-1234794169/" target="_blank" rel="noopener noreferrer">塔琳·西蒙古根海姆圆形大厅个展</a><small>展览 · 纽约 · ARTnews</small></div>
+              <span class="heat">ARTnews</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-head" style="margin-bottom:20px">
+            <div>
+              <div class="kicker">Buzz · 热议榜</div>
+              <h2 class="h2" style="font-size:20px">今日热议榜 TOP 5</h2>
+            </div>
+          </div>
+          <div class="rank-list">
+            <div class="rank-item">
+              <span class="no">01</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/met-museum-john-galliano-show-jewish-leaders-meetings-1234794224/" target="_blank" rel="noopener noreferrer">大都会为加利亚诺办展咨询犹太领袖</a><small>事件 · 纽约</small></div>
+              <span class="heat">热议</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">02</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/sacha-jafri-auctioned-world-largest-painting-for-charity-but-the-62-m-owed-is-missing-1234794219/" target="_blank" rel="noopener noreferrer">「全球最大画作」善款争议持续发酵</a><small>交易 · 迪拜</small></div>
+              <span class="heat">热议</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">03</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/francisco-correa-cordero-lubov-gallery-dead-1234794249/" target="_blank" rel="noopener noreferrer">纽约新锐画廊 Lubov 创始人逝世</a><small>事件 · 纽约</small></div>
+              <span class="heat">热议</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">04</span>
+              <div class="t"><a href="https://news.artron.net/20250829/n1143766.html" target="_blank" rel="noopener noreferrer">「太保墉燕」展重读北京城之源</a><small>展览 · 北京</small></div>
+              <span class="heat">热议</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">05</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/white-house-proposes-smallest-smithsonian-budget-in-years-1234794165/" target="_blank" rel="noopener noreferrer">史密森尼预算降至近年最低引担忧</a><small>事件 · 华盛顿</small></div>
+              <span class="heat">热议</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 即将开展预告 ================= -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Coming Soon · 明日预告</div>
+          <h2 class="h2">即将开幕与开拍</h2>
+        </div>
+        <a class="sec-link" href="agenda.html">查看完整日程 →</a>
+      </div>
+      <div class="widget" style="padding:6px 0 6px 0;border:none">
+        <div class="preview-row">
+          <span class="when">08.05 10:00</span>
+          <span class="what">巴塞尔艺术展巴黎展会 · 媒体预览日</span>
+          <span class="where">巴黎 · 大皇宫</span>
+        </div>
+        <div class="preview-row">
+          <span class="when">08.05 14:00</span>
+          <span class="what">余德耀美术馆「青年艺术家扶持计划」论坛</span>
+          <span class="where">上海 · 余德耀美术馆</span>
+        </div>
+        <div class="preview-row">
+          <span class="when">08.05 18:00</span>
+          <span class="what">佩斯画廊「极简主义再审视」开幕酒会</span>
+          <span class="where">纽约 · 切尔西</span>
+        </div>
+        <div class="preview-row">
+          <span class="when">08.05 19:30</span>
+          <span class="what">香港苏富比 · 现当代艺术晚间拍卖</span>
+          <span class="where">香港 · 苏富比艺术空间</span>
+        </div>
+        <div class="preview-row">
+          <span class="when">08.06 15:00</span>
+          <span class="what">UCCA「肖像的映像」开幕暨策展人导览</span>
+          <span class="where">北京 · UCCA 尤伦斯</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚由 main.js 注入 -->
+  <div id="site-footer"></div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
+
+

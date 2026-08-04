@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>资源库 — WeArt Index</title>
+  <meta name="description" content="全球当代艺术资源：本期真实报道中的艺术家、机构、展览与交易数据，支持按类别浏览列表。" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-page="resources">
+
+  <div id="site-header"></div>
+
+  <!-- ================= 页面头 + 搜索 ================= -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">首页</a> / 资源库</div>
+      <h1>资源库</h1>
+      <p class="sub">基于本期 66 篇真实报道整理的结构化数据。点击下方分类卡片浏览列表，每项链接真实报道原文。</p>
+      <div style="margin-top:28px;max-width:680px">
+        <div class="search-box">
+          <span style="color:var(--muted)">⌕</span>
+          <input type="text" placeholder="检索报道中的艺术家 / 机构 / 展览 / 作品……" />
+          <span class="kbd">演示</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <!-- 四大分类卡片（tab 切换，不再跳转页面） -->
+      <div class="grid grid-4" style="margin-bottom:40px" id="resTabs">
+        <div class="resource-card on" data-panel="artists" style="cursor:pointer">
+          <span class="rc-no">01</span>
+          <h3>艺术家</h3>
+          <p>本期报道涉及的艺术家：达·芬奇、KAWS、奈良美智、塔琳·西蒙、何多苓等。</p>
+          <div class="rc-stat">本期 15+ 位</div>
+        </div>
+        <div class="resource-card" data-panel="orgs" style="cursor:pointer">
+          <span class="rc-no">02</span>
+          <h3>机构</h3>
+          <p>大都会、高古轩、卓纳画廊、古根海姆、SFMOMA、POP MART 等。</p>
+          <div class="rc-stat">本期 18+ 家</div>
+        </div>
+        <div class="resource-card" data-panel="exhibitions" style="cursor:pointer">
+          <span class="rc-no">03</span>
+          <h3>展览</h3>
+          <p>奈良美智纽约个展、RM 收藏展、凯斯·哈林巡展、THE MONSTERS 展等。</p>
+          <div class="rc-stat">本期 20+ 场</div>
+        </div>
+        <div class="resource-card" data-panel="trades" style="cursor:pointer">
+          <span class="rc-no">04</span>
+          <h3>交易</h3>
+          <p>6200 万慈善拍、布鲁克林博物馆 540 万馆藏变现、Bouvier 诉苏富比案等。</p>
+          <div class="rc-stat">本期 5+ 条</div>
+        </div>
+      </div>
+
+      <!-- ================= 面板 1：艺术家列表（真实） ================= -->
+      <div class="res-panel" id="panel-artists" data-panel-name="artists">
+        <div class="section-head" style="margin-bottom:20px">
+          <div>
+            <div class="kicker">Artists · 报道中的艺术家</div>
+            <h2 class="h2" style="font-size:22px">艺术家列表</h2>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--line)">
+          <div class="archive-row">
+            <span class="ar-date">潮玩/艺术</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/7/kaws-new-fellows-vinyl-figure-collection" target="_blank" rel="noopener noreferrer">KAWS（Brian Donnelly）· 全新 FELLOWS 人偶系列</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">展览</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/8/yoshitomo-nara-first-exhibition-with-david-zwirner-new-york-info" target="_blank" rel="noopener noreferrer">奈良美智 · 卓纳画廊纽约双场地个展</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">展览</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">列奥纳多·达·芬奇 · 大都会挂出《纺车边的圣母》</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">展览</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/news/taryn-simon-guggenheim-show-new-work-rotunda-1234794169/" target="_blank" rel="noopener noreferrer">塔琳·西蒙 · 古根海姆圆形大厅个展</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">艺术家</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/artists/na-kim-cloud-paintings-old-stone-mill-newport-1234794186/" target="_blank" rel="noopener noreferrer">Na Kim · 云朵画作新展</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">交易</span>
+            <span class="ar-title"><a href="https://news.artron.net/20210420/n1094211.html" target="_blank" rel="noopener noreferrer">何多苓 · 市场潜力分析</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">展览</span>
+            <span class="ar-title"><a href="https://news.artron.net/20230109/n1117872.html" target="_blank" rel="noopener noreferrer">弗里达·卡罗 · 生平摄影亮相深圳</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">展览</span>
+            <span class="ar-title"><a href="https://news.artron.net/20220313/n1107821.html" target="_blank" rel="noopener noreferrer">凯斯·哈林 · 后波普潮流艺术展</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 面板 2：机构列表（真实） ================= -->
+      <div class="res-panel" id="panel-orgs" data-panel-name="orgs" style="display:none">
+        <div class="section-head" style="margin-bottom:20px">
+          <div>
+            <div class="kicker">Organizations · 报道中的机构</div>
+            <h2 class="h2" style="font-size:22px">机构列表</h2>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--line)">
+          <div class="archive-row">
+            <span class="ar-date">美术馆</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">大都会艺术博物馆（The Met）· 挂出达·芬奇借展</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">画廊</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/news/gagosian-london-basel-gallery-closures-1234794210/" target="_blank" rel="noopener noreferrer">高古轩画廊（Gagosian）· 收缩伦敦与巴塞尔空间</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">画廊</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/8/yoshitomo-nara-first-exhibition-with-david-zwirner-new-york-info" target="_blank" rel="noopener noreferrer">卓纳画廊（David Zwirner）· 奈良美智首次合作</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">美术馆</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/7/guggenheim-abu-dhabi-finally-gets-an-opening-date" target="_blank" rel="noopener noreferrer">古根海姆阿布扎比（Guggenheim Abu Dhabi）· 公布开馆</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">美术馆</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/7/rm-x-sfmoma-between-you-and-me-exhibition" target="_blank" rel="noopener noreferrer">SFMOMA · RM 个人收藏展</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">品牌</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/3/pop-mart-sony-pictures-developing-labubu-feature-film-announcement-kasing-lung-paul-king" target="_blank" rel="noopener noreferrer">POP MART · 携手 Sony 启动 Labubu 电影</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">品牌</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2025/12/bearbrick-big-tamagotchi-exhibition-collaboration-30th-anniversary-merch-release-info" target="_blank" rel="noopener noreferrer">MEDICOM TOY · BE@RBRICK × Tamagotchi</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">博物馆</span>
+            <span class="ar-title"><a href="https://news.artron.net/20201026/n1086541.html" target="_blank" rel="noopener noreferrer">布鲁克林博物馆 · 出售馆藏 540 万</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 面板 3：展览列表（真实） ================= -->
+      <div class="res-panel" id="panel-exhibitions" data-panel-name="exhibitions" style="display:none">
+        <div class="section-head" style="margin-bottom:20px">
+          <div>
+            <div class="kicker">Exhibitions · 报道中的展览</div>
+            <h2 class="h2" style="font-size:22px">展览列表</h2>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--line)">
+          <div class="archive-row">
+            <span class="ar-date">纽约</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">大都会 · 达·芬奇《纺车边的圣母》借展</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">纽约</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/8/yoshitomo-nara-first-exhibition-with-david-zwirner-new-york-info" target="_blank" rel="noopener noreferrer">卓纳画廊 · 奈良美智双场地个展</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">旧金山</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/7/rm-x-sfmoma-between-you-and-me-exhibition" target="_blank" rel="noopener noreferrer">SFMOMA · RM 个人艺术收藏展</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">威尼斯</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-in-america/columns/venice-biennale-in-minor-keys-koyokouoh-pavilions-equatorial-guinea-sierra-leone-1234790523/" target="_blank" rel="noopener noreferrer">威尼斯双年展 · 非洲参展创纪录</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">纽约</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/news/taryn-simon-guggenheim-show-new-work-rotunda-1234794169/" target="_blank" rel="noopener noreferrer">古根海姆 · 塔琳·西蒙圆形大厅个展</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">上海</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2025/10/the-monsters-10th-anniversary-exhibition-shanghai-inside-look" target="_blank" rel="noopener noreferrer">THE MONSTERS 十周年全球巡展上海站</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">北京</span>
+            <span class="ar-title"><a href="https://news.artron.net/20230106/n1117824.html" target="_blank" rel="noopener noreferrer">从马蒂斯到巴斯奎特 · 流动的盛宴</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">上海</span>
+            <span class="ar-title"><a href="https://news.artron.net/20220313/n1107821.html" target="_blank" rel="noopener noreferrer">遇见凯斯·哈林 · 后波普潮流艺术展</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 面板 4：交易列表（真实） ================= -->
+      <div class="res-panel" id="panel-trades" data-panel-name="trades" style="display:none">
+        <div class="section-head" style="margin-bottom:20px">
+          <div>
+            <div class="kicker">Trades · 报道中的交易</div>
+            <h2 class="h2" style="font-size:22px">交易报道列表</h2>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--line)">
+          <div class="archive-row">
+            <span class="ar-date">迪拜</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/news/sacha-jafri-auctioned-world-largest-painting-for-charity-but-the-62-m-owed-is-missing-1234794219/" target="_blank" rel="noopener noreferrer">「全球最大画作」6200 万善款去向成谜</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">巴黎</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/market/yves-bouvier-sothebys-documents-picasso-lawsuit-1234794113/" target="_blank" rel="noopener noreferrer">经销商 Yves Bouvier 要求调取苏富比记录</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">纽约</span>
+            <span class="ar-title"><a href="https://news.artron.net/20201026/n1086541.html" target="_blank" rel="noopener noreferrer">布鲁克林博物馆出售馆藏收入 540 万</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">法兰克福</span>
+            <span class="ar-title"><a href="https://news.artron.net/20201012/n1085725.html" target="_blank" rel="noopener noreferrer">德意志银行开始出售藏品</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">成都</span>
+            <span class="ar-title"><a href="https://news.artron.net/20210420/n1094211.html" target="_blank" rel="noopener noreferrer">何多苓不容忽视的市场潜力（TOP5）</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="placeholder-banner" style="margin-top:30px;border-style:solid">
+        <span>ℹ</span>
+        <span>列表数据均来自本期真实报道，点击链接直达原文；正式版将接入权威数据库并提供搜索筛选。</span>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      var cards = document.querySelectorAll("[data-panel]");
+      var panels = document.querySelectorAll("[data-panel-name]");
+      cards.forEach(function (c) {
+        c.addEventListener("click", function () {
+          var p = c.getAttribute("data-panel");
+          cards.forEach(function (x) { x.classList.remove("on"); });
+          c.classList.add("on");
+          panels.forEach(function (panel) {
+            panel.style.display = panel.getAttribute("data-panel-name") === p ? "" : "none";
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
+

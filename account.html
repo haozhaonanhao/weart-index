@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>用户中心 — WeArt Index</title>
+  <meta name="description" content="用户中心：订阅管理、收藏内容、报告下载、账户设置与会员权益。" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-page="account">
+
+  <div id="site-header"></div>
+
+  <!-- ================= 页面头 ================= -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">首页</a> / 用户中心</div>
+      <h1>用户中心</h1>
+      <p class="sub">管理你的关键词订阅、地区订阅与报告推送。专业版会员可解锁深度报告、历史数据回溯与关系图谱。</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container account-layout">
+      <!-- ================= 左侧菜单 ================= -->
+      <aside class="account-side">
+        <div class="account-user">
+          <div class="au-av">藏</div>
+          <div>
+            <div class="au-name">艺术藏家_042</div>
+            <div class="au-level">◆ 专业版会员 · 有效期至 2027.01</div>
+          </div>
+        </div>
+        <nav class="account-nav" id="acNav">
+          <a href="#panel-subs" class="on" data-panel="subs">我的订阅 <span class="n">3 组关键词</span></a>
+          <a href="#panel-faves" data-panel="faves">收藏内容 <span class="badge">5</span></a>
+          <a href="#panel-downloads" data-panel="downloads">报告下载 <span class="n">8 份</span></a>
+          <a href="#panel-settings" data-panel="settings">账户设置</a>
+          <a href="#panel-member" data-panel="member">会员权益</a>
+        </nav>
+      </aside>
+
+      <!-- ================= 右侧内容（面板切换） ================= -->
+      <div>
+
+        <!-- 面板 1：我的订阅 -->
+        <div class="ac-panel" id="panel-subs" data-panel-name="subs">
+          <div class="section-head" style="margin-bottom:22px">
+            <div>
+              <div class="kicker">My Subscriptions · 我的订阅</div>
+              <h2 class="h2" style="font-size:22px">订阅管理</h2>
+            </div>
+            <button class="btn btn-ghost btn-sm" data-modal-open>+ 添加订阅</button>
+          </div>
+
+          <div class="sub-item">
+            <div class="si-head"><b>关键词订阅 · 艺术家</b><span class="tag tag-release">进行中</span></div>
+            <div class="si-tags">
+              <span class="tag">KAWS</span>
+              <span class="tag">奈良美智</span>
+              <span class="tag">LABUBU</span>
+            </div>
+            <div class="si-last">最近推送 · KAWS「FELLOWS」新系列发布（真实新闻）</div>
+          </div>
+
+          <div class="sub-item">
+            <div class="si-head"><b>关键词订阅 · 赛道</b><span class="tag tag-event">进行中</span></div>
+            <div class="si-tags">
+              <span class="tag">艺术潮玩</span>
+              <span class="tag">品牌跨界</span>
+              <span class="tag">拍卖市场</span>
+            </div>
+            <div class="si-last">最近推送 · 高古轩收缩伦敦与巴塞尔空间（真实新闻）</div>
+          </div>
+
+          <div class="sub-item">
+            <div class="si-head"><b>地区订阅</b><span class="tag tag-exhibition">进行中</span></div>
+            <div class="si-tags">
+              <span class="tag">上海</span>
+              <span class="tag">纽约</span>
+              <span class="tag">东京</span>
+            </div>
+            <div class="si-last">最近推送 · 景德镇手工瓷业遗存申遗成功（真实新闻）</div>
+          </div>
+
+          <!-- 最近推送 -->
+          <div class="section-head" style="margin:36px 0 22px">
+            <div>
+              <div class="kicker">Push · 最近推送</div>
+              <h2 class="h2" style="font-size:22px">订阅动态（真实新闻）</h2>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--line)">
+            <div class="push-item">
+              <span class="pi-time">09:12</span>
+              <div class="pi-t"><a href="https://hypebeast.cn/2026/7/kaws-new-fellows-vinyl-figure-collection" target="_blank" rel="noopener noreferrer">KAWS 推出全新「FELLOWS」乙烯基人偶系列</a><small>匹配订阅 · 艺术家「KAWS」</small></div>
+              <span class="pi-tag tag tag-toy">潮玩</span>
+            </div>
+            <div class="push-item">
+              <span class="pi-time">08:47</span>
+              <div class="pi-t"><a href="https://www.artnews.com/art-news/news/gagosian-london-basel-gallery-closures-1234794210/" target="_blank" rel="noopener noreferrer">高古轩放弃伦敦与巴塞尔空间，超级画廊重新思考版图</a><small>匹配订阅 · 赛道「拍卖市场」</small></div>
+              <span class="pi-tag tag tag-trade">交易</span>
+            </div>
+            <div class="push-item">
+              <span class="pi-time">07:55</span>
+              <div class="pi-t"><a href="https://news.artron.net/20260728/n1152674.html" target="_blank" rel="noopener noreferrer">「景德镇手工瓷业遗存」申遗成功</a><small>匹配订阅 · 地区「上海」</small></div>
+              <span class="pi-tag tag tag-event">事件</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 面板 2：收藏内容（真实新闻） -->
+        <div class="ac-panel" id="panel-faves" data-panel-name="faves" style="display:none">
+          <div class="section-head" style="margin-bottom:22px">
+            <div>
+              <div class="kicker">Favorites · 收藏内容</div>
+              <h2 class="h2" style="font-size:22px">已收藏 <em>/ 5 条真实新闻</em></h2>
+            </div>
+            <button class="btn btn-ghost btn-sm">管理收藏</button>
+          </div>
+          <div style="border-top:1px solid var(--line)">
+            <div class="archive-row">
+              <span class="ar-date">展览</span>
+              <span class="ar-title"><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">大都会美术馆悄然挂出达·芬奇《纺车边的圣母》</a></span>
+              <span class="ar-kw">ARTnews</span>
+              <span class="ar-go">→</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">潮玩</span>
+              <span class="ar-title"><a href="https://hypebeast.cn/2026/7/kaws-new-fellows-vinyl-figure-collection" target="_blank" rel="noopener noreferrer">KAWS 推出全新「FELLOWS」乙烯基人偶系列</a></span>
+              <span class="ar-kw">Hypebeast</span>
+              <span class="ar-go">→</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">事件</span>
+              <span class="ar-title"><a href="https://news.artron.net/20260728/n1152674.html" target="_blank" rel="noopener noreferrer">「景德镇手工瓷业遗存」申遗成功</a></span>
+              <span class="ar-kw">雅昌艺术网</span>
+              <span class="ar-go">→</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">交易</span>
+              <span class="ar-title"><a href="https://www.artnews.com/art-news/news/sacha-jafri-auctioned-world-largest-painting-for-charity-but-the-62-m-owed-is-missing-1234794219/" target="_blank" rel="noopener noreferrer">6200 万美元慈善善款去向成谜</a></span>
+              <span class="ar-kw">ARTnews</span>
+              <span class="ar-go">→</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">展览</span>
+              <span class="ar-title"><a href="https://hypebeast.cn/2026/8/yoshitomo-nara-first-exhibition-with-david-zwirner-new-york-info" target="_blank" rel="noopener noreferrer">奈良美智与卓纳画廊首次合作，纽约双场地个展</a></span>
+              <span class="ar-kw">Hypebeast</span>
+              <span class="ar-go">→</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 面板 3：报告下载 -->
+        <div class="ac-panel" id="panel-downloads" data-panel-name="downloads" style="display:none">
+          <div class="section-head" style="margin-bottom:22px">
+            <div>
+              <div class="kicker">Downloads · 报告下载</div>
+              <h2 class="h2" style="font-size:22px">下载记录 <em>/ 8 份</em></h2>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--line)">
+            <div class="archive-row">
+              <span class="ar-date">08.04</span>
+              <span class="ar-title"><a href="archive/index.html" target="_blank">《当代艺术每日日报》· 浏览</a></span>
+              <span class="ar-kw">日报 · 2.4MB</span>
+              <span class="ar-go">↓</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">08.03</span>
+              <span class="ar-title"><a href="report.html">《当代艺术每日日报 VOL.041》· PDF</a></span>
+              <span class="ar-kw">日报 · 2.1MB</span>
+              <span class="ar-go">↓</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">07.31</span>
+              <span class="ar-title"><a href="reports.html">《7 月拍卖市场月度复盘》· PDF</a></span>
+              <span class="ar-kw">月报 · 8.6MB</span>
+              <span class="ar-go">↓</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">06.30</span>
+              <span class="ar-title"><a href="reports.html">《2026 上半年中国当代艺术市场白皮书》· PDF</a></span>
+              <span class="ar-kw">白皮书 · 32MB</span>
+              <span class="ar-go">↓</span>
+            </div>
+          </div>
+          <div class="placeholder-banner" style="border-style:solid;margin-top:20px">
+            <span>ℹ</span>
+            <span>原型阶段报告为示例文档，正式版将提供真实 PDF 下载与导出记录。</span>
+          </div>
+        </div>
+
+        <!-- 面板 4：账户设置 -->
+        <div class="ac-panel" id="panel-settings" data-panel-name="settings" style="display:none">
+          <div class="section-head" style="margin-bottom:22px">
+            <div>
+              <div class="kicker">Settings · 账户设置</div>
+              <h2 class="h2" style="font-size:22px">账户信息</h2>
+            </div>
+          </div>
+          <div class="sub-item">
+            <div class="si-head"><b>基本资料</b></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+              <div><label style="font-size:12px;color:var(--muted)">昵称</label><input type="text" value="艺术藏家_042" style="width:100%;border:1px solid var(--line);border-radius:2px;padding:10px 12px;margin-top:6px;font-size:14px;font-family:inherit" /></div>
+              <div><label style="font-size:12px;color:var(--muted)">邮箱</label><input type="text" value="collector@art-index.demo" style="width:100%;border:1px solid var(--line);border-radius:2px;padding:10px 12px;margin-top:6px;font-size:14px;font-family:inherit" /></div>
+            </div>
+            <div style="margin-top:16px;display:flex;gap:10px">
+              <button class="btn btn-primary btn-sm" data-modal-open>保存修改</button>
+              <button class="btn btn-ghost btn-sm">修改密码</button>
+            </div>
+          </div>
+          <div class="sub-item">
+            <div class="si-head"><b>推送偏好</b></div>
+            <div class="si-tags" style="margin-top:10px">
+              <span class="tag">日报推送 16:00 ✓</span>
+              <span class="tag">重点事件提醒 ✓</span>
+              <span class="tag">周报推送 ✕</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 面板 5：会员权益 -->
+        <div class="ac-panel" id="panel-member" data-panel-name="member" style="display:none">
+          <div class="section-head" style="margin-bottom:22px">
+            <div>
+              <div class="kicker">Membership · 会员权益</div>
+              <h2 class="h2" style="font-size:22px">专业版权益</h2>
+            </div>
+          </div>
+          <div class="latest-report" style="grid-template-columns:1fr auto">
+            <div>
+              <div class="lr-vol">PRO MEMBER · 当前为专业版</div>
+              <h3>深度报告 × 历史数据 × 关系图谱</h3>
+              <p>专业版日报含趋势深度解读与市场情绪分析；解锁全部历史报告档案、高级检索与艺术家「价值路径图」。</p>
+            </div>
+            <div class="lr-cta">
+              <button class="btn btn-accent btn-lg" data-modal-open>续费专业版</button>
+              <a class="btn btn-outline-light btn-lg" href="archive/index.html" target="_blank">浏览日报档案</a>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--line);margin-top:28px">
+            <div class="w-item" style="padding:14px 0;border-bottom:1px dashed var(--line)"><span>专业版日报（含趋势解读 / 情绪分析）</span><span class="v">已解锁</span></div>
+            <div class="w-item" style="padding:14px 0;border-bottom:1px dashed var(--line)"><span>历史报告无限回溯</span><span class="v">已解锁</span></div>
+            <div class="w-item" style="padding:14px 0;border-bottom:1px dashed var(--line)"><span>关系图谱 / 价值路径图</span><span class="v">已解锁</span></div>
+            <div class="w-item" style="padding:14px 0"><span>无广告浏览</span><span class="v">已解锁</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      var nav = document.getElementById("acNav");
+      var links = nav.querySelectorAll("a");
+      var panels = document.querySelectorAll("[data-panel-name]");
+      links.forEach(function (a) {
+        a.addEventListener("click", function (e) {
+          e.preventDefault();
+          var p = a.getAttribute("data-panel");
+          links.forEach(function (x) { x.classList.remove("on"); });
+          a.classList.add("on");
+          panels.forEach(function (panel) {
+            panel.style.display = panel.getAttribute("data-panel-name") === p ? "" : "none";
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
+
+

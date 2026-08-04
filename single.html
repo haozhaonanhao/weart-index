@@ -1,0 +1,3544 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeArt Index — 当代艺术话语权平台 · 全站单文件演示版</title>
+  <meta name="description" content="WeArt Index 全站单文件版：双击即用，无需服务器。首页/全球资讯/行业日报/资源库/活动预告/用户中心/关于我们。" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1A1A1A" />
+  <style>
+/* ==========================================================================
+   WeWeArt Index — 当代艺术话语权平台 · 原型设计系统
+   风格基准：瑞士国际主义网格 / 极简高级灰 / 数据感
+   主色 #1A1A1A · 纸色 #F7F7F7 · 强调 #00C8A0 · 数据橙 #FF6B35
+   ========================================================================== */
+
+:root {
+  --ink: #1A1A1A;
+  --ink-2: #3D3D3D;
+  --paper: #F7F7F7;
+  --white: #FFFFFF;
+  --line: #E3E3E3;
+  --line-dark: rgba(255, 255, 255, 0.14);
+  --muted: #8A8A8A;
+  --muted-2: #B5B5B5;
+  --accent: #00C8A0;
+  --accent-deep: #0B8A6E;
+  --warn: #FF6B35;
+  --radius: 2px;
+  --maxw: 1240px;
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --mono: "SF Mono", "JetBrains Mono", Consolas, "Courier New", monospace;
+  --shadow: 0 10px 40px rgba(26, 26, 26, 0.08);
+  --shadow-lg: 0 24px 64px rgba(26, 26, 26, 0.14);
+}
+
+/* ---------- Reset / Base ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+::selection { background: var(--accent); color: var(--ink); }
+
+/* ---------- 版心与网格 ---------- */
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+.grid { display: grid; gap: 28px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+.grid-sidebar { grid-template-columns: minmax(0, 1fr) 320px; }
+
+/* ---------- 顶部导航 ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  display: flex; align-items: center; gap: 32px;
+  height: 68px;
+}
+
+.brand {
+  display: flex; align-items: baseline; gap: 10px;
+  font-weight: 800; font-size: 19px; letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.brand .dot { color: var(--accent); }
+.brand small {
+  font-weight: 500; font-size: 10px; letter-spacing: 0.28em;
+  color: var(--muted); text-transform: uppercase;
+}
+
+.nav-links { display: flex; align-items: center; gap: 26px; margin-left: auto; }
+.nav-links a {
+  font-size: 13.5px; letter-spacing: 0.04em; color: var(--ink-2);
+  padding: 26px 0; border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  position: relative;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a.active { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+.nav-links a .soon {
+  font-size: 9px; color: var(--muted-2); vertical-align: super; margin-left: 2px;
+}
+
+.nav-cta { display: flex; align-items: center; gap: 14px; }
+.nav-avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--ink); color: var(--white);
+  display: grid; place-items: center;
+  font-size: 11px; font-weight: 700;
+}
+
+/* 下拉菜单（资源库） */
+.dropdown { position: relative; }
+.dropdown-menu {
+  position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  background: var(--white); border: 1px solid var(--line);
+  box-shadow: var(--shadow); min-width: 210px; padding: 10px 0;
+  opacity: 0; visibility: hidden; transform: translateX(-50%) translateY(8px);
+  transition: all 0.18s ease;
+}
+.dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.dropdown-menu a {
+  display: block; padding: 9px 20px; font-size: 13px; color: var(--ink-2);
+  border-bottom: none !important;
+}
+.dropdown-menu a:hover { background: var(--paper); color: var(--ink); }
+
+/* 汉堡按钮（移动端） */
+.burger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+.burger span { width: 20px; height: 2px; background: var(--ink); transition: 0.2s; }
+.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- 按钮 ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 22px; font-size: 13px; font-weight: 600; letter-spacing: 0.05em;
+  border-radius: var(--radius); transition: all 0.2s; white-space: nowrap;
+}
+.btn-primary { background: var(--ink); color: var(--white); }
+.btn-primary:hover { background: #000; transform: translateY(-1px); }
+.btn-accent { background: var(--accent); color: var(--ink); }
+.btn-accent:hover { background: #00B592; transform: translateY(-1px); }
+.btn-ghost { border: 1px solid var(--line); color: var(--ink-2); background: var(--white); }
+.btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+.btn-outline-light { border: 1px solid var(--line-dark); color: var(--white); }
+.btn-outline-light:hover { background: rgba(255, 255, 255, 0.08); }
+.btn-sm { padding: 7px 14px; font-size: 12px; }
+.btn-lg { padding: 14px 30px; font-size: 14px; }
+
+/* ---------- 标签 / 星级 / 影响指数 ---------- */
+.tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  padding: 3px 9px; border-radius: 2px;
+  background: var(--paper); color: var(--ink-2);
+  border: 1px solid var(--line); white-space: nowrap;
+}
+.tag-exhibition { background: #EAF9F4; color: #0B8A6E; border-color: #C9EFE2; }
+.tag-trade      { background: #FFF1E8; color: #C24E14; border-color: #FFDCC3; }
+.tag-partner    { background: #EEF2FF; color: #4353C4; border-color: #D6DCFC; }
+.tag-event      { background: #F5F0FF; color: #7A3FD0; border-color: #E1D5F8; }
+.tag-release    { background: #FFF6D9; color: #9A7B00; border-color: #F2E3AE; }
+
+.tag-city { background: none; border: none; padding: 0; color: var(--muted); font-size: 11.5px; letter-spacing: 0.06em; }
+
+.tag-toy { background: #EAF4FF; color: #1F6FB2; border-color: #C9E2FB; }
+
+.stars { display: inline-flex; gap: 2px; color: var(--muted-2); font-size: 11px; letter-spacing: 1px; }
+.stars .on { color: var(--warn); }
+
+.index-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--accent-deep); white-space: nowrap;
+}
+.index-pill .bar { width: 52px; height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.index-pill .bar i { display: block; height: 100%; background: var(--accent); }
+
+/* ---------- 区块标题 ---------- */
+.section { padding: 64px 0; }
+.section-tight { padding: 40px 0; }
+.section-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 20px; margin-bottom: 30px;
+}
+.kicker {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.3em;
+  color: var(--accent-deep); text-transform: uppercase; margin-bottom: 8px;
+}
+.h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; }
+.h2 em { font-style: normal; color: var(--muted); font-weight: 500; }
+.sec-link { font-size: 12.5px; color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: 0.2s; }
+.sec-link:hover { color: var(--ink); border-color: var(--ink); }
+
+/* ---------- Hero ---------- */
+.hero { padding: 48px 0 56px; background: var(--paper); border-bottom: 1px solid var(--line); }
+.hero-grid { display: grid; grid-template-columns: 1.65fr 1fr; gap: 32px; align-items: stretch; }
+
+.carousel {
+  position: relative; background: var(--ink); color: var(--white);
+  min-height: 420px; display: flex; flex-direction: column; justify-content: flex-end;
+  overflow: hidden; border-radius: var(--radius);
+}
+.carousel-slide {
+  position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 36px 40px; opacity: 0; visibility: hidden; transition: opacity 0.7s ease;
+  overflow: hidden; background: var(--ink);
+}
+.carousel-slide::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(26,26,26,0.15) 0%, rgba(26,26,26,0.05) 40%, rgba(26,26,26,0.9) 100%);
+}
+.carousel-slide .slide-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.carousel-slide .slide-tags, .carousel-slide .slide-meta, .carousel-slide h3 { position: relative; z-index: 2; }
+.carousel-slide.active { opacity: 1; visibility: visible; }
+.carousel-slide .slide-tags { display: flex; gap: 8px; margin-bottom: 16px; }
+.carousel-slide .slide-meta { font-size: 11.5px; letter-spacing: 0.12em; color: rgba(255,255,255,0.62); margin-bottom: 10px; }
+.carousel-slide h3 { font-size: 26px; font-weight: 700; line-height: 1.35; max-width: 560px; }
+.carousel-slide h3 a:hover { color: var(--accent); }
+.carousel-dots {
+  position: absolute; top: 22px; right: 26px; display: flex; gap: 6px;
+}
+.carousel-dots button { width: 26px; height: 3px; background: rgba(255,255,255,0.28); transition: 0.25s; }
+.carousel-dots button.on { background: var(--accent); width: 40px; }
+.carousel-arrows { position: absolute; bottom: 30px; right: 32px; display: flex; gap: 8px; }
+.carousel-arrows button {
+  width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.3);
+  color: var(--white); font-size: 16px; border-radius: 50%;
+  transition: 0.2s;
+}
+.carousel-arrows button:hover { background: var(--white); color: var(--ink); }
+
+/* 日报入口卡 */
+.daily-card {
+  background: var(--white); border: 1px solid var(--line);
+  display: flex; flex-direction: column; padding: 30px 28px;
+  border-radius: var(--radius); transition: box-shadow 0.25s;
+}
+.daily-card:hover { box-shadow: var(--shadow); }
+.daily-card .issue { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.1em; }
+.daily-card .vol {
+  font-family: var(--mono); font-size: 44px; font-weight: 700; line-height: 1;
+  margin: 18px 0 6px; color: var(--ink);
+}
+.daily-card .vol span { color: var(--accent); }
+.daily-card .date { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+.daily-card ul { margin-bottom: 22px; }
+.daily-card ul li {
+  display: flex; gap: 10px; font-size: 13px; color: var(--ink-2);
+  padding: 8px 0; border-bottom: 1px dashed var(--line);
+}
+.daily-card ul li b { color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; }
+.daily-card .btn { justify-content: center; margin-top: auto; }
+
+/* ---------- 分类快捷入口 ---------- */
+.cat-card {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 26px 24px; background: var(--white);
+  transition: 0.22s; position: relative; overflow: hidden;
+}
+.cat-card:hover { border-color: var(--ink); transform: translateY(-3px); box-shadow: var(--shadow); }
+.cat-card .cat-no { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.12em; }
+.cat-card h3 { font-size: 18px; font-weight: 700; margin: 10px 0 6px; }
+.cat-card .cat-en { font-size: 11px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
+.cat-card .cat-count {
+  margin-top: 18px; font-size: 12px; color: var(--accent-deep); font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+}
+.cat-card .cat-count::after { content: "→"; transition: transform 0.2s; }
+.cat-card:hover .cat-count::after { transform: translateX(4px); }
+
+/* ---------- 榜单 ---------- */
+.rank-list { border-top: 1px solid var(--line); }
+.rank-item {
+  display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; align-items: center;
+  padding: 16px 4px; border-bottom: 1px solid var(--line);
+  transition: background 0.15s;
+}
+.rank-item:hover { background: var(--paper); }
+.rank-item .no { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--muted-2); }
+.rank-item:nth-child(-n+3) .no { color: var(--ink); }
+.rank-item:nth-child(1) .no { color: var(--warn); }
+.rank-item .t { font-size: 13.5px; line-height: 1.45; }
+.rank-item .t a:hover { color: var(--accent-deep); }
+.rank-item .t small { display: block; color: var(--muted); font-size: 11px; margin-top: 3px; }
+.rank-item .heat { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+/* ---------- 预告列表 ---------- */
+.preview-row {
+  display: flex; align-items: center; gap: 20px;
+  padding: 16px 0; border-bottom: 1px solid var(--line);
+}
+.preview-row:last-child { border-bottom: none; }
+.preview-row .when { font-family: var(--mono); font-size: 12px; color: var(--accent-deep); min-width: 118px; letter-spacing: 0.04em; }
+.preview-row .what { flex: 1; font-size: 14px; font-weight: 500; }
+.preview-row .where { font-size: 12px; color: var(--muted); min-width: 120px; text-align: right; }
+
+/* ---------- 数据卡 ---------- */
+.data-card {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 26px 24px; background: var(--white);
+}
+.data-card .d-label { font-size: 11px; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase; }
+.data-card .d-value {
+  font-family: var(--mono); font-size: 34px; font-weight: 700; letter-spacing: -0.02em;
+  margin-top: 10px; line-height: 1.1;
+}
+.data-card .d-value .unit { font-size: 16px; color: var(--muted); font-weight: 500; }
+.data-card .d-sub { font-size: 12px; color: var(--muted); margin-top: 8px; }
+.data-card.accent { background: var(--ink); border-color: var(--ink); color: var(--white); }
+.data-card.accent .d-label { color: rgba(255,255,255,0.5); }
+.data-card.accent .d-value { color: var(--accent); }
+.data-card.accent .d-sub { color: rgba(255,255,255,0.55); }
+
+/* ---------- 资讯条目 ---------- */
+.news-card {
+  border-bottom: 1px solid var(--line); padding: 26px 0;
+  display: grid; grid-template-columns: auto 1fr; gap: 22px;
+  transition: padding-left 0.2s;
+}
+.news-card:hover { padding-left: 10px; }
+.news-card .nc-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.news-card h3 { font-size: 17.5px; font-weight: 650; line-height: 1.4; }
+.news-card h3 a:hover { color: var(--accent-deep); }
+.news-card .nc-excerpt { font-size: 13.5px; color: var(--muted); margin-top: 8px; max-width: 720px; }
+.news-card .nc-foot { display: flex; gap: 16px; margin-top: 14px; font-size: 11.5px; color: var(--muted); }
+.news-card .nc-thumb {
+  width: 150px; height: 96px; border-radius: var(--radius);
+  flex-shrink: 0; position: relative; overflow: hidden; background: var(--paper);
+}
+.news-card .nc-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- 筛选栏 ---------- */
+.filter-bar {
+  display: flex; flex-wrap: wrap; gap: 26px; align-items: center;
+  padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  margin-bottom: 30px;
+}
+.filter-group { display: flex; align-items: center; gap: 14px; }
+.filter-group .f-label { font-size: 11px; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  font-size: 12.5px; padding: 6px 14px; border: 1px solid var(--line);
+  border-radius: 999px; color: var(--ink-2); transition: 0.18s; background: var(--white);
+}
+.chip:hover { border-color: var(--ink); }
+.chip.on { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+/* ---------- 侧栏小部件 ---------- */
+.widget { border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; margin-bottom: 24px; }
+.widget h4 {
+  font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); padding-bottom: 14px; border-bottom: 1px solid var(--line); margin-bottom: 14px;
+}
+.widget .w-item {
+  display: flex; justify-content: space-between; gap: 12px;
+  padding: 11px 0; border-bottom: 1px dashed var(--line); font-size: 13px;
+}
+.widget .w-item:last-child { border-bottom: none; }
+.widget .w-item .v { color: var(--muted); font-family: var(--mono); font-size: 12px; white-space: nowrap; }
+
+/* ---------- 文章 / 报告排版 ---------- */
+.article-hero { padding: 56px 0 40px; background: var(--paper); border-bottom: 1px solid var(--line); }
+.article-hero .breadcrumb { font-size: 12px; color: var(--muted); letter-spacing: 0.08em; margin-bottom: 22px; }
+.article-hero .breadcrumb a:hover { color: var(--ink); }
+.article-hero h1 { font-size: 36px; line-height: 1.3; font-weight: 750; letter-spacing: -0.015em; max-width: 860px; }
+.article-hero .sub { color: var(--muted); font-size: 15px; margin-top: 16px; max-width: 720px; }
+.article-meta { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 24px; font-size: 12.5px; color: var(--muted); align-items: center; }
+
+.prose { max-width: 780px; }
+.prose p { font-size: 15.5px; line-height: 1.95; color: var(--ink-2); margin-bottom: 22px; }
+.prose h3 { font-size: 20px; margin: 36px 0 14px; font-weight: 700; }
+.prose blockquote {
+  border-left: 3px solid var(--accent); padding: 6px 0 6px 22px;
+  font-size: 17px; color: var(--ink); font-style: italic; margin: 26px 0;
+}
+.prose .fig {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  margin: 28px 0; overflow: hidden;
+}
+.prose .fig img { width: 100%; height: auto; display: block; }
+.prose .fig figcaption {
+  font-size: 11px; letter-spacing: 0.1em; color: var(--muted);
+  padding: 12px 16px; border-top: 1px solid var(--line);
+}
+.prose .pull-num {
+  display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center;
+  border: 1px solid var(--line); padding: 22px 24px; margin: 28px 0; border-radius: var(--radius);
+}
+.prose .pull-num .n { font-family: var(--mono); font-size: 40px; font-weight: 700; color: var(--accent-deep); }
+.prose .pull-num .t { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* 关联信息卡片 */
+.related-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; margin-bottom: 16px; transition: 0.2s; background: var(--white); }
+.related-card:hover { border-color: var(--ink); box-shadow: var(--shadow); }
+.related-card .rc-k { font-size: 10.5px; letter-spacing: 0.2em; color: var(--accent-deep); text-transform: uppercase; }
+.related-card .rc-v { font-size: 14.5px; font-weight: 650; margin-top: 6px; }
+.related-card .rc-v small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; margin-top: 4px; }
+
+/* ---------- 日报详情 ---------- */
+.report-cover { background: var(--ink); color: var(--white); padding: 72px 0; }
+.report-cover .issue-row { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.report-cover .issue-row .l { font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; color: rgba(255,255,255,0.5); }
+.report-cover h1 { font-size: 42px; font-weight: 800; letter-spacing: -0.02em; margin: 14px 0 8px; }
+.report-cover .en { font-size: 12px; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; }
+.report-cover .lead { color: rgba(255,255,255,0.7); max-width: 640px; margin-top: 18px; font-size: 14.5px; }
+
+.toc { border: 1px solid var(--line); padding: 24px 28px; border-radius: var(--radius); display: flex; gap: 30px; flex-wrap: wrap; }
+.toc a { font-size: 13px; color: var(--ink-2); }
+.toc a:hover { color: var(--accent-deep); }
+.toc .no { font-family: var(--mono); color: var(--muted); margin-right: 8px; font-size: 11px; }
+
+.speed-list li {
+  display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: flex-start;
+}
+.speed-list li .i { font-family: var(--mono); font-size: 12px; color: var(--accent-deep); padding-top: 4px; min-width: 26px; }
+.speed-list li .b { flex: 1; }
+.speed-list li .b h4 { font-size: 15px; font-weight: 650; }
+.speed-list li .b p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+.track-block { border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 26px 14px; margin-bottom: 26px; }
+.track-block .tb-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.track-block .tb-head h3 { font-size: 17px; font-weight: 700; }
+.track-block .tb-head .en { font-size: 10.5px; letter-spacing: 0.24em; color: var(--muted); text-transform: uppercase; }
+.track-item { display: grid; grid-template-columns: 130px 1fr auto; gap: 18px; padding: 13px 0; border-top: 1px dashed var(--line); font-size: 13.5px; }
+.track-item .ti-region { color: var(--muted); font-size: 12px; padding-top: 2px; }
+.track-item .ti-title { font-weight: 550; }
+.track-item .ti-title small { display: block; color: var(--muted); font-weight: 400; font-size: 12px; margin-top: 3px; }
+.track-item .ti-index { align-self: center; }
+
+.trend-box { background: var(--paper); border: 1px solid var(--line); border-left: 3px solid var(--accent); padding: 26px 28px; border-radius: var(--radius); }
+.trend-box h4 { font-size: 13px; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; }
+.trend-box p { font-size: 14.5px; line-height: 1.9; color: var(--ink-2); }
+
+/* ---------- 归档 / 时间线 ---------- */
+.archive-month { margin-bottom: 34px; }
+.archive-month .am-label {
+  font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.16em;
+  padding-bottom: 10px; border-bottom: 2px solid var(--ink); margin-bottom: 6px;
+  display: flex; justify-content: space-between;
+}
+.archive-row {
+  display: grid; grid-template-columns: 96px 1fr auto; gap: 18px; align-items: center;
+  padding: 14px 4px; border-bottom: 1px solid var(--line); font-size: 14px;
+  transition: background 0.15s;
+}
+.archive-row:hover { background: var(--paper); }
+.archive-row .ar-date { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+.archive-row .ar-title { font-weight: 550; }
+.archive-row .ar-kw { font-size: 11.5px; color: var(--muted); }
+.archive-row .ar-go { color: var(--muted); font-size: 16px; }
+
+.latest-report {
+  background: var(--ink); color: var(--white); border-radius: var(--radius);
+  padding: 40px; display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: center;
+  position: relative; overflow: hidden;
+}
+.latest-report::after {
+  content: "REPORT"; position: absolute; right: -20px; bottom: -30px;
+  font-size: 120px; font-weight: 800; letter-spacing: -0.03em;
+  color: rgba(255,255,255,0.05); pointer-events: none;
+}
+.latest-report .lr-vol { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.12em; }
+.latest-report h3 { font-size: 26px; font-weight: 750; margin: 10px 0; line-height: 1.35; }
+.latest-report p { color: rgba(255,255,255,0.65); font-size: 13.5px; max-width: 560px; }
+.latest-report .lr-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* ---------- 档案页 ---------- */
+.profile-hero { background: var(--paper); border-bottom: 1px solid var(--line); padding: 52px 0 40px; }
+.profile-grid { display: grid; grid-template-columns: 210px 1fr; gap: 36px; align-items: start; }
+.avatar-frame {
+  width: 210px; height: 260px; background: var(--paper);
+  border-radius: var(--radius); overflow: hidden; position: relative;
+}
+.avatar-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.profile-info h1 { font-size: 40px; font-weight: 800; letter-spacing: -0.02em; }
+.profile-info .pi-sub { font-size: 14px; color: var(--muted); margin-top: 8px; }
+.profile-info .pi-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+.profile-info .pi-bio { margin-top: 20px; font-size: 14.5px; color: var(--ink-2); max-width: 720px; line-height: 1.9; }
+.profile-stats { display: flex; gap: 30px; margin-top: 26px; flex-wrap: wrap; }
+.profile-stats .ps b { font-family: var(--mono); font-size: 24px; font-weight: 700; display: block; }
+.profile-stats .ps span { font-size: 11px; letter-spacing: 0.16em; color: var(--muted); text-transform: uppercase; }
+
+/* 关系图谱 */
+.graph-wrap { border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); padding: 20px; }
+.graph {
+  position: relative; height: 460px; border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(0,200,160,0.06) 0%, transparent 55%),
+    repeating-linear-gradient(0deg, transparent 0 47px, rgba(26,26,26,0.035) 47px 48px),
+    repeating-linear-gradient(90deg, transparent 0 47px, rgba(26,26,26,0.035) 47px 48px),
+    var(--paper);
+  overflow: hidden;
+}
+.graph svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.graph .node {
+  position: absolute; transform: translate(-50%, -50%);
+  text-align: center; z-index: 2;
+}
+.graph .node .nd {
+  width: 92px; height: 92px; border-radius: 50%;
+  background: var(--white); border: 1.5px solid var(--ink);
+  display: grid; place-items: center; margin: 0 auto;
+  font-size: 12px; font-weight: 650; letter-spacing: 0.02em;
+  box-shadow: var(--shadow); transition: 0.2s;
+}
+.graph .node.center .nd { background: var(--ink); color: var(--white); width: 118px; height: 118px; font-size: 15px; border-color: var(--ink); }
+.graph .node:hover .nd { border-color: var(--accent); color: var(--accent-deep); transform: scale(1.06); }
+.graph .node .nl { font-size: 10.5px; color: var(--muted); margin-top: 8px; letter-spacing: 0.08em; }
+.graph .node.center .nl { color: var(--accent-deep); font-weight: 600; }
+
+/* 时间线（履历） */
+.timeline { border-left: 1px solid var(--line); margin-left: 6px; padding-left: 26px; }
+.tl-item { position: relative; padding: 0 0 26px 0; }
+.tl-item::before {
+  content: ""; position: absolute; left: -31.5px; top: 6px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--white); border: 2px solid var(--accent);
+}
+.tl-item .tl-date { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.08em; }
+.tl-item h4 { font-size: 15px; font-weight: 650; margin: 4px 0; }
+.tl-item p { font-size: 13px; color: var(--muted); }
+
+/* 作品网格 */
+.work-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.work-card { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: 0.22s; background: var(--white); }
+.work-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.work-card .wc-img {
+  aspect-ratio: 1/1.1; background: var(--paper);
+  position: relative; overflow: hidden;
+}
+.work-card .wc-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.work-card .wc-body { padding: 14px 16px; }
+.work-card .wc-body h5 { font-size: 13.5px; font-weight: 650; }
+.work-card .wc-body p { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+
+/* 交易记录表 */
+.trade-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.trade-table th {
+  text-align: left; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted); font-weight: 600; padding: 10px 12px; border-bottom: 2px solid var(--ink);
+}
+.trade-table td { padding: 13px 12px; border-bottom: 1px solid var(--line); }
+.trade-table tr:hover td { background: var(--paper); }
+.trade-table .price { font-family: var(--mono); font-weight: 600; color: var(--accent-deep); }
+
+/* ---------- 用户中心 ---------- */
+.account-layout { display: grid; grid-template-columns: 240px 1fr; gap: 40px; }
+.account-side { border-right: 1px solid var(--line); padding-right: 30px; }
+.account-user { display: flex; gap: 14px; align-items: center; padding-bottom: 22px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+.account-user .au-av { width: 52px; height: 52px; border-radius: 50%; background: var(--ink); color: var(--white); display: grid; place-items: center; font-weight: 700; }
+.account-user .au-name { font-size: 15px; font-weight: 700; }
+.account-user .au-level { font-size: 11px; color: var(--accent-deep); font-weight: 600; margin-top: 2px; }
+.account-nav a {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 10px; font-size: 13.5px; color: var(--ink-2);
+  border-radius: var(--radius); transition: 0.15s;
+}
+.account-nav a:hover { background: var(--paper); color: var(--ink); }
+.account-nav a.on { background: var(--paper); color: var(--ink); font-weight: 650; }
+.account-nav a .n { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.account-nav a .badge { background: var(--accent); color: var(--ink); font-size: 10.5px; font-weight: 700; padding: 1px 7px; border-radius: 999px; }
+
+.sub-item { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; margin-bottom: 16px; }
+.sub-item .si-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.sub-item .si-head b { font-size: 14.5px; }
+.sub-item .si-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.sub-item .si-last { font-size: 12px; color: var(--muted); margin-top: 12px; }
+
+.push-item {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center;
+  border-bottom: 1px solid var(--line); padding: 16px 0;
+}
+.push-item .pi-time { font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+.push-item .pi-t { font-size: 13.5px; }
+.push-item .pi-t small { display: block; color: var(--muted); margin-top: 2px; }
+.push-item .pi-tag { font-size: 10.5px; }
+
+/* ---------- 日历 ---------- */
+.calendar { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.cal-head { display: grid; grid-template-columns: repeat(7, 1fr); background: var(--ink); color: rgba(255,255,255,0.6); }
+.cal-head div { padding: 10px; font-size: 10.5px; letter-spacing: 0.14em; text-align: center; text-transform: uppercase; }
+.cal-body { display: grid; grid-template-columns: repeat(7, 1fr); }
+.cal-cell { min-height: 96px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 10px; font-size: 11px; }
+.cal-cell:nth-child(7n) { border-right: none; }
+.cal-cell .d { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.cal-cell.today { background: #EAF9F4; }
+.cal-cell.today .d { color: var(--accent-deep); font-weight: 700; }
+.cal-cell .ev { background: var(--ink); color: var(--white); border-radius: 2px; padding: 2px 6px; font-size: 10px; margin-top: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.cal-cell .ev.accent { background: var(--accent); color: var(--ink); font-weight: 600; }
+
+/* ---------- 资源库入口 ---------- */
+.resource-card {
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 28px;
+  background: var(--white); position: relative; overflow: hidden; transition: 0.22s;
+}
+.resource-card:hover { border-color: var(--ink); transform: translateY(-3px); box-shadow: var(--shadow); }
+.resource-card.on { border-color: var(--accent); background: #EAF9F4; }
+.resource-card .rc-no { font-family: var(--mono); font-size: 52px; font-weight: 800; color: var(--paper); position: absolute; top: -6px; right: 10px; line-height: 1; }
+.resource-card h3 { font-size: 20px; font-weight: 700; margin: 12px 0 6px; }
+.resource-card p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+.resource-card .rc-stat { margin-top: 20px; font-family: var(--mono); font-size: 12px; color: var(--accent-deep); }
+
+.search-box {
+  display: flex; align-items: center; gap: 12px;
+  border: 1px solid var(--ink); padding: 14px 20px; border-radius: var(--radius);
+  background: var(--white);
+}
+.search-box input { flex: 1; border: none; outline: none; font-size: 14px; font-family: inherit; }
+.search-box .kbd { font-family: var(--mono); font-size: 10px; color: var(--muted); border: 1px solid var(--line); padding: 2px 7px; border-radius: 3px; }
+
+/* ---------- 页脚 ---------- */
+.site-footer { background: var(--ink); color: rgba(255,255,255,0.72); margin-top: 80px; }
+.footer-top { padding: 56px 0 40px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+.site-footer .brand { color: var(--white); margin-bottom: 16px; }
+.site-footer .f-about { font-size: 13px; line-height: 1.9; max-width: 320px; }
+.f-col h5 { color: var(--white); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; }
+.f-col a { display: block; font-size: 13px; padding: 5px 0; color: rgba(255,255,255,0.6); transition: 0.2s; }
+.f-col a:hover { color: var(--accent); }
+.footer-bottom {
+  border-top: 1px solid var(--line-dark); padding: 22px 0;
+  display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+  font-size: 12px; color: rgba(255,255,255,0.4);
+}
+.footer-bottom .demo-note { color: var(--accent); }
+
+/* ---------- 弹窗 ---------- */
+.modal-mask {
+  position: fixed; inset: 0; background: rgba(26,26,26,0.6); z-index: 200;
+  display: none; place-items: center; padding: 20px; backdrop-filter: blur(4px);
+}
+.modal-mask.show { display: grid; }
+.modal {
+  background: var(--white); max-width: 460px; width: 100%;
+  border-radius: var(--radius); padding: 40px 38px; position: relative;
+  animation: modalIn 0.25s ease;
+}
+@keyframes modalIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.modal .m-close { position: absolute; top: 14px; right: 16px; font-size: 18px; color: var(--muted); }
+.modal h3 { font-size: 22px; font-weight: 750; }
+.modal p { font-size: 13.5px; color: var(--muted); margin: 10px 0 24px; }
+.modal form { display: flex; gap: 10px; }
+.modal input {
+  flex: 1; border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 12px 16px; font-size: 14px; font-family: inherit; outline: none;
+}
+.modal input:focus { border-color: var(--ink); }
+
+/* ---------- 占位横幅 ---------- */
+.placeholder-banner {
+  border: 1px dashed var(--muted-2); border-radius: var(--radius);
+  padding: 20px 24px; font-size: 12.5px; color: var(--muted);
+  display: flex; gap: 12px; align-items: center; margin-bottom: 24px;
+}
+.placeholder-banner b { color: var(--accent-deep); }
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 1024px) {
+  .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); }
+  .hero-grid, .grid-sidebar { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .work-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav { height: 60px; gap: 16px; }
+  .nav-links {
+    position: fixed; top: 60px; left: 0; right: 0;
+    background: var(--white); flex-direction: column; align-items: flex-start;
+    gap: 0; padding: 10px 28px 20px; border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px); opacity: 0; visibility: hidden; transition: 0.2s;
+  }
+  .nav-links.open { transform: none; opacity: 1; visibility: visible; }
+  .nav-links a { padding: 13px 0; width: 100%; border-bottom: 1px solid var(--line); }
+  .nav-links a.active { border-bottom-color: var(--accent); }
+  .dropdown-menu { position: static; transform: none; box-shadow: none; border: none; padding: 0 0 0 14px; min-width: 0; opacity: 1; visibility: visible; }
+  .dropdown:hover .dropdown-menu { transform: none; }
+  .dropdown-menu a { padding: 10px 0; }
+  .burger { display: flex; }
+  .nav-cta .btn-sub { display: none; }
+
+  .section { padding: 44px 0; }
+  .hero { padding: 28px 0 40px; }
+  .carousel { min-height: 360px; }
+  .carousel-slide { padding: 26px 24px; }
+  .carousel-slide h3 { font-size: 21px; }
+  .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+  .profile-grid { grid-template-columns: 1fr; }
+  .avatar-frame { width: 100%; height: 200px; }
+  .account-layout { grid-template-columns: 1fr; gap: 24px; }
+  .account-side { border-right: none; border-bottom: 1px solid var(--line); padding: 0 0 18px; }
+  .latest-report { grid-template-columns: 1fr; padding: 30px 26px; }
+  .work-grid { grid-template-columns: repeat(2, 1fr); }
+  .news-card { grid-template-columns: 1fr; }
+  .news-card .nc-thumb { width: 100%; height: 140px; }
+  .article-hero h1 { font-size: 28px; }
+  .report-cover h1 { font-size: 32px; }
+  .track-item { grid-template-columns: 1fr; gap: 6px; }
+  .graph { height: 380px; }
+  .container { padding: 0 20px; }
+  .cal-cell { min-height: 70px; }
+}
+
+@media (max-width: 480px) {
+  .work-grid { grid-template-columns: 1fr; }
+  .cal-cell .ev { display: none; }
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+}
+
+
+  </style>
+</head>
+<body>
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js')}</script>
+  <div id="site-header"></div>
+
+
+<section class="view" id="view-index">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+
+  <!-- 导航由 main.js 注入 -->
+  <!-- ================= Hero：今日要闻轮播 + 今日日报入口 ================= -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <!-- 左侧：今日核心要闻轮播 -->
+      <div class="carousel">
+        <div class="carousel-dots"></div>
+
+        <article class="carousel-slide active">
+          <img class="slide-bg" src="assets/images/hero-1.jpg" alt="达·芬奇《纺车边的圣母》" />
+          <div class="slide-tags">
+            <span class="tag tag-exhibition">展览</span>
+            <span class="tag-city">纽约 · 北美</span>
+          </div>
+          <p class="slide-meta">TOP 01 · ARTnews 报道</p>
+          <h3><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">大都会美术馆悄然挂出达·芬奇《纺车边的圣母》，借展自藏家肯·格里芬</a></h3>
+        </article>
+
+        <article class="carousel-slide">
+          <img class="slide-bg" src="assets/images/hero-2.jpg" alt="高古轩画廊空间" />
+          <div class="slide-tags">
+            <span class="tag tag-trade">交易</span>
+            <span class="tag-city">伦敦 / 巴塞尔 · 欧洲</span>
+          </div>
+          <p class="slide-meta">TOP 02 · ARTnews 报道</p>
+          <h3><a href="https://www.artnews.com/art-news/news/gagosian-london-basel-gallery-closures-1234794210/" target="_blank" rel="noopener noreferrer">高古轩放弃伦敦与巴塞尔空间，超级画廊重新思考全球版图</a></h3>
+        </article>
+
+        <article class="carousel-slide">
+          <img class="slide-bg" src="assets/images/hero-3.jpg" alt="景德镇手工制瓷" />
+          <div class="slide-tags">
+            <span class="tag tag-event">事件</span>
+            <span class="tag-city">景德镇 · 中国</span>
+          </div>
+          <p class="slide-meta">TOP 03 · 雅昌艺术网报道</p>
+          <h3><a href="https://news.artron.net/20260728/n1152674.html" target="_blank" rel="noopener noreferrer">刷屏！「景德镇手工瓷业遗存」申遗成功</a></h3>
+        </article>
+
+        <div class="carousel-arrows">
+          <button class="carousel-prev" aria-label="上一条">←</button>
+          <button class="carousel-next" aria-label="下一条">→</button>
+        </div>
+      </div>
+
+      <!-- 右侧：今日日报入口（核心 C 位） -->
+      <aside class="daily-card">
+        <span class="issue">DAILY ART REPORT · <span class="js-vol">042</span></span>
+        <div class="vol">VOL.<span class="js-vol">042</span></div>
+        <div class="date" class="js-today">——</div>
+        <ul>
+          <li><b>速览</b>66 篇真实报道 · 六大赛道复盘</li>
+          <li><b>数据</b>报道最高成交 $62M · 来源 3 家媒体</li>
+          <li><b>预告</b>近期 5 场真实活动（艺博会 / 展览）</li>
+        </ul>
+        <a class="btn btn-primary btn-lg" href="archive/index.html" target="_blank">立即阅读今日艺术日报 →</a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= 五大资讯分类快捷入口 ================= -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Channels · 五大赛道</div>
+          <h2 class="h2">今日全球动态 <em>/ 实时更新</em></h2>
+        </div>
+        <a class="sec-link" href="#view-news">进入全球资讯频道 →</a>
+      </div>
+      <div class="grid grid-3">
+        <a class="cat-card" href="#view-news">
+          <span class="cat-no">01</span>
+          <h3>艺术展览</h3>
+          <div class="cat-en">Exhibition</div>
+          <div class="cat-count">报道 25 篇</div>
+        </a>
+        <a class="cat-card" href="#view-news">
+          <span class="cat-no">02</span>
+          <h3>艺术事件</h3>
+          <div class="cat-en">Event</div>
+          <div class="cat-count">报道 16 篇</div>
+        </a>
+        <a class="cat-card" href="#view-news">
+          <span class="cat-no">03</span>
+          <h3>作品发布</h3>
+          <div class="cat-en">Release</div>
+          <div class="cat-count">报道 3 篇</div>
+        </a>
+        <a class="cat-card" href="#view-news">
+          <span class="cat-no">04</span>
+          <h3>品牌合作</h3>
+          <div class="cat-en">Partner</div>
+          <div class="cat-count">报道 4 篇</div>
+        </a>
+        <a class="cat-card" href="#view-news">
+          <span class="cat-no">05</span>
+          <h3>艺术交易</h3>
+          <div class="cat-en">Trade</div>
+          <div class="cat-count">报道 4 篇</div>
+        </a>
+        <a class="cat-card" href="#view-news">
+          <span class="cat-no">06</span>
+          <h3>艺术潮玩</h3>
+          <div class="cat-en">Art Toys</div>
+          <div class="cat-count">报道 14 篇</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 数据速览 ================= -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Data Snapshot · 今日数据速览</div>
+          <h2 class="h2">以数据感知行业脉搏</h2>
+        </div>
+        <span class="sec-link">更新于 <span class="js-today">——</span></span>
+      </div>
+      <div class="grid grid-5">
+        <div class="data-card">
+          <div class="d-label">已收录真实报道</div>
+          <div class="d-value"><span data-count="66">0</span><span class="unit"> 篇</span></div>
+          <div class="d-sub">ARTnews / 雅昌 / Hypebeast</div>
+        </div>
+        <div class="data-card">
+          <div class="d-label">覆盖城市与地区</div>
+          <div class="d-value"><span data-count="20">0</span><span class="unit">+</span></div>
+          <div class="d-sub">纽约 / 伦敦 / 东京 / 上海等</div>
+        </div>
+        <div class="data-card accent">
+          <div class="d-label">报道最高成交额</div>
+          <div class="d-value">$<span data-count="62" data-suffix="M">0</span></div>
+          <div class="d-sub">全球最大画作慈善拍（真实报道）</div>
+        </div>
+        <div class="data-card">
+          <div class="d-label">报道频次最高艺术家</div>
+          <div class="d-value" style="font-size:24px;font-family:var(--font)">KAWS</div>
+          <div class="d-sub">本期 4 篇相关真实报道</div>
+        </div>
+        <div class="data-card">
+          <div class="d-label">报道来源分布</div>
+          <div class="d-value" style="font-size:24px;font-family:var(--font)">Hypebeast</div>
+          <div class="d-sub">26 篇 · 潮玩与流行文化</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 热门榜单 ================= -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="grid grid-2">
+        <div>
+          <div class="section-head" style="margin-bottom:20px">
+            <div>
+              <div class="kicker">Hot · 阅读榜</div>
+              <h2 class="h2" style="font-size:20px">今日阅读榜 TOP 5</h2>
+            </div>
+          </div>
+          <div class="rank-list">
+            <div class="rank-item">
+              <span class="no">01</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">大都会挂出达·芬奇借展之作</a><small>展览 · 纽约 · ARTnews</small></div>
+              <span class="heat">ARTnews</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">02</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/gagosian-london-basel-gallery-closures-1234794210/" target="_blank" rel="noopener noreferrer">高古轩收缩伦敦与巴塞尔空间</a><small>交易 · 伦敦 · ARTnews</small></div>
+              <span class="heat">ARTnews</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">03</span>
+              <div class="t"><a href="https://news.artron.net/20260728/n1152674.html" target="_blank" rel="noopener noreferrer">「景德镇手工瓷业遗存」申遗成功</a><small>事件 · 景德镇 · 雅昌</small></div>
+              <span class="heat">雅昌</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">04</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/sacha-jafri-auctioned-world-largest-painting-for-charity-but-the-62-m-owed-is-missing-1234794219/" target="_blank" rel="noopener noreferrer">6200 万美元慈善善款去向成谜</a><small>交易 · 迪拜 · ARTnews</small></div>
+              <span class="heat">ARTnews</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">05</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/taryn-simon-guggenheim-show-new-work-rotunda-1234794169/" target="_blank" rel="noopener noreferrer">塔琳·西蒙古根海姆圆形大厅个展</a><small>展览 · 纽约 · ARTnews</small></div>
+              <span class="heat">ARTnews</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-head" style="margin-bottom:20px">
+            <div>
+              <div class="kicker">Buzz · 热议榜</div>
+              <h2 class="h2" style="font-size:20px">今日热议榜 TOP 5</h2>
+            </div>
+          </div>
+          <div class="rank-list">
+            <div class="rank-item">
+              <span class="no">01</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/met-museum-john-galliano-show-jewish-leaders-meetings-1234794224/" target="_blank" rel="noopener noreferrer">大都会为加利亚诺办展咨询犹太领袖</a><small>事件 · 纽约</small></div>
+              <span class="heat">热议</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">02</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/sacha-jafri-auctioned-world-largest-painting-for-charity-but-the-62-m-owed-is-missing-1234794219/" target="_blank" rel="noopener noreferrer">「全球最大画作」善款争议持续发酵</a><small>交易 · 迪拜</small></div>
+              <span class="heat">热议</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">03</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/francisco-correa-cordero-lubov-gallery-dead-1234794249/" target="_blank" rel="noopener noreferrer">纽约新锐画廊 Lubov 创始人逝世</a><small>事件 · 纽约</small></div>
+              <span class="heat">热议</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">04</span>
+              <div class="t"><a href="https://news.artron.net/20250829/n1143766.html" target="_blank" rel="noopener noreferrer">「太保墉燕」展重读北京城之源</a><small>展览 · 北京</small></div>
+              <span class="heat">热议</span>
+            </div>
+            <div class="rank-item">
+              <span class="no">05</span>
+              <div class="t"><a href="https://www.artnews.com/art-news/news/white-house-proposes-smallest-smithsonian-budget-in-years-1234794165/" target="_blank" rel="noopener noreferrer">史密森尼预算降至近年最低引担忧</a><small>事件 · 华盛顿</small></div>
+              <span class="heat">热议</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 即将开展预告 ================= -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Coming Soon · 明日预告</div>
+          <h2 class="h2">即将开幕与开拍</h2>
+        </div>
+        <a class="sec-link" href="#view-agenda">查看完整日程 →</a>
+      </div>
+      <div class="widget" style="padding:6px 0 6px 0;border:none">
+        <div class="preview-row">
+          <span class="when">08.05 10:00</span>
+          <span class="what">巴塞尔艺术展巴黎展会 · 媒体预览日</span>
+          <span class="where">巴黎 · 大皇宫</span>
+        </div>
+        <div class="preview-row">
+          <span class="when">08.05 14:00</span>
+          <span class="what">余德耀美术馆「青年艺术家扶持计划」论坛</span>
+          <span class="where">上海 · 余德耀美术馆</span>
+        </div>
+        <div class="preview-row">
+          <span class="when">08.05 18:00</span>
+          <span class="what">佩斯画廊「极简主义再审视」开幕酒会</span>
+          <span class="where">纽约 · 切尔西</span>
+        </div>
+        <div class="preview-row">
+          <span class="when">08.05 19:30</span>
+          <span class="what">香港苏富比 · 现当代艺术晚间拍卖</span>
+          <span class="where">香港 · 苏富比艺术空间</span>
+        </div>
+        <div class="preview-row">
+          <span class="when">08.06 15:00</span>
+          <span class="what">UCCA「肖像的映像」开幕暨策展人导览</span>
+          <span class="where">北京 · UCCA 尤伦斯</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚由 main.js 注入 -->
+  </section>
+
+<section class="view" id="view-news">
+
+  <section class="article-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="#view-index">首页</a> / 全球资讯</div>
+      <h1>全球艺术动态</h1>
+      <p class="sub">60 条精选新闻 · 六大赛道各 10 条 · 7 个国外源为主 · 所有链接指向真实原文</p>
+      <div class="article-meta">
+        <span>本期收录 <b style="color:var(--accent-deep)">60</b> 条精选</span>
+        <span>·</span>
+        <span>最后更新 <span class="js-today">——</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <!-- ===== 三维筛选栏 ===== -->
+      <div class="filter-bar">
+        <div class="filter-group">
+          <span class="f-label">赛道</span>
+          <div class="chips">
+            <button class="chip on" data-group="cat" data-value="all">全部</button>
+            <button class="chip" data-group="cat" data-value="exhibition">展览</button>
+            <button class="chip" data-group="cat" data-value="event">事件</button>
+            <button class="chip" data-group="cat" data-value="release">作品发布</button>
+            <button class="chip" data-group="cat" data-value="partner">品牌合作</button>
+            <button class="chip" data-group="cat" data-value="trade">交易</button>
+            <button class="chip" data-group="cat" data-value="toy">艺术潮玩</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <span class="f-label">地区</span>
+          <div class="chips">
+            <button class="chip on" data-group="region" data-value="all">全部</button>
+            <button class="chip" data-group="region" data-value="cn">国内</button>
+            <button class="chip" data-group="region" data-value="us-eu">欧美</button>
+            <button class="chip" data-group="region" data-value="me">中东</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <span class="f-label">时间</span>
+          <div class="chips">
+            <button class="chip on" data-group="time" data-value="all">全部</button>
+            <button class="chip" data-group="time" data-value="today">今日</button>
+            <button class="chip" data-group="time" data-value="week">本周</button>
+            <button class="chip" data-group="time" data-value="month">本月</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-sidebar">
+        <!-- ===== 新闻列表区（由脚本动态替换） ===== -->
+        <div id="news-newsList">
+          
+          <article class="news-card filter-target" data-cat="exhibition">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-exhibition">展览</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.3<i class="bar"><i style="width:73%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/met-museum-john-galliano-show-jewish-leaders-meetings-1234794224/" target="_blank" rel="noopener noreferrer">Met Museum Consulted With Jewish Leaders Over Exhibition for Controversial Fashion Designer John Galliano</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：展览</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-01.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="exhibition">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-exhibition">展览</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8<i class="bar"><i style="width:80%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-in-america/columns/venice-biennale-in-minor-keys-koyokouoh-pavilions-equatorial-guinea-sierra-leone-1234790523/" target="_blank" rel="noopener noreferrer">The Venice Biennale’s Record African Participation Comes With Caveats</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：展览</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-02.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="exhibition">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-exhibition">展览</span>
+                <span style="font-size:11.5px;color:var(--muted)">Artforum · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.7<i class="bar"><i style="width:87%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artforum.com/columns/matters-of-spirit-1234755200/" target="_blank" rel="noopener noreferrer">Divine Alphabets: Two Los Angeles Exhibitions on Spirituality</a></h3>
+              <div class="nc-foot"><span>来源：Artforum</span><span>标签：展览</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-03.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="exhibition">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-exhibition">展览</span>
+                <span style="font-size:11.5px;color:var(--muted)">Artforum · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 6.8<i class="bar"><i style="width:68%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artforum.com/news/jeju-museum-of-art-artist-lineup-for-2026-jeju-biennale-1234756222/" target="_blank" rel="noopener noreferrer">Jeju Museum Of Art Reveals Final Artist Lineup For 2026 Jeju Biennale</a></h3>
+              <div class="nc-foot"><span>来源：Artforum</span><span>标签：展览</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-04.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="exhibition">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-exhibition">展览</span>
+                <span style="font-size:11.5px;color:var(--muted)">Artforum · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.5<i class="bar"><i style="width:75%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artforum.com/news/curators-2nd-edition-of-the-bogota-biennial-1234756200/" target="_blank" rel="noopener noreferrer">Curators Selected for the 2nd Edition of the Bogotá Biennial</a></h3>
+              <div class="nc-foot"><span>来源：Artforum</span><span>标签：展览</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-05.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="exhibition">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-exhibition">展览</span>
+                <span style="font-size:11.5px;color:var(--muted)">Artforum · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.2<i class="bar"><i style="width:82%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artforum.com/video/truong-cong-tung-exhibition-kiang-malingue-new-york-1234749619/" target="_blank" rel="noopener noreferrer">Trương Công Tùng on the occasion of his exhibition at Kiang Malingue, New York</a></h3>
+              <div class="nc-foot"><span>来源：Artforum</span><span>标签：展览</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-06.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="exhibition">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-exhibition">展览</span>
+                <span style="font-size:11.5px;color:var(--muted)">Flash Art · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.9<i class="bar"><i style="width:89%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://flash---art.com/article/whitney-biennial-2026-whitney-museum-of-american-art-new-york/" target="_blank" rel="noopener noreferrer">Whitney Biennial 2026, Whitney Museum of American Art/ New York</a></h3>
+              <div class="nc-foot"><span>来源：Flash Art</span><span>标签：展览</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-07.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="exhibition">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-exhibition">展览</span>
+                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7<i class="bar"><i style="width:70%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://news.artron.net/20211203/n1104819.html" target="_blank" rel="noopener noreferrer">台中艺博会，为新兴藏家提供收藏管道</a></h3>
+              <div class="nc-foot"><span>来源：雅昌</span><span>标签：展览</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-08.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="exhibition">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-exhibition">展览</span>
+                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.7<i class="bar"><i style="width:77%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://news.artron.net/20211212/n1105117.html" target="_blank" rel="noopener noreferrer">杨恒个展 从黄土地中萌芽的情感绘画</a></h3>
+              <div class="nc-foot"><span>来源：雅昌</span><span>标签：展览</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-09.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="exhibition">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-exhibition">展览</span>
+                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.4<i class="bar"><i style="width:84%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://artexpress.artron.net/wapNewsShare/236303 " target="_blank" rel="noopener noreferrer">【艺术播报】徐悲鸿三件巨制同框展出</a></h3>
+              <div class="nc-foot"><span>来源：雅昌</span><span>标签：展览</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-10.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 9.1<i class="bar"><i style="width:91%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.facebook.com/artnewsmag/" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-11.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.2<i class="bar"><i style="width:72%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://twitter.com/artnews" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-12.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.9<i class="bar"><i style="width:79%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.instagram.com/artnews/" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-1.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.6<i class="bar"><i style="width:86%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.pinterest.com/artnewsmag/?eq=artnews&#038;etslf=3858" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-2.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 6.7<i class="bar"><i style="width:67%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.linkedin.com/company/40908467/admin/" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-3.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.4<i class="bar"><i style="width:74%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.youtube.com/channel/UC08Z3HFs8ds6YtClAvbtVeQ" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-4.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.1<i class="bar"><i style="width:81%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://w1.buysub.com/servlet/OrdersGateway?cds_mag_code=INA&#038;cds_page_id=271958&#038;cds_response_key=I3DWWSTE1" target="_blank" rel="noopener noreferrer">Subscribe TO ART IN AMERICA</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-01.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.8<i class="bar"><i style="width:88%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/c/art-news/product-recommendations/" target="_blank" rel="noopener noreferrer">ARTnews Recommends</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-02.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 6.9<i class="bar"><i style="width:69%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/white-house-proposes-smallest-smithsonian-budget-in-years-1234794165/" target="_blank" rel="noopener noreferrer">White House Proposes Smallest Smithsonian Budget in Years and Cutting Full-Time Staff by 6 Percent</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-03.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.6<i class="bar"><i style="width:76%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/michelle-grabner-kohler-arts-center-donation-1234794155/" target="_blank" rel="noopener noreferrer">Michelle Grabner Donates More Than 2,000 Artworks to Wisconsin’s Kohler Arts Center, Now the Most Comprehensive Repository of Her Work</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-04.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="release">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-release">作品发布</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.3<i class="bar"><i style="width:83%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/regilded-arts-of-war-equestrian-statues-lincoln-memorial-revealed-1234793976/" target="_blank" rel="noopener noreferrer">Trump Unveils Re-gilded 'Arts of War' Horse Statues Near Lincoln Memorial</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：作品发布</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-05.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="release">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-release">作品发布</span>
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 9<i class="bar"><i style="width:90%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/7/travis-scott-cactus-jack-the-odyssey-imax-exclusive-capsule-collaboration-release-info-2" target="_blank" rel="noopener noreferrer">Cactus Jack 联手《The Odyssey》与 IMAX 推出独家胶囊系列</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：作品发布</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-06.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="release">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-release">作品发布</span>
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.1<i class="bar"><i style="width:71%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/le-labo-shiu-25-eau-de-parfum-beijing-city-exclusive-collection-release-info" target="_blank" rel="noopener noreferrer">Le Labo 推出致敬北京四合院的「SHIU 25」City Exclusive 香氛</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：作品发布</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-07.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="release">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-release">作品发布</span>
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.8<i class="bar"><i style="width:78%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/final-fantasy-x-25th-anniversary-daimaru-matsuzakaya-collection-favment-info" target="_blank" rel="noopener noreferrer">Daimaru Matsuzakaya 推出《Final Fantasy X》25周年纪念胶囊系列</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：作品发布</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-08.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="release">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-release">作品发布</span>
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.5<i class="bar"><i style="width:85%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/bode-yale-school-of-music-collaboration-release-info" target="_blank" rel="noopener noreferrer">Bode 携手 Yale School of Music 推出百年纪念胶囊系列</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：作品发布</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-09.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="release">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-release">作品发布</span>
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 6.6<i class="bar"><i style="width:66%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/lululemon-wang-shun-video-release" target="_blank" rel="noopener noreferrer">lululemon 发布深度共谈影片《遇见汪顺》</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：作品发布</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-10.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="release">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-release">作品发布</span>
+                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.3<i class="bar"><i style="width:73%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://amma.artron.net/reportDetail.php?id=121" target="_blank" rel="noopener noreferrer">新发布！2024年度艺术市场报告</a></h3>
+              <div class="nc-foot"><span>来源：雅昌</span><span>标签：作品发布</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-11.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="partner">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-partner">品牌合作</span>
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8<i class="bar"><i style="width:80%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/7/supreme-martine-rose-nike-dunk-low-mike-tyson-surfaces-online-ja1868-001-fall-2026-release-teaser" target="_blank" rel="noopener noreferrer">Supreme x Martine Rose x Nike Dunk Low「Mike Tyson」联乘鞋款曝光</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：品牌合作</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-12.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="partner">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-partner">品牌合作</span>
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.7<i class="bar"><i style="width:87%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/nike-official-victor-wembanyama-logo-revealed-new-signature-shoe-contract-multi-year-deal" target="_blank" rel="noopener noreferrer">Nike 与 Victor Wembanyama 再签多年合约，首款签名球鞋即将登场</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：品牌合作</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-1.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="partner">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-partner">品牌合作</span>
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 6.8<i class="bar"><i style="width:68%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/uppervoid-x-karma8a-send-it-collab-release" target="_blank" rel="noopener noreferrer">UPPERVOID x KARMA8A「SEND IT」街头抱石联名系列发布</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：品牌合作</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-2.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="partner">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-partner">品牌合作</span>
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.5<i class="bar"><i style="width:75%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/seiko-5-sports-honda-motocompo-limited-edition-hdb010-release-info" target="_blank" rel="noopener noreferrer">Seiko 5 Sports x Honda 推出 Motocompo 45 周年限量联名腕表</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：品牌合作</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-3.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="partner">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-partner">品牌合作</span>
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.2<i class="bar"><i style="width:82%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/nike-ac-monza-2026-27-home-away-kit-collection-revealed" target="_blank" rel="noopener noreferrer">Nike 以 2026/27 球衣系列重新演绎 AC Monza 传统</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：品牌合作</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-4.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="trade">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-trade">交易</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.9<i class="bar"><i style="width:89%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-collectors/top-200-collectors/top-200-collectors/" target="_blank" rel="noopener noreferrer">Top 200 Collectors</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：交易</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-01.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="trade">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-trade">交易</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7<i class="bar"><i style="width:70%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/clara-wu-tsai-joseph-tsai-divorce-1234794234/" target="_blank" rel="noopener noreferrer">Top 200 Collectors Clara Wu Tsai and Joseph Tsai to Divorce After Nearly 30 Years</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：交易</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-02.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="trade">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-trade">交易</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.7<i class="bar"><i style="width:77%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/sacha-jafri-auctioned-world-largest-painting-for-charity-but-the-62-m-owed-is-missing-1234794219/" target="_blank" rel="noopener noreferrer">The World's Largest Painting Sold for $62 M. in 2021 to Benefit Children's Charities, But They Have Yet to…</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：交易</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-03.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="trade">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-trade">交易</span>
+                <span style="font-size:11.5px;color:var(--muted)">ArtDaily · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.4<i class="bar"><i style="width:84%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="http://www.rolandantiques.com" target="_blank" rel="noopener noreferrer">Roland Auctions NY</a></h3>
+              <div class="nc-foot"><span>来源：ArtDaily</span><span>标签：交易</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-04.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="trade">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-trade">交易</span>
+                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 9.1<i class="bar"><i style="width:91%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="http://auction.artron.net/20220223/n1107298.html" target="_blank" rel="noopener noreferrer">北京保利拍卖丨春光好——中国书画部三城</a></h3>
+              <div class="nc-foot"><span>来源：雅昌</span><span>标签：交易</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-05.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="trade">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-trade">交易</span>
+                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.2<i class="bar"><i style="width:72%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="http://auction.artron.net/20220224/n1107310.html" target="_blank" rel="noopener noreferrer">北京保利拍卖丨沉雄远淡，岂识寻常——明</a></h3>
+              <div class="nc-foot"><span>来源：雅昌</span><span>标签：交易</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-06.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="trade">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-trade">交易</span>
+                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.9<i class="bar"><i style="width:79%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="http://auction.artron.net/20220228/n1107387.html" target="_blank" rel="noopener noreferrer">保利拍卖 • 精品回顾丨中国古董珍玩：</a></h3>
+              <div class="nc-foot"><span>来源：雅昌</span><span>标签：交易</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-07.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="trade">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-trade">交易</span>
+                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.6<i class="bar"><i style="width:86%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="http://auction.artron.net/20220302/n1107479.html" target="_blank" rel="noopener noreferrer">北京保利拍卖2022春拍公开征集新增福</a></h3>
+              <div class="nc-foot"><span>来源：雅昌</span><span>标签：交易</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-08.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="trade">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-trade">交易</span>
+                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 6.7<i class="bar"><i style="width:67%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="http://auction.artron.net/20220310/n1107742.html" target="_blank" rel="noopener noreferrer">嘉德四季第60期拍卖会即将启幕丨收获春</a></h3>
+              <div class="nc-foot"><span>来源：雅昌</span><span>标签：交易</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-09.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-toy">艺术潮玩</span>
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.4<i class="bar"><i style="width:74%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/entertainment" target="_blank" rel="noopener noreferrer">Entertainment 娱乐</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-10.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-toy">艺术潮玩</span>
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.1<i class="bar"><i style="width:81%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/3/pop-mart-sony-pictures-developing-labubu-feature-film-announcement-kasing-lung-paul-king" target="_blank" rel="noopener noreferrer">POP MART 联手 Sony Pictures 正式启动《Labubu》真人电影项目</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-11.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-toy">艺术潮玩</span>
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.8<i class="bar"><i style="width:88%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2025/12/pop-mart-uniqlo-the-monsters-collection-release-info-labubu-half-zip-sweatshirts-t-shirts" target="_blank" rel="noopener noreferrer">UNIQLO 再度携手 POP MART 扩展「The Monsters」系列</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-12.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-toy">艺术潮玩</span>
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 6.9<i class="bar"><i style="width:69%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/author/staff" target="_blank" rel="noopener noreferrer">Hypebeast Newsroom</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-1.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-toy">艺术潮玩</span>
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.6<i class="bar"><i style="width:76%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2025/12/pop-mart-letting-go-holding-on-crybaby-shanghai-exhibition" target="_blank" rel="noopener noreferrer">走进「Letting Go... Holding On...」Crybaby 特展·上海站</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-2.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-toy">艺术潮玩</span>
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.3<i class="bar"><i style="width:83%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2025/10/the-monsters-10th-anniversary-exhibition-shanghai-inside-look" target="_blank" rel="noopener noreferrer">走进 THE MONSTERS 十周年全球巡展上海站</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-3.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-toy">艺术潮玩</span>
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 9<i class="bar"><i style="width:90%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2025/9/pop-mart-stock-declines-labubu-craze-fading-reports" target="_blank" rel="noopener noreferrer">「Labubu 热」退烧？POP MART 股价应声插水</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-4.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-toy">艺术潮玩</span>
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.1<i class="bar"><i style="width:71%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2025/6/how-labubu-avoid-being-the-next-bearbrick" target="_blank" rel="noopener noreferrer">Labubu 如何避免成为下一个 BE@RBRICK？</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-01.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-toy">艺术潮玩</span>
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.8<i class="bar"><i style="width:78%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2025/6/pop-mart-uniqlo-ut-the-monsters-collection-release-info" target="_blank" rel="noopener noreferrer">POP MART x UNIQLO UT 最新联名系列「The Monsters」发布</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-02.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-toy">艺术潮玩</span>
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.5<i class="bar"><i style="width:85%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2025/4/labubu-the-monsters-kerry-centre-info" target="_blank" rel="noopener noreferrer">THE MONSTERS 森林秘密基地登陆杭州嘉里中心</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-03.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 6.6<i class="bar"><i style="width:66%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/artists/venice-biennale-vcuarts-qatar-rethinks-art-and-tech-1234794090/" target="_blank" rel="noopener noreferrer">At Venice’s Palazzo Cavanis, VCUarts Qatar Rethinks How Art and Tech Is Taught</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-04.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.3<i class="bar"><i style="width:73%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/list/art-news/news/best-museums-in-the-us-1234770566/" target="_blank" rel="noopener noreferrer">The 30 Best Art Museums in the US</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-05.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8<i class="bar"><i style="width:80%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-06.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.7<i class="bar"><i style="width:87%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/francisco-correa-cordero-lubov-gallery-dead-1234794249/" target="_blank" rel="noopener noreferrer">Francisco Correa Cordero, Founder of Closely Watched New York Gallery Lubov, Dies</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-07.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 6.8<i class="bar"><i style="width:68%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/author/maximiliano-duron/" target="_blank" rel="noopener noreferrer">Maximilíano Durón</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-08.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7.5<i class="bar"><i style="width:75%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">Met Museum Quietly Hangs a Leonardo da Vinci Painting, On Loan from Ken Griffin: ‘A Little Picture, Of Large-Scale Importance’</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-09.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.2<i class="bar"><i style="width:82%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/gagosian-london-basel-gallery-closures-1234794210/" target="_blank" rel="noopener noreferrer">Gagosian Gives Up London and Basel Spaces as Mega-Galleries Rethink Their Footprints</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-10.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 8.9<i class="bar"><i style="width:89%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/taryn-simon-guggenheim-show-new-work-rotunda-1234794169/" target="_blank" rel="noopener noreferrer">Taryn Simon's Guggenheim Show Will Fill Rotunda with Entirely New Body of Work for First Time in Museum's…</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-11.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span class="tag tag-event">事件</span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">影响 7<i class="bar"><i style="width:70%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/artists/na-kim-cloud-paintings-old-stone-mill-newport-1234794186/" target="_blank" rel="noopener noreferrer">Na Kim Wants You to Look Up</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-12.jpg" alt="" /></div>
+          </article>
+        </div>
+
+        <!-- ===== 右侧边栏 ===== -->
+        <aside>
+          <div class="widget">
+            <h4>来源分布</h4>
+            <div class="w-item"><span>ARTnews（🇺🇸）</span><span class="v" id="news-src-an">—</span></div>
+            <div class="w-item"><span>Artforum / Frieze 等（🇪🇺）</span><span class="v" id="news-src-eu">—</span></div>
+            <div class="w-item"><span>Hypebeast + 潮玩（🇭🇰）</span><span class="v" id="news-src-hb">—</span></div>
+            <div class="w-item"><span>雅昌艺术网（🇨🇳）</span><span class="v" id="news-src-yc">—</span></div>
+            <div class="w-item"><span>链接核验</span><span class="v">HTTP 200 ✓</span></div>
+          </div>
+          <div class="widget" style="background:var(--ink);border-color:var(--ink);color:var(--white)">
+            <h4 style="color:rgba(255,255,255,0.5);border-color:var(--line-dark)">订阅每日报告</h4>
+            <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:14px">每日 16:00 获取 60 条精选行业日报。</p>
+            <button class="btn btn-accent" style="width:100%;justify-content:center" data-modal-open>免费订阅日报</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  </section>
+
+<section class="view" id="view-article">
+
+  <!-- ================= 资讯头部 ================= -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="#view-index">首页</a> / <a href="#view-news">全球资讯</a> / <a href="#view-news">艺术展览</a>
+      </div>
+      <div class="nc-meta" style="margin-bottom:16px">
+        <span class="tag tag-exhibition">展览</span>
+        <span class="tag-city">纽约 · 北美</span>
+        <span class="tag">来源：ARTnews</span>
+        <span class="index-pill" style="margin-left:auto">影响指数 9.1<i class="bar"><i style="width:91%;background:var(--accent)"></i></i></span>
+      </div>
+      <h1>大都会美术馆悄然挂出达·芬奇《纺车边的圣母》，借展自藏家肯·格里芬</h1>
+      <p class="sub">没有新闻稿、没有预告——纽约大都会艺术博物馆春季悄悄在二楼挂出一幅约 1505 年的达·芬奇画作，这是馆内目前在展的唯一一件达·芬奇作品。本文编译自 ARTnews 报道。</p>
+      <div class="article-meta">
+        <span>编译 · WeArt Index 编辑部</span>
+        <span>原文 · Brian Boucher（ARTnews）</span>
+        <span>发布 · <span class="js-today">——</span></span>
+        <span>阅读 · 2.8 万</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 正文 + 侧栏 ================= -->
+  <section class="section-tight">
+    <div class="container">
+      <div class="grid grid-sidebar">
+        <!-- 正文 -->
+        <article class="prose">
+          <p>大都会艺术博物馆（The Met）的策展团队这一次低调得反常：没有发布任何新闻稿，今年春季就在二楼欧洲绘画部挂上了一幅文艺复兴大师达·芬奇的画作。一个周一，当这件作品安静地悬于弗朗切斯科·弗兰恰与安德烈亚·索拉里奥的巨作之间时，并没有吸引多少特别的注意。</p>
+
+          <figure class="fig">
+            <img src="assets/images/article-1.jpg" alt="达·芬奇《纺车边的圣母》（配图为示意占位）" />
+            <figcaption>《纺车边的圣母》Madonna of the Yarnwinder · 约 1501-1505 · 配图为示意占位图，非真实作品</figcaption>
+          </figure>
+
+          <p>这件作品名为《纺车边的圣母》（<i>Madonna of the Yarnwinder</i>），展签标注年代约为 1505 年（美术馆官网则标注约 1501 年），并注明出自「达·芬奇与其工作室」。它来自对冲基金亿万富翁、ARTnews「Top 200 藏家」榜单成员肯尼斯·C·格里芬（Kenneth C. Griffin）的收藏——格里芬的办公室未就购买时间回应 ARTnews 的邮件询问。</p>
+
+          <div class="pull-num">
+            <span class="n">ca.1505</span>
+            <span class="t">《纺车边的圣母》 · 达·芬奇与其工作室 · 馆内唯一在展达·芬奇 · 借展自藏家肯·格里芬（ARTnews Top 200 藏家）</span>
+          </div>
+
+          <h3>一件有来历的画</h3>
+          <p>有些作品因历代藏家而闻名，这件达·芬奇木板画亦因曾属兰斯当侯爵夫人收藏而得名「兰斯当圣母」（Lansdowne Madonna），其在 19 世纪的收藏记录首见于此。据展签，画作最初为法国官员弗洛里蒙·罗贝尔泰（Florimond Robertet）而作。</p>
+
+          <h3>「谁会把达·芬奇像没事一样挂上墙？」</h3>
+          <p>美术馆对这一新晋藏品极为低调——它自春季便已上墙，但一位面向公众的馆员告诉 ARTnews，他们并非从馆方、而是从朋友那里听说此事。直到本周末，纽约艺术经纪人埃文·比尔德（Evan Beard）在 Instagram 上发帖，才进入大众视野；眼尖的记者朱迪丝·多布任斯基（Judith Dobrzynski）其实更早——4 月 5 日就在社交平台发布了消息。美术馆对 ARTnews 的多次邮件询问也尚未作出回应。</p>
+
+          <blockquote>「谁会把达·芬奇挂上墙，还搞得像没什么大不了的事一样？——大都会，我猜。」—— 纽约艺术经纪人 埃文·比尔德</blockquote>
+
+          <div class="fig" style="padding:18px 22px;border-left:3px solid var(--accent)">
+            <p style="font-size:13.5px;color:var(--ink-2);line-height:1.9">本页内容为 WeArt Index 对 ARTnews 原文（作者 Brian Boucher）的编译摘编，仅用于原型演示；完整报道请见原文链接。配图为无版权占位图，非真实作品图像。</p>
+          </div>
+        </article>
+
+        <!-- 侧栏：关联信息 -->
+        <aside>
+          <div class="widget">
+            <h4>事件关联图谱</h4>
+            <div class="related-card">
+              <div class="rc-k">艺术家</div>
+              <div class="rc-v">列奥纳多·达·芬奇<small>文艺复兴大师 · 约 1452-1519</small></div>
+            </div>
+            <div class="related-card">
+              <div class="rc-k">机构</div>
+              <div class="rc-v">大都会艺术博物馆<small>纽约 · 全球参观量最高的美术馆之一</small></div>
+            </div>
+            <div class="related-card">
+              <div class="rc-k">作品</div>
+              <div class="rc-v">《纺车边的圣母》<small>约 1501-1505 · 木板油画 · 又名「兰斯当圣母」</small></div>
+            </div>
+            <div class="related-card">
+              <div class="rc-k">藏家</div>
+              <div class="rc-v">肯尼斯·C·格里芬<small>对冲基金巨头 · ARTnews Top 200 藏家</small></div>
+            </div>
+          </div>
+
+          <div class="widget">
+            <h4>阅读原文</h4>
+            <a class="btn btn-primary" style="width:100%;justify-content:center" href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">ARTnews 英文原文 ↗</a>
+            <p style="font-size:11.5px;color:var(--muted);margin-top:10px">原文作者 Brian Boucher · 内容版权归 ARTnews 所有，本站为编译引用。</p>
+          </div>
+
+          <div class="widget">
+            <h4>相关推荐</h4>
+            <div class="w-item"><span><a href="https://www.artnews.com/art-news/news/met-museum-john-galliano-show-jewish-leaders-meetings-1234794224/" target="_blank" rel="noopener noreferrer">大都会为加利亚诺办展，曾咨询犹太领袖</a></span></div>
+            <div class="w-item"><span><a href="https://www.artnews.com/art-news/news/taryn-simon-guggenheim-show-new-work-rotunda-1234794169/" target="_blank" rel="noopener noreferrer">塔琳·西蒙古根海姆圆形大厅个展</a></span></div>
+            <div class="w-item"><span><a href="https://www.artnews.com/art-news/news/gagosian-london-basel-gallery-closures-1234794210/" target="_blank" rel="noopener noreferrer">高古轩收缩伦敦与巴塞尔空间</a></span></div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- ================= 评论区 ================= -->
+      <div style="max-width:780px;margin-top:56px">
+        <div class="section-head" style="margin-bottom:18px">
+          <div>
+            <div class="kicker">Discussion · 专业讨论</div>
+            <h2 class="h2" style="font-size:20px">评论区 <em>/ 2 条精选</em></h2>
+          </div>
+        </div>
+
+        <div style="border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:26px">
+          <textarea id="commentInput" rows="3" style="width:100%;border:none;outline:none;resize:none;font-family:inherit;font-size:14px;color:var(--ink)" placeholder="发表你的专业观点（原型演示）"></textarea>
+          <div style="display:flex;justify-content:flex-end;margin-top:10px">
+            <button class="btn btn-primary btn-sm" id="commentBtn">发布评论</button>
+          </div>
+        </div>
+
+        <div id="commentList">
+          <div class="push-item" style="grid-template-columns:auto 1fr">
+            <div style="width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--white);display:grid;place-items:center;font-size:11px;font-weight:700">陈</div>
+            <div>
+              <div style="font-size:12px;color:var(--muted)">藏家 · 上海</div>
+              <p style="font-size:13.5px;margin-top:6px">「不声不响挂达·芬奇」本身就是最优雅的策展姿态——也说明美术馆对顶级借展关系的自信。</p>
+            </div>
+          </div>
+          <div class="push-item" style="grid-template-columns:auto 1fr">
+            <div style="width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--ink);display:grid;place-items:center;font-size:11px;font-weight:700">林</div>
+            <div>
+              <div style="font-size:12px;color:var(--muted)">画廊主 · 香港</div>
+              <p style="font-size:13.5px;margin-top:6px">借展来源与借展周期值得关注——格里芬藏品近年频频现身顶级美术馆，其收藏策略值得研究。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var btn = document.getElementById("commentBtn");
+      var input = document.getElementById("commentInput");
+      var list = document.getElementById("commentList");
+      btn.addEventListener("click", function () {
+        var v = input.value.trim();
+        if (!v) return;
+        var div = document.createElement("div");
+        div.className = "push-item";
+        div.style.gridTemplateColumns = "auto 1fr";
+        div.innerHTML =
+          '<div style="width:34px;height:34px;border-radius:50%;background:var(--warn);color:var(--white);display:grid;place-items:center;font-size:11px;font-weight:700">我</div>' +
+          '<div><div style="font-size:12px;color:var(--muted)">访客 · 刚刚</div><p style="font-size:13.5px;margin-top:6px">' + v + "</p></div>";
+        list.appendChild(div);
+        input.value = "";
+      });
+    })();
+  </script>
+</section>
+
+<section class="view" id="view-reports">
+
+  <!-- ================= 页面头 ================= -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="#view-index">首页</a> / 行业日报</div>
+      <h1>艺术行业日报</h1>
+      <p class="sub">聚合 ARTnews / 雅昌艺术网 / Hypebeast 的真实报道，按赛道整理成每日行业复盘。所有条目链接原文，点击直达。</p>
+      <div class="article-meta">
+        <span>本期收录 <b style="color:var(--accent-deep)">66</b> 篇真实报道</span>
+        <span>·</span>
+        <span>更新 · <span class="js-today">——</span></span>
+        <span>·</span>
+        <span>链接核验 · 全部 HTTP 200 ✓</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="chips" style="margin-bottom:28px">
+        <button class="chip on" data-group="cycle" data-value="daily">每日日报</button>
+        <button class="chip" data-group="cycle" data-value="weekly">每周周报</button>
+        <button class="chip" data-group="cycle" data-value="monthly">每月月报</button>
+        <button class="chip" data-group="cycle" data-value="quarterly">季度季报</button>
+      </div>
+
+      <div class="grid grid-sidebar">
+        <div>
+          <!-- 最新一期大卡 -->
+          <div class="latest-report" style="margin-bottom:40px">
+            <div>
+              <div class="lr-vol">DAILY ART REPORT · VOL.<span class="js-vol">042</span> · <span class="js-today">——</span></div>
+              <h3>今日真实新闻日报已上线：达·芬奇借展 · 高古轩收缩 · 景德镇申遗 · 潮玩影视化</h3>
+              <p>汇总 66 篇真实报道：展览、事件、作品发布、品牌合作、交易、潮玩六大赛道复盘，附真实交易数据精选与近期活动预告。</p>
+            </div>
+            <div class="lr-cta">
+              <a class="btn btn-accent btn-lg" href="archive/index.html" target="_blank">阅读今日日报 →</a>
+              <button class="btn btn-outline-light btn-lg" data-modal-open>订阅推送</button>
+            </div>
+          </div>
+
+          <!-- 真实报道精选（替代虚构归档） -->
+          <div class="section-head" style="margin-bottom:22px" id="reports-archive">
+            <div>
+              <div class="kicker">Archive · 真实报道精选</div>
+              <h2 class="h2" style="font-size:22px">按来源归档 <em>/ 点击直达原文</em></h2>
+            </div>
+            <a class="sec-link" href="#view-news">查看全部 66 篇 →</a>
+          </div>
+
+          <div class="archive-month">
+            <div class="am-label"><span>ARTnews · 英文深度报道</span><span>18 篇</span></div>
+            <a class="archive-row" href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">展览</span>
+              <span class="ar-title">大都会悄然挂出达·芬奇《纺车边的圣母》</span>
+              <span class="ar-kw">达·芬奇 / 大都会</span>
+              <span class="ar-go">↗</span>
+            </a>
+            <a class="archive-row" href="https://www.artnews.com/art-news/news/gagosian-london-basel-gallery-closures-1234794210/" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">交易</span>
+              <span class="ar-title">高古轩放弃伦敦与巴塞尔空间</span>
+              <span class="ar-kw">画廊市场</span>
+              <span class="ar-go">↗</span>
+            </a>
+            <a class="archive-row" href="https://www.artnews.com/art-news/news/sacha-jafri-auctioned-world-largest-painting-for-charity-but-the-62-m-owed-is-missing-1234794219/" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">交易</span>
+              <span class="ar-title">「全球最大画作」6200 万美元善款去向成谜</span>
+              <span class="ar-kw">慈善拍卖</span>
+              <span class="ar-go">↗</span>
+            </a>
+            <a class="archive-row" href="https://www.artnews.com/art-news/news/white-house-proposes-smallest-smithsonian-budget-in-years-1234794165/" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">事件</span>
+              <span class="ar-title">白宫提议史密森尼预算降至近年最低</span>
+              <span class="ar-kw">公共文化预算</span>
+              <span class="ar-go">↗</span>
+            </a>
+          </div>
+
+          <div class="archive-month">
+            <div class="am-label"><span>雅昌艺术网 · 中文报道</span><span>22 篇</span></div>
+            <a class="archive-row" href="https://news.artron.net/20260728/n1152674.html" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">事件</span>
+              <span class="ar-title">「景德镇手工瓷业遗存」申遗成功</span>
+              <span class="ar-kw">非遗 / 景德镇</span>
+              <span class="ar-go">↗</span>
+            </a>
+            <a class="archive-row" href="https://news.artron.net/20241022/n1135900.html" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">事件</span>
+              <span class="ar-title">第六届上海国际艺术品交易周即将启幕</span>
+              <span class="ar-kw">交易周 / 上海</span>
+              <span class="ar-go">↗</span>
+            </a>
+            <a class="archive-row" href="https://news.artron.net/20220313/n1107821.html" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">潮玩</span>
+              <span class="ar-title">「遇见凯斯·哈林」后波普潮流艺术展</span>
+              <span class="ar-kw">潮流艺术</span>
+              <span class="ar-go">↗</span>
+            </a>
+            <a class="archive-row" href="https://news.artron.net/20210420/n1094211.html" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">交易</span>
+              <span class="ar-title">何多苓不容忽视的市场潜力</span>
+              <span class="ar-kw">市场分析</span>
+              <span class="ar-go">↗</span>
+            </a>
+          </div>
+
+          <div class="archive-month">
+            <div class="am-label"><span>Hypebeast · 潮玩与流行文化</span><span>26 篇</span></div>
+            <a class="archive-row" href="https://hypebeast.cn/2026/7/kaws-new-fellows-vinyl-figure-collection" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">潮玩</span>
+              <span class="ar-title">KAWS 推出全新「FELLOWS」乙烯基人偶系列</span>
+              <span class="ar-kw">KAWS</span>
+              <span class="ar-go">↗</span>
+            </a>
+            <a class="archive-row" href="https://hypebeast.cn/2026/3/pop-mart-sony-pictures-developing-labubu-feature-film-announcement-kasing-lung-paul-king" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">品牌</span>
+              <span class="ar-title">POP MART × Sony Pictures 启动《Labubu》真人电影</span>
+              <span class="ar-kw">IP 影视化</span>
+              <span class="ar-go">↗</span>
+            </a>
+            <a class="archive-row" href="https://hypebeast.cn/2025/12/bearbrick-big-tamagotchi-exhibition-collaboration-30th-anniversary-merch-release-info" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">潮玩</span>
+              <span class="ar-title">BE@RBRICK × Tamagotchi 30 周年联名</span>
+              <span class="ar-kw">MEDICOM TOY</span>
+              <span class="ar-go">↗</span>
+            </a>
+            <a class="archive-row" href="https://hypebeast.cn/2026/8/yoshitomo-nara-first-exhibition-with-david-zwirner-new-york-info" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">展览</span>
+              <span class="ar-title">奈良美智与卓纳画廊首次合作纽约个展</span>
+              <span class="ar-kw">奈良美智</span>
+              <span class="ar-go">↗</span>
+            </a>
+          </div>
+
+          <div class="latest-report" style="margin-top:36px;grid-template-columns:1fr auto;background:var(--ink);color:var(--white)">
+            <div>
+              <div class="lr-vol">ARCHIVE · 历史日报档案</div>
+              <h3>📂 浏览全部历史日报</h3>
+              <p>每天 16:00 自动生成并永久存档。每份日报包含当日全部新闻条目与原文链接。</p>
+            </div>
+            <div class="lr-cta">
+              <a class="btn btn-accent btn-lg" href="archive/index.html" target="_blank">查看历史档案 →</a>
+            </div>
+          </div>
+
+          <div class="placeholder-banner" style="margin-top:10px">
+            <span>ℹ</span>
+            <span>以上为真实报道精选（每来源 4 篇示例）。正式版将实现按日期/周期的自动化归档与 PDF 导出。</span>
+          </div>
+        </div>
+
+        <!-- 右侧边栏 -->
+        <aside>
+          <div class="widget" style="background:var(--ink);border-color:var(--ink);color:var(--white)">
+            <h4 style="color:rgba(255,255,255,0.5);border-color:var(--line-dark)">订阅行业日报</h4>
+            <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:14px">每日 16:00 推送真实新闻聚合日报；周报 / 月报深度版为会员权益。</p>
+            <button class="btn btn-accent" style="width:100%;justify-content:center" data-modal-open>免费订阅</button>
+            <a class="btn btn-outline-light btn-sm" href="#view-account" style="width:100%;justify-content:center;margin-top:10px">升级专业版</a>
+          </div>
+
+          <div class="widget">
+            <h4>热门真实报道 TOP 5</h4>
+            <div class="w-item"><span><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer" style="color:inherit">大都会挂出达·芬奇借展之作</a></span><span class="v">9.1</span></div>
+            <div class="w-item"><span><a href="https://hypebeast.cn/2026/3/pop-mart-sony-pictures-developing-labubu-feature-film-announcement-kasing-lung-paul-king" target="_blank" rel="noopener noreferrer" style="color:inherit">Labubu 真人电影官宣</a></span><span class="v">8.7</span></div>
+            <div class="w-item"><span><a href="https://news.artron.net/20260728/n1152674.html" target="_blank" rel="noopener noreferrer" style="color:inherit">景德镇申遗成功</a></span><span class="v">8.6</span></div>
+            <div class="w-item"><span><a href="https://hypebeast.cn/2026/7/kaws-new-fellows-vinyl-figure-collection" target="_blank" rel="noopener noreferrer" style="color:inherit">KAWS FELLOWS 人偶系列</a></span><span class="v">8.5</span></div>
+            <div class="w-item"><span><a href="https://www.artnews.com/art-news/news/gagosian-london-basel-gallery-closures-1234794210/" target="_blank" rel="noopener noreferrer" style="color:inherit">高古轩收缩伦敦与巴塞尔</a></span><span class="v">8.8</span></div>
+          </div>
+
+          <div class="widget">
+            <h4>日报周期说明</h4>
+            <div class="w-item"><span>每日日报</span><span class="v">16:00</span></div>
+            <div class="w-item"><span>每周周报</span><span class="v">周日</span></div>
+            <div class="w-item"><span>每月月报</span><span class="v">月末</span></div>
+            <div class="w-item"><span>季度季报</span><span class="v">季末</span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  </section>
+
+<section class="view" id="view-report">
+<p>📋 正在跳转到今日简报...</p>
+<p style="font-size:14px;color:#888">如未自动跳转，请点击 <a href="archive/index.html">这里</a></p>
+</section>
+
+<section class="view" id="view-resources">
+
+  <!-- ================= 页面头 + 搜索 ================= -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="#view-index">首页</a> / 资源库</div>
+      <h1>资源库</h1>
+      <p class="sub">基于本期 66 篇真实报道整理的结构化数据。点击下方分类卡片浏览列表，每项链接真实报道原文。</p>
+      <div style="margin-top:28px;max-width:680px">
+        <div class="search-box">
+          <span style="color:var(--muted)">⌕</span>
+          <input type="text" placeholder="检索报道中的艺术家 / 机构 / 展览 / 作品……" />
+          <span class="kbd">演示</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <!-- 四大分类卡片（tab 切换，不再跳转页面） -->
+      <div class="grid grid-4" style="margin-bottom:40px" id="resources-resTabs">
+        <div class="resource-card on" data-panel="artists" style="cursor:pointer">
+          <span class="rc-no">01</span>
+          <h3>艺术家</h3>
+          <p>本期报道涉及的艺术家：达·芬奇、KAWS、奈良美智、塔琳·西蒙、何多苓等。</p>
+          <div class="rc-stat">本期 15+ 位</div>
+        </div>
+        <div class="resource-card" data-panel="orgs" style="cursor:pointer">
+          <span class="rc-no">02</span>
+          <h3>机构</h3>
+          <p>大都会、高古轩、卓纳画廊、古根海姆、SFMOMA、POP MART 等。</p>
+          <div class="rc-stat">本期 18+ 家</div>
+        </div>
+        <div class="resource-card" data-panel="exhibitions" style="cursor:pointer">
+          <span class="rc-no">03</span>
+          <h3>展览</h3>
+          <p>奈良美智纽约个展、RM 收藏展、凯斯·哈林巡展、THE MONSTERS 展等。</p>
+          <div class="rc-stat">本期 20+ 场</div>
+        </div>
+        <div class="resource-card" data-panel="trades" style="cursor:pointer">
+          <span class="rc-no">04</span>
+          <h3>交易</h3>
+          <p>6200 万慈善拍、布鲁克林博物馆 540 万馆藏变现、Bouvier 诉苏富比案等。</p>
+          <div class="rc-stat">本期 5+ 条</div>
+        </div>
+      </div>
+
+      <!-- ================= 面板 1：艺术家列表（真实） ================= -->
+      <div class="res-panel" id="resources-panel-artists" data-panel-name="artists">
+        <div class="section-head" style="margin-bottom:20px">
+          <div>
+            <div class="kicker">Artists · 报道中的艺术家</div>
+            <h2 class="h2" style="font-size:22px">艺术家列表</h2>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--line)">
+          <div class="archive-row">
+            <span class="ar-date">潮玩/艺术</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/7/kaws-new-fellows-vinyl-figure-collection" target="_blank" rel="noopener noreferrer">KAWS（Brian Donnelly）· 全新 FELLOWS 人偶系列</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">展览</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/8/yoshitomo-nara-first-exhibition-with-david-zwirner-new-york-info" target="_blank" rel="noopener noreferrer">奈良美智 · 卓纳画廊纽约双场地个展</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">展览</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">列奥纳多·达·芬奇 · 大都会挂出《纺车边的圣母》</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">展览</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/news/taryn-simon-guggenheim-show-new-work-rotunda-1234794169/" target="_blank" rel="noopener noreferrer">塔琳·西蒙 · 古根海姆圆形大厅个展</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">艺术家</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/artists/na-kim-cloud-paintings-old-stone-mill-newport-1234794186/" target="_blank" rel="noopener noreferrer">Na Kim · 云朵画作新展</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">交易</span>
+            <span class="ar-title"><a href="https://news.artron.net/20210420/n1094211.html" target="_blank" rel="noopener noreferrer">何多苓 · 市场潜力分析</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">展览</span>
+            <span class="ar-title"><a href="https://news.artron.net/20230109/n1117872.html" target="_blank" rel="noopener noreferrer">弗里达·卡罗 · 生平摄影亮相深圳</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">展览</span>
+            <span class="ar-title"><a href="https://news.artron.net/20220313/n1107821.html" target="_blank" rel="noopener noreferrer">凯斯·哈林 · 后波普潮流艺术展</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 面板 2：机构列表（真实） ================= -->
+      <div class="res-panel" id="resources-panel-orgs" data-panel-name="orgs" style="display:none">
+        <div class="section-head" style="margin-bottom:20px">
+          <div>
+            <div class="kicker">Organizations · 报道中的机构</div>
+            <h2 class="h2" style="font-size:22px">机构列表</h2>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--line)">
+          <div class="archive-row">
+            <span class="ar-date">美术馆</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">大都会艺术博物馆（The Met）· 挂出达·芬奇借展</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">画廊</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/news/gagosian-london-basel-gallery-closures-1234794210/" target="_blank" rel="noopener noreferrer">高古轩画廊（Gagosian）· 收缩伦敦与巴塞尔空间</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">画廊</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/8/yoshitomo-nara-first-exhibition-with-david-zwirner-new-york-info" target="_blank" rel="noopener noreferrer">卓纳画廊（David Zwirner）· 奈良美智首次合作</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">美术馆</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/7/guggenheim-abu-dhabi-finally-gets-an-opening-date" target="_blank" rel="noopener noreferrer">古根海姆阿布扎比（Guggenheim Abu Dhabi）· 公布开馆</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">美术馆</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/7/rm-x-sfmoma-between-you-and-me-exhibition" target="_blank" rel="noopener noreferrer">SFMOMA · RM 个人收藏展</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">品牌</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/3/pop-mart-sony-pictures-developing-labubu-feature-film-announcement-kasing-lung-paul-king" target="_blank" rel="noopener noreferrer">POP MART · 携手 Sony 启动 Labubu 电影</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">品牌</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2025/12/bearbrick-big-tamagotchi-exhibition-collaboration-30th-anniversary-merch-release-info" target="_blank" rel="noopener noreferrer">MEDICOM TOY · BE@RBRICK × Tamagotchi</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">博物馆</span>
+            <span class="ar-title"><a href="https://news.artron.net/20201026/n1086541.html" target="_blank" rel="noopener noreferrer">布鲁克林博物馆 · 出售馆藏 540 万</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 面板 3：展览列表（真实） ================= -->
+      <div class="res-panel" id="resources-panel-exhibitions" data-panel-name="exhibitions" style="display:none">
+        <div class="section-head" style="margin-bottom:20px">
+          <div>
+            <div class="kicker">Exhibitions · 报道中的展览</div>
+            <h2 class="h2" style="font-size:22px">展览列表</h2>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--line)">
+          <div class="archive-row">
+            <span class="ar-date">纽约</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">大都会 · 达·芬奇《纺车边的圣母》借展</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">纽约</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/8/yoshitomo-nara-first-exhibition-with-david-zwirner-new-york-info" target="_blank" rel="noopener noreferrer">卓纳画廊 · 奈良美智双场地个展</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">旧金山</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2026/7/rm-x-sfmoma-between-you-and-me-exhibition" target="_blank" rel="noopener noreferrer">SFMOMA · RM 个人艺术收藏展</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">威尼斯</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-in-america/columns/venice-biennale-in-minor-keys-koyokouoh-pavilions-equatorial-guinea-sierra-leone-1234790523/" target="_blank" rel="noopener noreferrer">威尼斯双年展 · 非洲参展创纪录</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">纽约</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/news/taryn-simon-guggenheim-show-new-work-rotunda-1234794169/" target="_blank" rel="noopener noreferrer">古根海姆 · 塔琳·西蒙圆形大厅个展</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">上海</span>
+            <span class="ar-title"><a href="https://hypebeast.cn/2025/10/the-monsters-10th-anniversary-exhibition-shanghai-inside-look" target="_blank" rel="noopener noreferrer">THE MONSTERS 十周年全球巡展上海站</a></span>
+            <span class="ar-kw">Hypebeast</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">北京</span>
+            <span class="ar-title"><a href="https://news.artron.net/20230106/n1117824.html" target="_blank" rel="noopener noreferrer">从马蒂斯到巴斯奎特 · 流动的盛宴</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">上海</span>
+            <span class="ar-title"><a href="https://news.artron.net/20220313/n1107821.html" target="_blank" rel="noopener noreferrer">遇见凯斯·哈林 · 后波普潮流艺术展</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 面板 4：交易列表（真实） ================= -->
+      <div class="res-panel" id="resources-panel-trades" data-panel-name="trades" style="display:none">
+        <div class="section-head" style="margin-bottom:20px">
+          <div>
+            <div class="kicker">Trades · 报道中的交易</div>
+            <h2 class="h2" style="font-size:22px">交易报道列表</h2>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--line)">
+          <div class="archive-row">
+            <span class="ar-date">迪拜</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/news/sacha-jafri-auctioned-world-largest-painting-for-charity-but-the-62-m-owed-is-missing-1234794219/" target="_blank" rel="noopener noreferrer">「全球最大画作」6200 万善款去向成谜</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">巴黎</span>
+            <span class="ar-title"><a href="https://www.artnews.com/art-news/market/yves-bouvier-sothebys-documents-picasso-lawsuit-1234794113/" target="_blank" rel="noopener noreferrer">经销商 Yves Bouvier 要求调取苏富比记录</a></span>
+            <span class="ar-kw">ARTnews</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">纽约</span>
+            <span class="ar-title"><a href="https://news.artron.net/20201026/n1086541.html" target="_blank" rel="noopener noreferrer">布鲁克林博物馆出售馆藏收入 540 万</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">法兰克福</span>
+            <span class="ar-title"><a href="https://news.artron.net/20201012/n1085725.html" target="_blank" rel="noopener noreferrer">德意志银行开始出售藏品</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+          <div class="archive-row">
+            <span class="ar-date">成都</span>
+            <span class="ar-title"><a href="https://news.artron.net/20210420/n1094211.html" target="_blank" rel="noopener noreferrer">何多苓不容忽视的市场潜力（TOP5）</a></span>
+            <span class="ar-kw">雅昌</span>
+            <span class="ar-go">↗</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="placeholder-banner" style="margin-top:30px;border-style:solid">
+        <span>ℹ</span>
+        <span>列表数据均来自本期真实报道，点击链接直达原文；正式版将接入权威数据库并提供搜索筛选。</span>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var cards = document.querySelectorAll("[data-panel]");
+      var panels = document.querySelectorAll("[data-panel-name]");
+      cards.forEach(function (c) {
+        c.addEventListener("click", function () {
+          var p = c.getAttribute("data-panel");
+          cards.forEach(function (x) { x.classList.remove("on"); });
+          c.classList.add("on");
+          panels.forEach(function (panel) {
+            panel.style.display = panel.getAttribute("data-panel-name") === p ? "" : "none";
+          });
+        });
+      });
+    })();
+  </script>
+</section>
+
+<section class="view" id="view-artist">
+
+  <!-- ================= 艺术家头部 ================= -->
+  <section class="profile-hero">
+    <div class="container profile-grid">
+      <div class="avatar-frame"><img src="assets/images/artist-avatar.jpg" alt="KAWS 肖像（占位图）" /></div>
+      <div class="profile-info">
+        <div class="nc-meta" style="margin-bottom:10px">
+          <span class="tag tag-toy">艺术潮玩</span>
+          <span class="tag">流行艺术</span>
+          <span class="tag">涂鸦</span>
+          <span class="tag-city">美国 · 纽约/新泽西</span>
+        </div>
+        <h1>KAWS <span style="font-size:16px;color:var(--muted);font-weight:500">Brian Donnelly</span></h1>
+        <p class="pi-sub">1974 年生于美国新泽西州 · 现工作生活于纽约</p>
+        <p class="pi-bio">美国当代艺术家与设计师，以 COMPANION、BFF、Chum 等标志性角色闻名，横跨涂鸦、绘画、雕塑与商业合作。长期与 MEDICOM TOY、优衣库、AllRightsReserved 等品牌合作，是艺术与流行文化融合的标志性人物。（简介来自公开信息）</p>
+        <div class="profile-stats">
+          <div class="ps"><b>5+</b><span>合作品牌（公开）</span></div>
+          <div class="ps"><b>10+</b><span>KAWS:HOLIDAY 全球站点</span></div>
+          <div class="ps"><b>$14.7M</b><span>公开拍卖纪录（2019）</span></div>
+          <div class="ps"><b>4 篇</b><span>本期相关报道</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+
+      <!-- ================= 关系图谱（真实关系） ================= -->
+      <div class="section-head" id="artist-graph">
+        <div>
+          <div class="kicker">Relation Graph · 公开合作网络</div>
+          <h2 class="h2">合作与市场关系</h2>
+        </div>
+        <span class="sec-link">正式版将生成完整价值路径图</span>
+      </div>
+      <div class="graph-wrap" style="margin-bottom:52px">
+        <div class="graph">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+            <line x1="50" y1="50" x2="18" y2="28" stroke="#00C8A0" stroke-width="0.4" stroke-dasharray="2 1.4" opacity="0.7" />
+            <line x1="50" y1="50" x2="80" y2="20" stroke="#00C8A0" stroke-width="0.4" stroke-dasharray="2 1.4" opacity="0.7" />
+            <line x1="50" y1="50" x2="84" y2="62" stroke="#00C8A0" stroke-width="0.4" stroke-dasharray="2 1.4" opacity="0.7" />
+            <line x1="50" y1="50" x2="52" y2="86" stroke="#00C8A0" stroke-width="0.4" stroke-dasharray="2 1.4" opacity="0.7" />
+            <line x1="50" y1="50" x2="16" y2="72" stroke="#00C8A0" stroke-width="0.4" stroke-dasharray="2 1.4" opacity="0.7" />
+          </svg>
+          <div class="node center" style="left:50%;top:50%">
+            <div class="nd">KAWS</div>
+            <div class="nl">艺术家 · Brian Donnelly</div>
+          </div>
+          <a class="node" href="https://hypebeast.cn/2025/9/kaws-first-uniqlo-artist-in-residence-announcement" target="_blank" rel="noopener noreferrer" style="left:18%;top:28%">
+            <div class="nd">优衣库</div>
+            <div class="nl">首位驻场艺术家</div>
+          </a>
+          <a class="node" href="https://hypebeast.cn/2025/12/bearbrick-big-tamagotchi-exhibition-collaboration-30th-anniversary-merch-release-info" target="_blank" rel="noopener noreferrer" style="left:80%;top:20%">
+            <div class="nd">MEDICOM<br>TOY</div>
+            <div class="nl">BE@RBRICK 合作</div>
+          </a>
+          <a class="node" href="https://hypebeast.cn/2025/11/allrightsreserved-kaws-holiday-abu-dhabi-companion-collaboration-uae-info" target="_blank" rel="noopener noreferrer" style="left:84%;top:62%">
+            <div class="nd">AllRights<br>Reserved</div>
+            <div class="nl">KAWS:HOLIDAY</div>
+          </a>
+          <a class="node" href="https://www.artnews.com/art-news/news/sacha-jafri-auctioned-world-largest-painting-for-charity-but-the-62-m-owed-is-missing-1234794219/" target="_blank" rel="noopener noreferrer" style="left:52%;top:86%">
+            <div class="nd">拍卖市场</div>
+            <div class="nl">苏富比等（公开）</div>
+          </a>
+          <a class="node" href="https://hypebeast.cn/2025/7/kaws-new-york-botanical-garden-2027-exhibition-announcement" target="_blank" rel="noopener noreferrer" style="left:16%;top:72%">
+            <div class="nd">纽约植物园</div>
+            <div class="nl">2027 大展</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="grid grid-sidebar">
+        <div>
+          <!-- ================= 展览与项目动态（真实） ================= -->
+          <div class="section-head" id="artist-exhibitions">
+            <div>
+              <div class="kicker">Projects · 展览与项目</div>
+              <h2 class="h2" style="font-size:22px">近期真实动态</h2>
+            </div>
+          </div>
+          <div class="timeline" style="margin-bottom:52px">
+            <div class="tl-item">
+              <span class="tl-date">2026.07</span>
+              <h4><a href="https://hypebeast.cn/2026/7/kaws-new-fellows-vinyl-figure-collection" target="_blank" rel="noopener noreferrer" style="color:inherit">全新「FELLOWS」乙烯基人偶系列发布</a></h4>
+              <p>延续标志性人偶语言的又一新作（来源：Hypebeast）</p>
+            </div>
+            <div class="tl-item">
+              <span class="tl-date">2026.03</span>
+              <h4><a href="https://hypebeast.cn/2026/3/kaws-albertina-modern-art-comix-exhibition-info" target="_blank" rel="noopener noreferrer" style="color:inherit">领衔维也纳 ALBERTINA MODERN「Art &amp; Comix」展览</a></h4>
+              <p>漫画与当代艺术关系的大型群展（来源：Hypebeast）</p>
+            </div>
+            <div class="tl-item">
+              <span class="tl-date">2025.11</span>
+              <h4><a href="https://hypebeast.cn/2025/11/allrightsreserved-kaws-holiday-abu-dhabi-companion-collaboration-uae-info" target="_blank" rel="noopener noreferrer" style="color:inherit">KAWS:HOLIDAY 登陆阿布扎比</a></h4>
+              <p>COMPANION 巨型装置全球巡游（来源：Hypebeast）</p>
+            </div>
+            <div class="tl-item">
+              <span class="tl-date">2025.10</span>
+              <h4><a href="https://hypebeast.cn/2025/10/kaws-the-message-lands-at-palazzo-strozzi-in-florence" target="_blank" rel="noopener noreferrer" style="color:inherit">「THE MESSAGE」登陆佛罗伦萨 Palazzo Strozzi</a></h4>
+              <p>古典宫殿中的大型个展（来源：Hypebeast）</p>
+            </div>
+            <div class="tl-item">
+              <span class="tl-date">2025.09</span>
+              <h4><a href="https://hypebeast.cn/2025/9/kaws-first-uniqlo-artist-in-residence-announcement" target="_blank" rel="noopener noreferrer" style="color:inherit">出任优衣库首位「驻场艺术家」</a></h4>
+              <p>品牌与艺术家合作的标志性事件（来源：Hypebeast）</p>
+            </div>
+            <div class="tl-item">
+              <span class="tl-date">2027（官宣）</span>
+              <h4><a href="https://hypebeast.cn/2025/7/kaws-new-york-botanical-garden-2027-exhibition-announcement" target="_blank" rel="noopener noreferrer" style="color:inherit">大型展览确认登陆纽约植物园</a></h4>
+              <p>户外空间与装置艺术结合（来源：Hypebeast）</p>
+            </div>
+          </div>
+
+          <!-- ================= 最新动态 ================= -->
+          <div class="section-head" id="artist-news">
+            <div>
+              <div class="kicker">Latest · 最新动态</div>
+              <h2 class="h2" style="font-size:22px">关联报道</h2>
+            </div>
+          </div>
+          <div class="widget" style="padding:6px 0;border:none">
+            <a class="archive-row" href="https://hypebeast.cn/2025/6/allrightsrserved-kaws-netflix-squid-game-chul-su-collectible-figures" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">潮玩</span>
+              <span class="ar-title">KAWS 推出「CHUL-SU」公仔庆祝《鱿鱼游戏》回归</span>
+              <span class="ar-kw">Hypebeast</span>
+              <span class="ar-go">↗</span>
+            </a>
+            <a class="archive-row" href="https://hypebeast.cn/2025/9/kaws-allrightsreserved-worlds-first-largest-water-parade-labubu-doraemon-mcdonalds-grimace-netflix-squid-game-snoopy-sesame-street-announcement" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">潮玩</span>
+              <span class="ar-title">KAWS 联手 AllRightsReserved 打造全球最大水上巡游</span>
+              <span class="ar-kw">Hypebeast</span>
+              <span class="ar-go">↗</span>
+            </a>
+            <a class="archive-row" href="https://hypebeast.cn/2025/10/allrightsreserved-arr-kaws-sesame-street-exclusive-figures-collection-release-info" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">潮玩</span>
+              <span class="ar-title">AllRightsReserved × KAWS 限定《芝麻街》搪胶公仔</span>
+              <span class="ar-kw">Hypebeast</span>
+              <span class="ar-go">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- ================= 侧栏 ================= -->
+        <aside>
+          <div class="widget">
+            <h4>公开市场记录</h4>
+            <div style="overflow-x:auto">
+              <table class="trade-table">
+                <tr><th>时间</th><th>作品</th><th>备注</th></tr>
+                <tr><td>2019.04</td><td>《THE KAWS ALBUM》</td><td class="price">苏富比拍卖 · 约 $14.7M（公开报道）</td></tr>
+              </table>
+            </div>
+            <p style="font-size:11.5px;color:var(--muted);margin-top:10px">完整交易记录将在正式版接入拍卖数据库。</p>
+          </div>
+          <div class="widget">
+            <h4>公开合作品牌</h4>
+            <div class="w-item"><span>优衣库（驻场艺术家）</span><span class="v">2025</span></div>
+            <div class="w-item"><span>MEDICOM TOY（BE@RBRICK）</span><span class="v">长期</span></div>
+            <div class="w-item"><span>AllRightsReserved（KAWS:HOLIDAY）</span><span class="v">长期</span></div>
+            <div class="w-item"><span>Netflix（鱿鱼游戏联动）</span><span class="v">2025</span></div>
+          </div>
+          <div class="widget">
+            <h4>代表形象</h4>
+            <div class="w-item"><span>COMPANION（标志性角色）</span></div>
+            <div class="w-item"><span>BFF / Chum</span></div>
+            <div class="w-item"><span>《THE KAWS ALBUM》</span></div>
+          </div>
+          <div class="placeholder-banner" style="border-style:solid">
+            <span>ℹ</span>
+            <span>本档案基于公开信息与真实报道整理，动态条目链接原文。正式版将接入权威档案数据库。</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  </section>
+
+<section class="view" id="view-institution">
+
+  <!-- ================= 机构头部 ================= -->
+  <section class="profile-hero">
+    <div class="container profile-grid">
+      <div class="avatar-frame"><img src="assets/images/institution-avatar.jpg" alt="贝浩登画廊（占位图）" /></div>
+      <div class="profile-info">
+        <div class="nc-meta" style="margin-bottom:10px">
+          <span class="tag tag-exhibition">画廊</span>
+          <span class="tag">国际蓝筹</span>
+          <span class="tag-city">巴黎 / 香港 / 上海 / 纽约 / 东京 / 首尔 / 迪拜</span>
+        </div>
+        <h1>贝浩登画廊 <span style="font-size:16px;color:var(--muted);font-weight:500">Galerie Perrotin</span></h1>
+        <p class="pi-sub">1990 年创立 · 总部巴黎 · 全球多个空间（公开信息）</p>
+        <p class="pi-bio">全球最具影响力的当代艺术画廊之一，由艾曼纽·贝浩登（Emmanuel Perrotin）创立于巴黎，以跨代际、跨媒介的艺术家阵容与深耕亚洲市场的策略著称，代理 KAWS、村上隆、JR、黄宇兴等艺术家。（简介来自公开信息）</p>
+        <div class="profile-stats">
+          <div class="ps"><b>7+</b><span>全球空间（公开）</span></div>
+          <div class="ps"><b>60+</b><span>代理艺术家（公开）</span></div>
+          <div class="ps"><b>1990</b><span>创立年份</span></div>
+          <div class="ps"><b>4 篇</b><span>本期相关报道</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="grid grid-sidebar">
+        <div>
+          <!-- 代理艺术家（公开） -->
+          <div class="section-head" id="institution-artists">
+            <div>
+              <div class="kicker">Artists · 代理艺术家（公开）</div>
+              <h2 class="h2" style="font-size:22px">部分代表艺术家</h2>
+            </div>
+            <span class="sec-link">正式版将收录完整名单</span>
+          </div>
+          <div class="grid grid-3" style="margin-bottom:52px">
+            <a class="cat-card" href="https://hypebeast.cn/2026/7/kaws-new-fellows-vinyl-figure-collection" target="_blank" rel="noopener noreferrer">
+              <span class="cat-no">US</span>
+              <h3>KAWS</h3>
+              <div class="cat-en">Brian Donnelly · 1974</div>
+              <div class="cat-count">本期报道 4 篇</div>
+            </a>
+            <a class="cat-card" href="https://hypebeast.cn/2025/12/bearbrick-big-tamagotchi-exhibition-collaboration-30th-anniversary-merch-release-info" target="_blank" rel="noopener noreferrer">
+              <span class="cat-no">JP</span>
+              <h3>村上隆</h3>
+              <div class="cat-en">Takashi Murakami · 1962</div>
+              <div class="cat-count">公开档案</div>
+            </a>
+            <a class="cat-card" href="https://hypebeast.cn/2026/7/pace-gallery-berlin-goodbye-sadness-hello-sadness-group-exhibition-info" target="_blank" rel="noopener noreferrer">
+              <span class="cat-no">FR</span>
+              <h3>JR</h3>
+              <div class="cat-en">JR · 1983</div>
+              <div class="cat-count">公开档案</div>
+            </a>
+            <a class="cat-card" href="https://news.artron.net/20260728/n1152674.html" target="_blank" rel="noopener noreferrer">
+              <span class="cat-no">CN</span>
+              <h3>黄宇兴</h3>
+              <div class="cat-en">Huang Yuxing · 1975</div>
+              <div class="cat-count">公开档案</div>
+            </a>
+            <a class="cat-card" href="https://hypebeast.cn/2026/8/yoshitomo-nara-first-exhibition-with-david-zwirner-new-york-info" target="_blank" rel="noopener noreferrer">
+              <span class="cat-no">+</span>
+              <h3>更多艺术家</h3>
+              <div class="cat-en">Complete Roster</div>
+              <div class="cat-count">正式版完整名单 →</div>
+            </a>
+          </div>
+
+          <!-- 相关动态（真实报道） -->
+          <div class="section-head" id="institution-news">
+            <div>
+              <div class="kicker">Latest · 相关报道</div>
+              <h2 class="h2" style="font-size:22px">代理艺术家近期动态</h2>
+            </div>
+          </div>
+          <div class="widget" style="padding:6px 0;border:none">
+            <a class="archive-row" href="https://hypebeast.cn/2026/7/kaws-new-fellows-vinyl-figure-collection" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">潮玩</span>
+              <span class="ar-title">KAWS 推出「FELLOWS」乙烯基人偶系列</span>
+              <span class="ar-kw">Hypebeast</span>
+              <span class="ar-go">↗</span>
+            </a>
+            <a class="archive-row" href="https://hypebeast.cn/2025/9/kaws-first-uniqlo-artist-in-residence-announcement" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">品牌</span>
+              <span class="ar-title">KAWS 出任优衣库首位「驻场艺术家」</span>
+              <span class="ar-kw">Hypebeast</span>
+              <span class="ar-go">↗</span>
+            </a>
+            <a class="archive-row" href="https://hypebeast.cn/2025/12/bearbrick-big-tamagotchi-exhibition-collaboration-30th-anniversary-merch-release-info" target="_blank" rel="noopener noreferrer">
+              <span class="ar-date">潮玩</span>
+              <span class="ar-title">BE@RBRICK × Tamagotchi 30 周年联名</span>
+              <span class="ar-kw">Hypebeast</span>
+              <span class="ar-go">↗</span>
+            </a>
+          </div>
+
+          <!-- 展览回顾（公开信息） -->
+          <div class="section-head" id="institution-exhibitions">
+            <div>
+              <div class="kicker">Exhibitions · 展览（公开信息）</div>
+              <h2 class="h2" style="font-size:22px">画廊近期展览</h2>
+            </div>
+          </div>
+          <div class="widget" style="padding:6px 0;border:none">
+            <div class="archive-row">
+              <span class="ar-date">2025.11</span>
+              <span class="ar-title">黄宇兴「光的隧道」个展</span>
+              <span class="ar-kw">香港 · 贝浩登空间（公开信息）</span>
+              <span class="ar-go">·</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">2025.06</span>
+              <span class="ar-title">KAWS 相关展览与合作项目</span>
+              <span class="ar-kw">多地 · 见真实报道</span>
+              <span class="ar-go">·</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">2024</span>
+              <span class="ar-title">村上隆回顾展</span>
+              <span class="ar-kw">巴黎 · 贝浩登空间（公开信息）</span>
+              <span class="ar-go">·</span>
+            </div>
+            <p style="font-size:11.5px;color:var(--muted);padding:10px 4px">展览条目基于公开信息整理，正式版将接入机构官方展览档案。</p>
+          </div>
+        </div>
+
+        <!-- 侧栏 -->
+        <aside>
+          <div class="widget">
+            <h4>合作品牌（公开）</h4>
+            <div class="w-item"><span>优衣库（KAWS 驻场）</span><span class="v">2025</span></div>
+            <div class="w-item"><span>MEDICOM TOY（BE@RBRICK）</span><span class="v">长期</span></div>
+            <div class="w-item"><span>AllRightsReserved（KAWS:HOLIDAY）</span><span class="v">长期</span></div>
+          </div>
+          <div class="widget">
+            <h4>全球空间（公开）</h4>
+            <div class="w-item"><span>巴黎（总部）</span></div>
+            <div class="w-item"><span>香港 · 中环毕打街</span></div>
+            <div class="w-item"><span>上海 · 虎丘路 27 号</span></div>
+            <div class="w-item"><span>纽约 / 东京 / 首尔 / 迪拜</span></div>
+          </div>
+          <div class="widget">
+            <h4>联系方式</h4>
+            <div class="w-item"><span>官方网站</span><span class="v">perrotin.com</span></div>
+            <div class="w-item"><span>上海空间</span><span class="v">虎丘路 27 号</span></div>
+          </div>
+          <div class="placeholder-banner" style="border-style:solid">
+            <span>ℹ</span>
+            <span>本档案基于公开信息与真实报道整理，正式版将接入权威机构数据库。</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  </section>
+
+<section class="view" id="view-agenda">
+
+  <!-- ================= 页面头 ================= -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="#view-index">首页</a> / 活动预告</div>
+      <h1>近期真实艺术活动</h1>
+      <p class="sub">以下活动均来自本期 66 篇真实新闻报道（ARTnews / 雅昌艺术网 / Hypebeast），点击直达报道原文。正式版将接入日历订阅与自动同步。</p>
+      <div class="article-meta">
+        <span>收录真实活动 <b style="color:var(--accent-deep)">8</b> 项</span>
+        <span>·</span>
+        <span>来源 · 3 家媒体报道</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="grid grid-sidebar">
+        <div>
+          <!-- 近期活动列表（真实） -->
+          <div class="section-head" style="margin-bottom:20px">
+            <div>
+              <div class="kicker">Upcoming · 即将发生</div>
+              <h2 class="h2" style="font-size:22px">近期活动日程</h2>
+            </div>
+            <button class="btn btn-ghost btn-sm" onclick="alert('原型演示：正式版将支持一键同步至 iOS/Android/Outlook/Google 日历')">⧉ 日历订阅</button>
+          </div>
+          <div class="widget" style="padding:6px 0;border:none;margin-bottom:44px">
+            <div class="preview-row">
+              <span class="when">2026 年 · 展览</span>
+              <span class="what"><a href="https://hypebeast.cn/2026/8/yoshitomo-nara-first-exhibition-with-david-zwirner-new-york-info" target="_blank" rel="noopener noreferrer" style="color:inherit">奈良美智 × 卓纳画廊 · 纽约双场地个展（首次合作）</a></span>
+              <span class="where">纽约 · Hypebeast</span>
+            </div>
+            <div class="preview-row">
+              <span class="when">2026 年 · 开馆</span>
+              <span class="what"><a href="https://hypebeast.cn/2026/7/guggenheim-abu-dhabi-finally-gets-an-opening-date" target="_blank" rel="noopener noreferrer" style="color:inherit">古根海姆阿布扎比分馆正式开馆</a></span>
+              <span class="where">阿布扎比 · Hypebeast</span>
+            </div>
+            <div class="preview-row">
+              <span class="when">2026.12 · 艺博会</span>
+              <span class="what"><a href="https://www.artnews.com/art-news/market/nada-miami-2026-exhibitor-list-1234794118/" target="_blank" rel="noopener noreferrer" style="color:inherit">NADA 迈阿密 2026 · 135 家参展画廊名单公布</a></span>
+              <span class="where">迈阿密 · ARTnews</span>
+            </div>
+            <div class="preview-row">
+              <span class="when">2027 年 · 展览</span>
+              <span class="what"><a href="https://hypebeast.cn/2025/7/kaws-new-york-botanical-garden-2027-exhibition-announcement" target="_blank" rel="noopener noreferrer" style="color:inherit">KAWS 大型展览登陆纽约植物园</a></span>
+              <span class="where">纽约 · Hypebeast</span>
+            </div>
+            <div class="preview-row">
+              <span class="when">2026 年 · 展览</span>
+              <span class="what"><a href="https://hypebeast.cn/2026/7/rm-x-sfmoma-between-you-and-me-exhibition" target="_blank" rel="noopener noreferrer" style="color:inherit">RM 个人艺术收藏展 · SFMOMA</a></span>
+              <span class="where">旧金山 · Hypebeast</span>
+            </div>
+            <div class="preview-row">
+              <span class="when">2026 年 · 展览</span>
+              <span class="what"><a href="https://hypebeast.cn/2026/7/royal-photographic-society-international-photography-exhibition-167-saatchi-london-info" target="_blank" rel="noopener noreferrer" style="color:inherit">第 167 届皇家摄影学会国际摄影展 · Saatchi Gallery</a></span>
+              <span class="where">伦敦 · Hypebeast</span>
+            </div>
+            <div class="preview-row">
+              <span class="when">2025.10 起 · 巡展</span>
+              <span class="what"><a href="https://hypebeast.cn/2025/10/the-monsters-10th-anniversary-exhibition-shanghai-inside-look" target="_blank" rel="noopener noreferrer" style="color:inherit">THE MONSTERS 十周年全球巡展（LABUBU 等）</a></span>
+              <span class="where">上海 · Hypebeast</span>
+            </div>
+            <div class="preview-row">
+              <span class="when">2025.11 起 · 巡展</span>
+              <span class="what"><a href="https://hypebeast.cn/2025/11/allrightsreserved-kaws-holiday-abu-dhabi-companion-collaboration-uae-info" target="_blank" rel="noopener noreferrer" style="color:inherit">KAWS:HOLIDAY 登陆阿布扎比</a></span>
+              <span class="where">阿布扎比 · Hypebeast</span>
+            </div>
+          </div>
+
+          <div class="placeholder-banner" style="border-style:solid">
+            <span>ℹ</span>
+            <span>以上活动与日期均来自真实新闻报道；正式版将提供按类型（展览/拍卖/论坛/艺博会）筛选、日历一键同步与开演提醒。</span>
+          </div>
+        </div>
+
+        <!-- 侧栏 -->
+        <aside>
+          <div class="widget">
+            <h4>活动类型</h4>
+            <div class="chips" style="gap:6px">
+              <span class="chip on">全部</span>
+              <span class="chip">展览开幕</span>
+              <span class="chip">艺博会</span>
+              <span class="chip">开馆</span>
+              <span class="chip">巡展</span>
+            </div>
+          </div>
+          <div class="widget">
+            <h4>来自报道</h4>
+            <div class="w-item"><span>Hypebeast 报道</span><span class="v">6 项</span></div>
+            <div class="w-item"><span>ARTnews 报道</span><span class="v">1 项</span></div>
+            <div class="w-item"><span>雅昌艺术网报道</span><span class="v">1 项</span></div>
+          </div>
+          <div class="widget" style="background:var(--ink);border-color:var(--ink);color:var(--white)">
+            <h4 style="color:rgba(255,255,255,0.5);border-color:var(--line-dark)">日历同步（正式版）</h4>
+            <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:14px">订阅后，展览开幕、艺博会与拍卖日程将自动同步至你的手机日历，并与日报「即将发生」联动。</p>
+            <button class="btn btn-accent" style="width:100%;justify-content:center" data-modal-open>开启日历订阅</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  </section>
+
+<section class="view" id="view-account">
+
+  <!-- ================= 页面头 ================= -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="#view-index">首页</a> / 用户中心</div>
+      <h1>用户中心</h1>
+      <p class="sub">管理你的关键词订阅、地区订阅与报告推送。专业版会员可解锁深度报告、历史数据回溯与关系图谱。</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container account-layout">
+      <!-- ================= 左侧菜单 ================= -->
+      <aside class="account-side">
+        <div class="account-user">
+          <div class="au-av">藏</div>
+          <div>
+            <div class="au-name">艺术藏家_042</div>
+            <div class="au-level">◆ 专业版会员 · 有效期至 2027.01</div>
+          </div>
+        </div>
+        <nav class="account-nav" id="account-acNav">
+          <a href="#account-panel-subs" class="on" data-panel="subs">我的订阅 <span class="n">3 组关键词</span></a>
+          <a href="#account-panel-faves" data-panel="faves">收藏内容 <span class="badge">5</span></a>
+          <a href="#account-panel-downloads" data-panel="downloads">报告下载 <span class="n">8 份</span></a>
+          <a href="#account-panel-settings" data-panel="settings">账户设置</a>
+          <a href="#account-panel-member" data-panel="member">会员权益</a>
+        </nav>
+      </aside>
+
+      <!-- ================= 右侧内容（面板切换） ================= -->
+      <div>
+
+        <!-- 面板 1：我的订阅 -->
+        <div class="ac-panel" id="account-panel-subs" data-panel-name="subs">
+          <div class="section-head" style="margin-bottom:22px">
+            <div>
+              <div class="kicker">My Subscriptions · 我的订阅</div>
+              <h2 class="h2" style="font-size:22px">订阅管理</h2>
+            </div>
+            <button class="btn btn-ghost btn-sm" data-modal-open>+ 添加订阅</button>
+          </div>
+
+          <div class="sub-item">
+            <div class="si-head"><b>关键词订阅 · 艺术家</b><span class="tag tag-release">进行中</span></div>
+            <div class="si-tags">
+              <span class="tag">KAWS</span>
+              <span class="tag">奈良美智</span>
+              <span class="tag">LABUBU</span>
+            </div>
+            <div class="si-last">最近推送 · KAWS「FELLOWS」新系列发布（真实新闻）</div>
+          </div>
+
+          <div class="sub-item">
+            <div class="si-head"><b>关键词订阅 · 赛道</b><span class="tag tag-event">进行中</span></div>
+            <div class="si-tags">
+              <span class="tag">艺术潮玩</span>
+              <span class="tag">品牌跨界</span>
+              <span class="tag">拍卖市场</span>
+            </div>
+            <div class="si-last">最近推送 · 高古轩收缩伦敦与巴塞尔空间（真实新闻）</div>
+          </div>
+
+          <div class="sub-item">
+            <div class="si-head"><b>地区订阅</b><span class="tag tag-exhibition">进行中</span></div>
+            <div class="si-tags">
+              <span class="tag">上海</span>
+              <span class="tag">纽约</span>
+              <span class="tag">东京</span>
+            </div>
+            <div class="si-last">最近推送 · 景德镇手工瓷业遗存申遗成功（真实新闻）</div>
+          </div>
+
+          <!-- 最近推送 -->
+          <div class="section-head" style="margin:36px 0 22px">
+            <div>
+              <div class="kicker">Push · 最近推送</div>
+              <h2 class="h2" style="font-size:22px">订阅动态（真实新闻）</h2>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--line)">
+            <div class="push-item">
+              <span class="pi-time">09:12</span>
+              <div class="pi-t"><a href="https://hypebeast.cn/2026/7/kaws-new-fellows-vinyl-figure-collection" target="_blank" rel="noopener noreferrer">KAWS 推出全新「FELLOWS」乙烯基人偶系列</a><small>匹配订阅 · 艺术家「KAWS」</small></div>
+              <span class="pi-tag tag tag-toy">潮玩</span>
+            </div>
+            <div class="push-item">
+              <span class="pi-time">08:47</span>
+              <div class="pi-t"><a href="https://www.artnews.com/art-news/news/gagosian-london-basel-gallery-closures-1234794210/" target="_blank" rel="noopener noreferrer">高古轩放弃伦敦与巴塞尔空间，超级画廊重新思考版图</a><small>匹配订阅 · 赛道「拍卖市场」</small></div>
+              <span class="pi-tag tag tag-trade">交易</span>
+            </div>
+            <div class="push-item">
+              <span class="pi-time">07:55</span>
+              <div class="pi-t"><a href="https://news.artron.net/20260728/n1152674.html" target="_blank" rel="noopener noreferrer">「景德镇手工瓷业遗存」申遗成功</a><small>匹配订阅 · 地区「上海」</small></div>
+              <span class="pi-tag tag tag-event">事件</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 面板 2：收藏内容（真实新闻） -->
+        <div class="ac-panel" id="account-panel-faves" data-panel-name="faves" style="display:none">
+          <div class="section-head" style="margin-bottom:22px">
+            <div>
+              <div class="kicker">Favorites · 收藏内容</div>
+              <h2 class="h2" style="font-size:22px">已收藏 <em>/ 5 条真实新闻</em></h2>
+            </div>
+            <button class="btn btn-ghost btn-sm">管理收藏</button>
+          </div>
+          <div style="border-top:1px solid var(--line)">
+            <div class="archive-row">
+              <span class="ar-date">展览</span>
+              <span class="ar-title"><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">大都会美术馆悄然挂出达·芬奇《纺车边的圣母》</a></span>
+              <span class="ar-kw">ARTnews</span>
+              <span class="ar-go">→</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">潮玩</span>
+              <span class="ar-title"><a href="https://hypebeast.cn/2026/7/kaws-new-fellows-vinyl-figure-collection" target="_blank" rel="noopener noreferrer">KAWS 推出全新「FELLOWS」乙烯基人偶系列</a></span>
+              <span class="ar-kw">Hypebeast</span>
+              <span class="ar-go">→</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">事件</span>
+              <span class="ar-title"><a href="https://news.artron.net/20260728/n1152674.html" target="_blank" rel="noopener noreferrer">「景德镇手工瓷业遗存」申遗成功</a></span>
+              <span class="ar-kw">雅昌艺术网</span>
+              <span class="ar-go">→</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">交易</span>
+              <span class="ar-title"><a href="https://www.artnews.com/art-news/news/sacha-jafri-auctioned-world-largest-painting-for-charity-but-the-62-m-owed-is-missing-1234794219/" target="_blank" rel="noopener noreferrer">6200 万美元慈善善款去向成谜</a></span>
+              <span class="ar-kw">ARTnews</span>
+              <span class="ar-go">→</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">展览</span>
+              <span class="ar-title"><a href="https://hypebeast.cn/2026/8/yoshitomo-nara-first-exhibition-with-david-zwirner-new-york-info" target="_blank" rel="noopener noreferrer">奈良美智与卓纳画廊首次合作，纽约双场地个展</a></span>
+              <span class="ar-kw">Hypebeast</span>
+              <span class="ar-go">→</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 面板 3：报告下载 -->
+        <div class="ac-panel" id="account-panel-downloads" data-panel-name="downloads" style="display:none">
+          <div class="section-head" style="margin-bottom:22px">
+            <div>
+              <div class="kicker">Downloads · 报告下载</div>
+              <h2 class="h2" style="font-size:22px">下载记录 <em>/ 8 份</em></h2>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--line)">
+            <div class="archive-row">
+              <span class="ar-date">08.04</span>
+              <span class="ar-title"><a href="archive/index.html" target="_blank">《当代艺术每日日报》· 浏览</a></span>
+              <span class="ar-kw">日报 · 2.4MB</span>
+              <span class="ar-go">↓</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">08.03</span>
+              <span class="ar-title"><a href="#view-report">《当代艺术每日日报 VOL.041》· PDF</a></span>
+              <span class="ar-kw">日报 · 2.1MB</span>
+              <span class="ar-go">↓</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">07.31</span>
+              <span class="ar-title"><a href="#view-reports">《7 月拍卖市场月度复盘》· PDF</a></span>
+              <span class="ar-kw">月报 · 8.6MB</span>
+              <span class="ar-go">↓</span>
+            </div>
+            <div class="archive-row">
+              <span class="ar-date">06.30</span>
+              <span class="ar-title"><a href="#view-reports">《2026 上半年中国当代艺术市场白皮书》· PDF</a></span>
+              <span class="ar-kw">白皮书 · 32MB</span>
+              <span class="ar-go">↓</span>
+            </div>
+          </div>
+          <div class="placeholder-banner" style="border-style:solid;margin-top:20px">
+            <span>ℹ</span>
+            <span>原型阶段报告为示例文档，正式版将提供真实 PDF 下载与导出记录。</span>
+          </div>
+        </div>
+
+        <!-- 面板 4：账户设置 -->
+        <div class="ac-panel" id="account-panel-settings" data-panel-name="settings" style="display:none">
+          <div class="section-head" style="margin-bottom:22px">
+            <div>
+              <div class="kicker">Settings · 账户设置</div>
+              <h2 class="h2" style="font-size:22px">账户信息</h2>
+            </div>
+          </div>
+          <div class="sub-item">
+            <div class="si-head"><b>基本资料</b></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+              <div><label style="font-size:12px;color:var(--muted)">昵称</label><input type="text" value="艺术藏家_042" style="width:100%;border:1px solid var(--line);border-radius:2px;padding:10px 12px;margin-top:6px;font-size:14px;font-family:inherit" /></div>
+              <div><label style="font-size:12px;color:var(--muted)">邮箱</label><input type="text" value="collector@art-index.demo" style="width:100%;border:1px solid var(--line);border-radius:2px;padding:10px 12px;margin-top:6px;font-size:14px;font-family:inherit" /></div>
+            </div>
+            <div style="margin-top:16px;display:flex;gap:10px">
+              <button class="btn btn-primary btn-sm" data-modal-open>保存修改</button>
+              <button class="btn btn-ghost btn-sm">修改密码</button>
+            </div>
+          </div>
+          <div class="sub-item">
+            <div class="si-head"><b>推送偏好</b></div>
+            <div class="si-tags" style="margin-top:10px">
+              <span class="tag">日报推送 16:00 ✓</span>
+              <span class="tag">重点事件提醒 ✓</span>
+              <span class="tag">周报推送 ✕</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 面板 5：会员权益 -->
+        <div class="ac-panel" id="account-panel-member" data-panel-name="member" style="display:none">
+          <div class="section-head" style="margin-bottom:22px">
+            <div>
+              <div class="kicker">Membership · 会员权益</div>
+              <h2 class="h2" style="font-size:22px">专业版权益</h2>
+            </div>
+          </div>
+          <div class="latest-report" style="grid-template-columns:1fr auto">
+            <div>
+              <div class="lr-vol">PRO MEMBER · 当前为专业版</div>
+              <h3>深度报告 × 历史数据 × 关系图谱</h3>
+              <p>专业版日报含趋势深度解读与市场情绪分析；解锁全部历史报告档案、高级检索与艺术家「价值路径图」。</p>
+            </div>
+            <div class="lr-cta">
+              <button class="btn btn-accent btn-lg" data-modal-open>续费专业版</button>
+              <a class="btn btn-outline-light btn-lg" href="archive/index.html" target="_blank">浏览日报档案</a>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--line);margin-top:28px">
+            <div class="w-item" style="padding:14px 0;border-bottom:1px dashed var(--line)"><span>专业版日报（含趋势解读 / 情绪分析）</span><span class="v">已解锁</span></div>
+            <div class="w-item" style="padding:14px 0;border-bottom:1px dashed var(--line)"><span>历史报告无限回溯</span><span class="v">已解锁</span></div>
+            <div class="w-item" style="padding:14px 0;border-bottom:1px dashed var(--line)"><span>关系图谱 / 价值路径图</span><span class="v">已解锁</span></div>
+            <div class="w-item" style="padding:14px 0"><span>无广告浏览</span><span class="v">已解锁</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var nav = document.getElementById("acNav");
+      var links = nav.querySelectorAll("a");
+      var panels = document.querySelectorAll("[data-panel-name]");
+      links.forEach(function (a) {
+        a.addEventListener("click", function (e) {
+          e.preventDefault();
+          var p = a.getAttribute("data-panel");
+          links.forEach(function (x) { x.classList.remove("on"); });
+          a.classList.add("on");
+          panels.forEach(function (panel) {
+            panel.style.display = panel.getAttribute("data-panel-name") === p ? "" : "none";
+          });
+        });
+      });
+    })();
+  </script>
+</section>
+
+<section class="view" id="view-about">
+
+  <!-- ================= 页面头 ================= -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="#view-index">首页</a> / 关于我们</div>
+      <h1>WeArt Index</h1>
+      <p class="sub">当代艺术世界的价值定义者与议程设置者。以数据为基石、智库为内核、媒体为界面，致力于掌握当代艺术的全球话语权。</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="grid grid-sidebar">
+        <div class="prose">
+          <h3>平台定位</h3>
+          <p>我们相信，未来「美的话语权」不仅关乎行业内预测判断与评估，更关乎跨界融合、品牌提升与文化传播。WeArt Index 因此不只报道艺术世界，更致力于为艺术世界制定议程。</p>
+
+          <h3>话语权金字塔</h3>
+          <div style="margin:24px 0">
+            <div style="border:1px solid var(--line);border-top:3px solid var(--accent);padding:16px 20px;margin-bottom:10px">
+              <b style="font-size:14px">第五层 · 定义标准</b>
+              <p style="font-size:12.5px;color:var(--muted);margin-top:4px">艺术影响力指数 · 市场评级体系 —— 制定「什么是好艺术」的行业标准</p>
+            </div>
+            <div style="border:1px solid var(--line);border-top:3px solid var(--accent);padding:16px 20px;margin-bottom:10px">
+              <b style="font-size:14px">第四层 · 引导趋势</b>
+              <p style="font-size:12.5px;color:var(--muted);margin-top:4px">深度研报 · 年度白皮书 · 国际线上峰会</p>
+            </div>
+            <div style="border:1px solid var(--line);border-top:3px solid var(--accent);padding:16px 20px;margin-bottom:10px">
+              <b style="font-size:14px">第三层 · 撮合价值</b>
+              <p style="font-size:12.5px;color:var(--muted);margin-top:4px">品牌-艺术家 AI 匹配引擎 · 商业合作数据库</p>
+            </div>
+            <div style="border:1px solid var(--line);border-top:3px solid var(--accent);padding:16px 20px;margin-bottom:10px">
+              <b style="font-size:14px">第二层 · 掌握数据</b>
+              <p style="font-size:12.5px;color:var(--muted);margin-top:4px">关系图谱化数据库 · 全球实时情绪热力图</p>
+            </div>
+            <div style="border:1px solid var(--line);border-top:3px solid var(--accent);padding:16px 20px">
+              <b style="font-size:14px">第一层 · 聚合信息</b>
+              <p style="font-size:12.5px;color:var(--muted);margin-top:4px">实时资讯聚合系统 · 每日行业日报</p>
+            </div>
+          </div>
+
+          <h3>我们的内容</h3>
+          <p>全球特约观察员网络覆盖纽约、伦敦、柏林、上海、东京、首尔等核心艺术城市；每日编辑晨会基于 AI 初稿进行人工增值编辑，确保每期日报至少包含 1-2 条独特的人类视角深度分析。</p>
+
+          <h3>愿景</h3>
+          <blockquote>让「据 WeArt Index 数据显示」成为行业默认引用，让《WeArt Index 年度白皮书》成为文化决策者的案头必备。</blockquote>
+
+          <h3 id="about-copyright">版权与图片来源声明</h3>
+          <p>本站展示的资讯配图、作品图像、机构形象等素材，版权归其创作者或权利人所有。WeArt Index 以新闻报道、评论与行业信息整合为目的进行展示，使用方式符合合理使用原则；转载或商业使用需另行取得权利人授权。</p>
+          <p>正式运营版将对每一张图片标注来源（创作者 / 机构 / 摄影师 / 授权范围），并提供「联系我们下架」通道：如权利人认为某素材的展示构成侵权，请通过下方联系方式与我们联系，我们将在核实后 <b>48 小时内</b>移除相关内容。</p>
+          <p style="font-size:13px;color:var(--muted)">当前原型阶段使用的占位图片来自免费无版权图源（picsum.photos），不涉及第三方版权。</p>
+
+          <h3 id="about-privacy">隐私政策（摘要）</h3>
+          <p>我们仅收集提供订阅服务所必需的账户信息（昵称、邮箱）；不向任何第三方出售个人数据；用户可随时联系申请删除账号与相关数据。完整隐私条款将在正式版发布时提供。</p>
+        </div>
+
+        <!-- 侧栏 -->
+        <aside>
+          <div class="widget" id="about-contact">
+            <h4>商务合作 / 投稿</h4>
+            <div class="w-item"><span>商务对接</span><span class="v">bd@art-index.demo</span></div>
+            <div class="w-item"><span>合作投稿</span><span class="v">submit@art-index.demo</span></div>
+            <div class="w-item"><span>媒体联系</span><span class="v">press@art-index.demo</span></div>
+            <div class="w-item"><span>图片授权 / 下架</span><span class="v">copyright@art-index.demo</span></div>
+            <div class="w-item"><span>特约记者招募</span><span class="v">global@art-index.demo</span></div>
+          </div>
+          <div class="widget">
+            <h4>平台数据（本期真实）</h4>
+            <div class="w-item"><span>收录真实报道</span><span class="v">66 篇</span></div>
+            <div class="w-item"><span>报道来源</span><span class="v">3 家媒体</span></div>
+            <div class="w-item"><span>覆盖城市与地区</span><span class="v">20+</span></div>
+            <div class="w-item"><span>报道关联实体</span><span class="v">50+</span></div>
+          </div>
+          <div class="widget">
+            <h4>阶段里程碑</h4>
+            <div class="tl-item" style="padding-bottom:14px">
+              <span class="tl-date">第 1-6 月</span>
+              <h4>建基座 · 立专业</h4>
+              <p>资讯系统与日报 MVP，特约通讯员网络</p>
+            </div>
+            <div class="tl-item" style="padding-bottom:14px">
+              <span class="tl-date">第 7-12 月</span>
+              <h4>树标准 · 建连接</h4>
+              <p>艺术影响力指数发布，专业版与 B 端服务</p>
+            </div>
+            <div class="tl-item">
+              <span class="tl-date">第 13-24 月</span>
+              <h4>扩影响 · 定话语</h4>
+              <p>年度白皮书全球发布，数据 API 开放</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script>
+/* ==========================================================================
+   WeWeArt Index — 原型共享脚本
+   负责：全站导航/页脚注入、当前页高亮、动态日期与期号、
+        Hero 轮播、数字滚动、筛选交互、订阅弹窗、移动端菜单
+   ========================================================================== */
+
+(function () {
+  "use strict";
+
+  /* ---------- 全站导航与页脚 ---------- */
+  var PAGES = {
+    index: "#view-index",
+    news: "#view-news",
+    article: "#view-article",
+    reports: "#view-reports",
+    report: "#view-report",
+    resources: "#view-resources",
+    artist: "#view-artist",
+    institution: "#view-institution",
+    agenda: "#view-agenda",
+    account: "#view-account",
+    about: "#view-about"
+  };
+
+  var NAV = [
+    { label: "全球资讯", href: PAGES.news, page: "news" },
+    { label: "行业日报", href: PAGES.reports, page: "reports" },
+    { label: "资源库", href: PAGES.resources, page: "resources" },
+    { label: "活动预告", href: PAGES.agenda, page: "agenda" },
+    { label: "关于我们", href: PAGES.about, page: "about" }
+  ];
+
+  function renderHeader() {
+    var host = document.getElementById("site-header");
+    if (!host) return;
+    var raw = document.body.getAttribute("data-page") || ((location.hash || "").replace(/^#view-/, "") || "index");
+    var current = { article: "news", report: "reports" }[raw] || raw;
+
+    var links = NAV.map(function (n) {
+      var cls = current === n.page ? ' class="active"' : "";
+      return '<a href="' + n.href + '"' + cls + ">" + n.label + "</a>";
+    }).join("");
+
+    host.outerHTML =
+      '<header class="site-header">' +
+      '<div class="container nav">' +
+      '<a class="brand" href="#view-index">WeArt<span class="dot">·</span>Index<small>Art Intelligence</small></a>' +
+      '<button class="burger" id="burger" aria-label="菜单"><span></span><span></span><span></span></button>' +
+      '<nav class="nav-links" id="navLinks">' + links + "</nav>" +
+      '<div class="nav-cta">' +
+      '<a class="btn btn-accent btn-sm" href="archive/#view-index" target="_blank" style="font-weight:700">📋 今日简报</a>' +
+      '<button class="btn btn-primary btn-sm btn-sub" data-modal-open>订阅日报</button>' +
+      '<a class="nav-avatar" href="#view-account" title="用户中心">藏</a>' +
+      "</div>" +
+      "</div>" +
+      "</header>";
+  }
+
+  function renderFooter() {
+    var host = document.getElementById("site-footer");
+    if (!host) return;
+    host.outerHTML =
+      '<footer class="site-footer">' +
+      '<div class="container footer-top">' +
+      '<div>' +
+      '<a class="brand" href="#view-index">WeArt<span class="dot">·</span>Index</a>' +
+      '<p class="f-about">当代艺术世界的价值定义者与议程设置者。以结构化数据 + AI 解读 + 行业专家洞察，提供可认知、可量化、可预判的艺术决策支持。</p>' +
+      "</div>" +
+      '<div class="f-col"><h5>内容</h5><a href="#view-news">全球资讯</a><a href="#view-reports">行业日报</a><a href="#view-report">今日日报</a><a href="#view-agenda">活动预告</a></div>' +
+      '<div class="f-col"><h5>资源库</h5><a href="#view-resources">资源库入口</a><a href="#view-artist">艺术家档案</a><a href="#view-institution">机构档案</a><a href="#view-account">用户中心</a></div>' +
+      '<div class="f-col"><h5>关于</h5><a href="#view-about">平台定位</a><a href="#view-about">图片版权声明</a><a href="#view-about">隐私政策</a><a href="#view-about">商务合作</a><a href="#view-about">媒体联系</a></div>' +
+      "</div>" +
+      '<div class="container footer-bottom">' +
+      "<span>© 2026 WeArt Index · 每日 16:00（北京时间）更新日报</span>" +
+      '<span><a href="#view-about" style="border-bottom:1px solid rgba(255,255,255,0.35)">图片版权声明</a> · <span class="demo-note">原型演示 · 页面数据为示例占位</span></span>' +
+      "</div>" +
+      "</footer>";
+  }
+
+  function renderModal() {
+    if (document.getElementById("subscribeModal")) return;
+    var div = document.createElement("div");
+    div.id = "subscribeModal";
+    div.className = "modal-mask";
+    div.innerHTML =
+      '<div class="modal">' +
+      '<button class="m-close" aria-label="关闭">✕</button>' +
+      "<h3>订阅艺术日报</h3>" +
+      "<p>每日 16:00（北京时间）将《当代艺术日报》发送至你的邮箱。原型演示阶段，仅验证交互。</p>" +
+      '<form><input type="email" placeholder="输入邮箱地址" required /><button class="btn btn-accent" type="submit">订阅</button></form>' +
+      "</div>";
+    document.body.appendChild(div);
+  }
+
+  /* ---------- 动态日期与期号 ---------- */
+  function renderDate() {
+    var els = document.querySelectorAll(".js-today");
+    if (!els.length) return;
+    var WEEK = ["日", "一", "二", "三", "四", "五", "六"];
+    var d = new Date();
+    var label =
+      d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日 星期" + WEEK[d.getDay()];
+    for (var j = 0; j < els.length; j++) { els[j].textContent = label; }
+    // 期号：以 2026-01-01 为第 1 期
+    var start = new Date(2026, 0, 1);
+    var vol = Math.floor((d - start) / 86400000) + 1;
+    var volEls = document.querySelectorAll(".js-vol");
+    for (var i = 0; i < volEls.length; i++) {
+      volEls[i].textContent = String(vol).padStart(3, "0");
+    }
+  }
+
+  /* ---------- Hero 轮播 ---------- */
+  function initCarousel() {
+    var carousels = document.querySelectorAll(".carousel");
+    carousels.forEach(function (car) {
+      var slides = car.querySelectorAll(".carousel-slide");
+      var dotsWrap = car.querySelector(".carousel-dots");
+      if (slides.length < 2) return;
+
+      slides.forEach(function (_, i) {
+        var b = document.createElement("button");
+        b.setAttribute("aria-label", "第 " + (i + 1) + " 条");
+        if (i === 0) b.className = "on";
+        b.addEventListener("click", function () { go(i); });
+        dotsWrap.appendChild(b);
+      });
+      var dots = dotsWrap.querySelectorAll("button");
+
+      var idx = 0, timer = null;
+      function go(n) {
+        idx = (n + slides.length) % slides.length;
+        slides.forEach(function (s, i) { s.classList.toggle("active", i === idx); });
+        dots.forEach(function (d, i) { d.classList.toggle("on", i === idx); });
+      }
+      function next() { go(idx + 1); }
+
+      var nextBtn = car.querySelector(".carousel-next");
+      var prevBtn = car.querySelector(".carousel-prev");
+      if (nextBtn) nextBtn.addEventListener("click", function () { next(); reset(); });
+      if (prevBtn) prevBtn.addEventListener("click", function () { go(idx - 1); reset(); });
+
+      function reset() {
+        clearInterval(timer);
+        timer = setInterval(next, 5500);
+      }
+      reset();
+    });
+  }
+
+  /* ---------- 数字滚动 ---------- */
+  function initCounters() {
+    var els = document.querySelectorAll("[data-count]");
+    els.forEach(function (el) {
+      var target = parseFloat(el.getAttribute("data-count"));
+      var suffix = el.getAttribute("data-suffix") || "";
+      var duration = 1100, start = null;
+
+      function tick(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        var val = Math.round(target * eased);
+        el.textContent = val.toLocaleString("en-US") + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
+  /* ---------- 筛选交互 ---------- */
+  function initFilters() {
+    var bars = document.querySelectorAll(".filter-bar");
+    bars.forEach(function (bar) {
+      var chips = bar.querySelectorAll(".chip");
+      var targets = document.querySelectorAll(".filter-target");
+      chips.forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          var group = chip.getAttribute("data-group");
+          var value = chip.getAttribute("data-value");
+          // 同组互斥
+          bar.querySelectorAll('.chip[data-group="' + group + '"]').forEach(function (c) {
+            c.classList.remove("on");
+          });
+          chip.classList.add("on");
+
+          if (!targets.length) return;
+          targets.forEach(function (t) {
+            var g = t.getAttribute("data-" + group) || "";
+            var match = value === "all" || g === value;
+            t.style.display = match ? "" : "none";
+          });
+        });
+      });
+    });
+  }
+
+  /* ---------- 订阅弹窗 ---------- */
+  function initModal() {
+    var mask = document.getElementById("subscribeModal");
+    if (!mask) return;
+    var openers = document.querySelectorAll("[data-modal-open]");
+    var closeBtn = mask.querySelector(".m-close");
+    var form = mask.querySelector("form");
+
+    function open() { mask.classList.add("show"); }
+    function close() { mask.classList.remove("show"); }
+
+    openers.forEach(function (b) { b.addEventListener("click", open); });
+    closeBtn.addEventListener("click", close);
+    mask.addEventListener("click", function (e) { if (e.target === mask) close(); });
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var email = form.querySelector("input").value.trim();
+      if (!email) return;
+      form.innerHTML =
+        '<div style="padding:10px 0;font-size:14px;color:var(--accent-deep);font-weight:600">' +
+        "✓ 订阅成功（原型演示）。每日 16:00 日报将发送至 " + email + "</div>";
+    });
+  }
+
+  /* ---------- 移动端菜单 ---------- */
+  function initBurger() {
+    var burger = document.getElementById("burger");
+    var links = document.getElementById("navLinks");
+    if (!burger || !links) return;
+    burger.addEventListener("click", function () {
+      burger.classList.toggle("open");
+      links.classList.toggle("open");
+    });
+  }
+
+  /* ---------- 启动 ---------- */
+  document.addEventListener("DOMContentLoaded", function () {
+    renderHeader();
+    renderFooter();
+    renderModal();
+    renderDate();
+    initCarousel();
+    initCounters();
+    initFilters();
+    initModal();
+    initBurger();
+  });
+})();
+
+
+
+
+  </script>
+  <script>
+(function () {
+  var views = document.querySelectorAll(".view");
+  var last = "index";
+  function resolve() {
+    var h = (location.hash || "").replace(/^#view-/, "");
+    if (document.getElementById("view-" + h)) { last = h; return h; }
+    return last;
+  }
+  function show(name) {
+    if (!document.getElementById("view-" + name)) { name = last; }
+    views.forEach(function (v) { v.style.display = (v.id === "view-" + name) ? "" : "none"; });
+    updateNav(name);
+    var burger = document.getElementById("burger");
+    var links = document.getElementById("navLinks");
+    if (burger && burger.classList.contains("open")) { burger.classList.remove("open"); links.classList.remove("open"); }
+    window.scrollTo(0, 0);
+  }
+  function updateNav(name) {
+    var links = document.querySelectorAll(".nav-links a");
+    links.forEach(function (a) {
+      a.classList.toggle("active", a.getAttribute("href") === "#view-" + name);
+    });
+  }
+  // 事件委托：拦截所有 #view- 链接点击，显式切换视图（不依赖 hashchange）
+  document.addEventListener("click", function (e) {
+    var t = e.target;
+    while (t && t !== document && t.tagName !== "A") { t = t.parentNode; }
+    if (!t || t.tagName !== "A") return;
+    var href = t.getAttribute("href") || "";
+    if (href.indexOf("#view-") !== 0) return;
+    e.preventDefault();
+    var name = href.replace("#view-", "");
+    if (document.getElementById("view-" + name)) {
+      last = name;
+      show(name);
+      try { if (location.hash !== href) { history.replaceState(null, "", href); } } catch (err) {}
+    }
+  });
+  // 兼容：hash 变化（浏览器前进/后退）
+  window.addEventListener("hashchange", function () { show(resolve()); });
+  show(resolve());
+})();
+  </script>
+</body>
+</html>
