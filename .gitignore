@@ -8,3 +8,4 @@ apply-toy.ps1
 extract.ps1
 _raw_*.html
 *.tmp
+reasonix.toml

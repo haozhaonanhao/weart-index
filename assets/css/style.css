@@ -324,6 +324,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex-shrink: 0; position: relative; overflow: hidden; background: var(--paper);
 }
 .news-card .nc-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.news-card-body { flex:1; }
 
 /* ---------- 筛选栏 ---------- */
 .filter-bar {
@@ -688,7 +689,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .latest-report { grid-template-columns: 1fr; padding: 30px 26px; }
   .work-grid { grid-template-columns: repeat(2, 1fr); }
   .news-card { grid-template-columns: 1fr; }
-  .news-card .nc-thumb { width: 100%; height: 140px; }
+  .news-card .nc-thumb { width: 100%; height: 140px; }  
   .article-hero h1 { font-size: 28px; }
   .report-cover h1 { font-size: 32px; }
   .track-item { grid-template-columns: 1fr; gap: 6px; }
@@ -702,4 +703,5 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .cal-cell .ev { display: none; }
   .footer-top { grid-template-columns: 1fr; gap: 28px; }
 }
+
 

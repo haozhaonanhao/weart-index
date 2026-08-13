@@ -1,813 +1,888 @@
-﻿<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>全球资讯 — WeArt Index</title>
-  <meta name="description" content="全球当代艺术资讯实时更新：展览、事件、作品发布、品牌合作、交易、艺术潮玩。所有链接指向真实来源。" />
-  <link rel="stylesheet" href="assets/css/style.css" />
-</head>
-<body data-page="news">
-
-  <div id="site-header"></div>
-
-  <section class="article-hero">
-    <div class="container">
-      <div class="breadcrumb"><a href="index.html">首页</a> / 全球资讯</div>
-      <h1>全球艺术动态</h1>
-      <p class="sub">60 条精选新闻 · 六大赛道各 10 条 · 7 个国外源为主 · 所有链接指向真实原文</p>
-      <div class="article-meta">
-        <span>本期收录 <b style="color:var(--accent-deep)">60</b> 条精选</span>
-        <span>·</span>
-        <span>最后更新 <span id="today">——</span></span>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-tight">
-    <div class="container">
-      <!-- ===== 三维筛选栏 ===== -->
-      <div class="filter-bar">
-        <div class="filter-group">
-          <span class="f-label">赛道</span>
-          <div class="chips">
-            <button class="chip on" data-group="cat" data-value="all">全部</button>
-            <button class="chip" data-group="cat" data-value="exhibition">展览</button>
-            <button class="chip" data-group="cat" data-value="event">事件</button>
-            <button class="chip" data-group="cat" data-value="release">作品发布</button>
-            <button class="chip" data-group="cat" data-value="partner">品牌合作</button>
-            <button class="chip" data-group="cat" data-value="trade">交易</button>
-            <button class="chip" data-group="cat" data-value="toy">艺术潮玩</button>
-          </div>
-        </div>
-        <div class="filter-group">
-          <span class="f-label">地区</span>
-          <div class="chips">
-            <button class="chip on" data-group="region" data-value="all">全部</button>
-            <button class="chip" data-group="region" data-value="cn">国内</button>
-            <button class="chip" data-group="region" data-value="us-eu">欧美</button>
-            <button class="chip" data-group="region" data-value="me">中东</button>
-          </div>
-        </div>
-        <div class="filter-group">
-          <span class="f-label">时间</span>
-          <div class="chips">
-            <button class="chip on" data-group="time" data-value="all">全部</button>
-            <button class="chip" data-group="time" data-value="today">今日</button>
-            <button class="chip" data-group="time" data-value="week">本周</button>
-            <button class="chip" data-group="time" data-value="month">本月</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-sidebar">
-        <!-- ===== 新闻列表区（由脚本动态替换） ===== -->
-        <div id="newsList">
-          
-          <article class="news-card filter-target" data-cat="exhibition">
+﻿<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>全球资讯 — WeArt Index</title><link rel="stylesheet" href="assets/css/style.css"/></head>
+<body data-page="news"><div id="site-header"></div>
+<section class="article-hero"><div class="container"><div class="breadcrumb"><a href="index.html">首页</a> / 全球资讯</div>
+<h1>全球艺术动态</h1></div></section>
+<section class="section-tight"><div class="container">
+<div class="filter-bar">
+<div class="filter-group"><span class="f-label">赛道</span><div class="chips"><button class="chip on" data-group="cat" data-value="all">全部</button><button class="chip" data-group="cat" data-value="exhibition">展览</button><button class="chip" data-group="cat" data-value="event">事件</button><button class="chip" data-group="cat" data-value="release">作品发布</button><button class="chip" data-group="cat" data-value="partner">品牌合作</button><button class="chip" data-group="cat" data-value="trade">交易</button><button class="chip" data-group="cat" data-value="toy">艺术潮玩</button></div></div>
+<div class="filter-group"><span class="f-label">地区</span><div class="chips"><button class="chip on" data-group="region" data-value="all">全部</button><button class="chip" data-group="region" data-value="cn">国内</button><button class="chip" data-group="region" data-value="us-eu">欧美</button><button class="chip" data-group="region" data-value="me">中东</button></div></div>
+<div class="filter-group"><span class="f-label">时间</span><div class="chips"><button class="chip on" data-group="time" data-value="all">全部</button><button class="chip" data-group="time" data-value="today">今日</button><button class="chip" data-group="time" data-value="week">本周</button><button class="chip" data-group="time" data-value="month">本月</button></div></div>
+</div>
+<div id="newsList">          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
             <div class="nc-main">
               <div class="nc-meta">
-                <span class="tag tag-exhibition">展览</span>
                 <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.3<i class="bar"><i style="width:73%;background:var(--accent)"></i></i></span>
+                <span class="index-pill" style="margin-left:auto">7.3<i class="bar"><i style="width:73%;background:var(--accent)"></i></i></span>
               </div>
-              <h3><a href="https://www.artnews.com/art-news/news/met-museum-john-galliano-show-jewish-leaders-meetings-1234794224/" target="_blank" rel="noopener noreferrer">Met Museum Consulted With Jewish Leaders Over Exhibition for Controversial Fashion Designer John Galliano</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：展览</span></div>
+              <h3><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">Met Museum Quietly Hangs a Leonardo da Vinci Painting, On Loan from Ken Griffin: 'A Little Picture, Of…</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
             </div>
             <div class="nc-thumb"><img src="assets/images/news-01.jpg" alt="" /></div>
           </article>
-          <article class="news-card filter-target" data-cat="exhibition">
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
             <div class="nc-main">
               <div class="nc-meta">
-                <span class="tag tag-exhibition">展览</span>
                 <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8<i class="bar"><i style="width:80%;background:var(--accent)"></i></i></span>
+                <span class="index-pill" style="margin-left:auto">8<i class="bar"><i style="width:80%;background:var(--accent)"></i></i></span>
               </div>
-              <h3><a href="https://www.artnews.com/art-in-america/columns/venice-biennale-in-minor-keys-koyokouoh-pavilions-equatorial-guinea-sierra-leone-1234790523/" target="_blank" rel="noopener noreferrer">The Venice Biennale’s Record African Participation Comes With Caveats</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：展览</span></div>
+              <h3><a href="https://www.artnews.com/art-news/news/museums-team-up-buy-artworks-new-ai-startup-tackles-art-forgery-more-morning-links-august-5-2026-1234794321/" target="_blank" rel="noopener noreferrer">Museums Team Up to Buy Artworks, a New AI Startup Tackles Art Forgery, and More: Morning Links for August 5…</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
             </div>
             <div class="nc-thumb"><img src="assets/images/news-02.jpg" alt="" /></div>
           </article>
-          <article class="news-card filter-target" data-cat="exhibition">
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
             <div class="nc-main">
               <div class="nc-meta">
-                <span class="tag tag-exhibition">展览</span>
-                <span style="font-size:11.5px;color:var(--muted)">Artforum · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.7<i class="bar"><i style="width:87%;background:var(--accent)"></i></i></span>
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.7<i class="bar"><i style="width:87%;background:var(--accent)"></i></i></span>
               </div>
-              <h3><a href="https://www.artforum.com/columns/matters-of-spirit-1234755200/" target="_blank" rel="noopener noreferrer">Divine Alphabets: Two Los Angeles Exhibitions on Spirituality</a></h3>
-              <div class="nc-foot"><span>来源：Artforum</span><span>标签：展览</span></div>
+              <h3><a href="https://www.artnews.com/art-news/market/sothebys-new-comms-chief-freemans-new-old-masters-head-1234794329/" target="_blank" rel="noopener noreferrer">Sotheby's New Comms Chief, Freeman's New Old Masters Head, and More: Industry Moves for August 5, 2026</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
             </div>
             <div class="nc-thumb"><img src="assets/images/news-03.jpg" alt="" /></div>
           </article>
-          <article class="news-card filter-target" data-cat="exhibition">
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
             <div class="nc-main">
               <div class="nc-meta">
-                <span class="tag tag-exhibition">展览</span>
-                <span style="font-size:11.5px;color:var(--muted)">Artforum · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 6.8<i class="bar"><i style="width:68%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artforum.com/news/jeju-museum-of-art-artist-lineup-for-2026-jeju-biennale-1234756222/" target="_blank" rel="noopener noreferrer">Jeju Museum Of Art Reveals Final Artist Lineup For 2026 Jeju Biennale</a></h3>
-              <div class="nc-foot"><span>来源：Artforum</span><span>标签：展览</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-04.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="exhibition">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-exhibition">展览</span>
-                <span style="font-size:11.5px;color:var(--muted)">Artforum · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.5<i class="bar"><i style="width:75%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artforum.com/news/curators-2nd-edition-of-the-bogota-biennial-1234756200/" target="_blank" rel="noopener noreferrer">Curators Selected for the 2nd Edition of the Bogotá Biennial</a></h3>
-              <div class="nc-foot"><span>来源：Artforum</span><span>标签：展览</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-05.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="exhibition">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-exhibition">展览</span>
-                <span style="font-size:11.5px;color:var(--muted)">Artforum · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.2<i class="bar"><i style="width:82%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artforum.com/video/truong-cong-tung-exhibition-kiang-malingue-new-york-1234749619/" target="_blank" rel="noopener noreferrer">Trương Công Tùng on the occasion of his exhibition at Kiang Malingue, New York</a></h3>
-              <div class="nc-foot"><span>来源：Artforum</span><span>标签：展览</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-06.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="exhibition">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-exhibition">展览</span>
-                <span style="font-size:11.5px;color:var(--muted)">Flash Art · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.9<i class="bar"><i style="width:89%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://flash---art.com/article/whitney-biennial-2026-whitney-museum-of-american-art-new-york/" target="_blank" rel="noopener noreferrer">Whitney Biennial 2026, Whitney Museum of American Art/ New York</a></h3>
-              <div class="nc-foot"><span>来源：Flash Art</span><span>标签：展览</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-07.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="exhibition">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-exhibition">展览</span>
-                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7<i class="bar"><i style="width:70%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://news.artron.net/20211203/n1104819.html" target="_blank" rel="noopener noreferrer">台中艺博会，为新兴藏家提供收藏管道</a></h3>
-              <div class="nc-foot"><span>来源：雅昌</span><span>标签：展览</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-08.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="exhibition">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-exhibition">展览</span>
-                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.7<i class="bar"><i style="width:77%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://news.artron.net/20211212/n1105117.html" target="_blank" rel="noopener noreferrer">杨恒个展 从黄土地中萌芽的情感绘画</a></h3>
-              <div class="nc-foot"><span>来源：雅昌</span><span>标签：展览</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-09.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="exhibition">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-exhibition">展览</span>
-                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.4<i class="bar"><i style="width:84%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://artexpress.artron.net/wapNewsShare/236303 " target="_blank" rel="noopener noreferrer">【艺术播报】徐悲鸿三件巨制同框展出</a></h3>
-              <div class="nc-foot"><span>来源：雅昌</span><span>标签：展览</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-10.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
                 <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 9.1<i class="bar"><i style="width:91%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.facebook.com/artnewsmag/" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-11.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.2<i class="bar"><i style="width:72%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://twitter.com/artnews" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-12.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.9<i class="bar"><i style="width:79%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.instagram.com/artnews/" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/toy-1.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.6<i class="bar"><i style="width:86%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.pinterest.com/artnewsmag/?eq=artnews&#038;etslf=3858" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/toy-2.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 6.7<i class="bar"><i style="width:67%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.linkedin.com/company/40908467/admin/" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/toy-3.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.4<i class="bar"><i style="width:74%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.youtube.com/channel/UC08Z3HFs8ds6YtClAvbtVeQ" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/toy-4.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.1<i class="bar"><i style="width:81%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://w1.buysub.com/servlet/OrdersGateway?cds_mag_code=INA&#038;cds_page_id=271958&#038;cds_response_key=I3DWWSTE1" target="_blank" rel="noopener noreferrer">Subscribe TO ART IN AMERICA</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-01.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.8<i class="bar"><i style="width:88%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artnews.com/c/art-news/product-recommendations/" target="_blank" rel="noopener noreferrer">ARTnews Recommends</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-02.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 6.9<i class="bar"><i style="width:69%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artnews.com/art-news/news/white-house-proposes-smallest-smithsonian-budget-in-years-1234794165/" target="_blank" rel="noopener noreferrer">White House Proposes Smallest Smithsonian Budget in Years and Cutting Full-Time Staff by 6 Percent</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-03.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.6<i class="bar"><i style="width:76%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artnews.com/art-news/news/michelle-grabner-kohler-arts-center-donation-1234794155/" target="_blank" rel="noopener noreferrer">Michelle Grabner Donates More Than 2,000 Artworks to Wisconsin’s Kohler Arts Center, Now the Most Comprehensive Repository of Her Work</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-04.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="release">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-release">作品发布</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.3<i class="bar"><i style="width:83%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artnews.com/art-news/news/regilded-arts-of-war-equestrian-statues-lincoln-memorial-revealed-1234793976/" target="_blank" rel="noopener noreferrer">Trump Unveils Re-gilded 'Arts of War' Horse Statues Near Lincoln Memorial</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：作品发布</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-05.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="release">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-release">作品发布</span>
-                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 9<i class="bar"><i style="width:90%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2026/7/travis-scott-cactus-jack-the-odyssey-imax-exclusive-capsule-collaboration-release-info-2" target="_blank" rel="noopener noreferrer">Cactus Jack 联手《The Odyssey》与 IMAX 推出独家胶囊系列</a></h3>
-              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：作品发布</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-06.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="release">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-release">作品发布</span>
-                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.1<i class="bar"><i style="width:71%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2026/8/le-labo-shiu-25-eau-de-parfum-beijing-city-exclusive-collection-release-info" target="_blank" rel="noopener noreferrer">Le Labo 推出致敬北京四合院的「SHIU 25」City Exclusive 香氛</a></h3>
-              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：作品发布</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-07.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="release">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-release">作品发布</span>
-                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.8<i class="bar"><i style="width:78%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2026/8/final-fantasy-x-25th-anniversary-daimaru-matsuzakaya-collection-favment-info" target="_blank" rel="noopener noreferrer">Daimaru Matsuzakaya 推出《Final Fantasy X》25周年纪念胶囊系列</a></h3>
-              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：作品发布</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-08.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="release">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-release">作品发布</span>
-                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.5<i class="bar"><i style="width:85%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2026/8/bode-yale-school-of-music-collaboration-release-info" target="_blank" rel="noopener noreferrer">Bode 携手 Yale School of Music 推出百年纪念胶囊系列</a></h3>
-              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：作品发布</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-09.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="release">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-release">作品发布</span>
-                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 6.6<i class="bar"><i style="width:66%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2026/8/lululemon-wang-shun-video-release" target="_blank" rel="noopener noreferrer">lululemon 发布深度共谈影片《遇见汪顺》</a></h3>
-              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：作品发布</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-10.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="release">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-release">作品发布</span>
-                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.3<i class="bar"><i style="width:73%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://amma.artron.net/reportDetail.php?id=121" target="_blank" rel="noopener noreferrer">新发布！2024年度艺术市场报告</a></h3>
-              <div class="nc-foot"><span>来源：雅昌</span><span>标签：作品发布</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-11.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="partner">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-partner">品牌合作</span>
-                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8<i class="bar"><i style="width:80%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2026/7/supreme-martine-rose-nike-dunk-low-mike-tyson-surfaces-online-ja1868-001-fall-2026-release-teaser" target="_blank" rel="noopener noreferrer">Supreme x Martine Rose x Nike Dunk Low「Mike Tyson」联乘鞋款曝光</a></h3>
-              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：品牌合作</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-12.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="partner">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-partner">品牌合作</span>
-                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.7<i class="bar"><i style="width:87%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2026/8/nike-official-victor-wembanyama-logo-revealed-new-signature-shoe-contract-multi-year-deal" target="_blank" rel="noopener noreferrer">Nike 与 Victor Wembanyama 再签多年合约，首款签名球鞋即将登场</a></h3>
-              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：品牌合作</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/toy-1.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="partner">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-partner">品牌合作</span>
-                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 6.8<i class="bar"><i style="width:68%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2026/8/uppervoid-x-karma8a-send-it-collab-release" target="_blank" rel="noopener noreferrer">UPPERVOID x KARMA8A「SEND IT」街头抱石联名系列发布</a></h3>
-              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：品牌合作</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/toy-2.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="partner">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-partner">品牌合作</span>
-                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.5<i class="bar"><i style="width:75%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2026/8/seiko-5-sports-honda-motocompo-limited-edition-hdb010-release-info" target="_blank" rel="noopener noreferrer">Seiko 5 Sports x Honda 推出 Motocompo 45 周年限量联名腕表</a></h3>
-              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：品牌合作</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/toy-3.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="partner">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-partner">品牌合作</span>
-                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.2<i class="bar"><i style="width:82%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2026/8/nike-ac-monza-2026-27-home-away-kit-collection-revealed" target="_blank" rel="noopener noreferrer">Nike 以 2026/27 球衣系列重新演绎 AC Monza 传统</a></h3>
-              <div class="nc-foot"><span>来源：Hypebeast</span><span>标签：品牌合作</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/toy-4.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="trade">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-trade">交易</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.9<i class="bar"><i style="width:89%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artnews.com/art-collectors/top-200-collectors/top-200-collectors/" target="_blank" rel="noopener noreferrer">Top 200 Collectors</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：交易</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-01.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="trade">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-trade">交易</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7<i class="bar"><i style="width:70%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artnews.com/art-news/news/clara-wu-tsai-joseph-tsai-divorce-1234794234/" target="_blank" rel="noopener noreferrer">Top 200 Collectors Clara Wu Tsai and Joseph Tsai to Divorce After Nearly 30 Years</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：交易</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-02.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="trade">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-trade">交易</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.7<i class="bar"><i style="width:77%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artnews.com/art-news/news/sacha-jafri-auctioned-world-largest-painting-for-charity-but-the-62-m-owed-is-missing-1234794219/" target="_blank" rel="noopener noreferrer">The World's Largest Painting Sold for $62 M. in 2021 to Benefit Children's Charities, But They Have Yet to…</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：交易</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-03.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="trade">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-trade">交易</span>
-                <span style="font-size:11.5px;color:var(--muted)">ArtDaily · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.4<i class="bar"><i style="width:84%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="http://www.rolandantiques.com" target="_blank" rel="noopener noreferrer">Roland Auctions NY</a></h3>
-              <div class="nc-foot"><span>来源：ArtDaily</span><span>标签：交易</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-04.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="trade">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-trade">交易</span>
-                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 9.1<i class="bar"><i style="width:91%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="http://auction.artron.net/20220223/n1107298.html" target="_blank" rel="noopener noreferrer">北京保利拍卖丨春光好——中国书画部三城</a></h3>
-              <div class="nc-foot"><span>来源：雅昌</span><span>标签：交易</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-05.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="trade">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-trade">交易</span>
-                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.2<i class="bar"><i style="width:72%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="http://auction.artron.net/20220224/n1107310.html" target="_blank" rel="noopener noreferrer">北京保利拍卖丨沉雄远淡，岂识寻常——明</a></h3>
-              <div class="nc-foot"><span>来源：雅昌</span><span>标签：交易</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-06.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="trade">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-trade">交易</span>
-                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.9<i class="bar"><i style="width:79%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="http://auction.artron.net/20220228/n1107387.html" target="_blank" rel="noopener noreferrer">保利拍卖 • 精品回顾丨中国古董珍玩：</a></h3>
-              <div class="nc-foot"><span>来源：雅昌</span><span>标签：交易</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-07.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="trade">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-trade">交易</span>
-                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.6<i class="bar"><i style="width:86%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="http://auction.artron.net/20220302/n1107479.html" target="_blank" rel="noopener noreferrer">北京保利拍卖2022春拍公开征集新增福</a></h3>
-              <div class="nc-foot"><span>来源：雅昌</span><span>标签：交易</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-08.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="trade">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-trade">交易</span>
-                <span style="font-size:11.5px;color:var(--muted)">雅昌 · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 6.7<i class="bar"><i style="width:67%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="http://auction.artron.net/20220310/n1107742.html" target="_blank" rel="noopener noreferrer">嘉德四季第60期拍卖会即将启幕丨收获春</a></h3>
-              <div class="nc-foot"><span>来源：雅昌</span><span>标签：交易</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-09.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="toy">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-toy">艺术潮玩</span>
-                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.4<i class="bar"><i style="width:74%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/entertainment" target="_blank" rel="noopener noreferrer">Entertainment 娱乐</a></h3>
-              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-10.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="toy">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-toy">艺术潮玩</span>
-                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.1<i class="bar"><i style="width:81%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2026/3/pop-mart-sony-pictures-developing-labubu-feature-film-announcement-kasing-lung-paul-king" target="_blank" rel="noopener noreferrer">POP MART 联手 Sony Pictures 正式启动《Labubu》真人电影项目</a></h3>
-              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-11.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="toy">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-toy">艺术潮玩</span>
-                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.8<i class="bar"><i style="width:88%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2025/12/pop-mart-uniqlo-the-monsters-collection-release-info-labubu-half-zip-sweatshirts-t-shirts" target="_blank" rel="noopener noreferrer">UNIQLO 再度携手 POP MART 扩展「The Monsters」系列</a></h3>
-              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-12.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="toy">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-toy">艺术潮玩</span>
-                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 6.9<i class="bar"><i style="width:69%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/author/staff" target="_blank" rel="noopener noreferrer">Hypebeast Newsroom</a></h3>
-              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/toy-1.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="toy">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-toy">艺术潮玩</span>
-                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.6<i class="bar"><i style="width:76%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2025/12/pop-mart-letting-go-holding-on-crybaby-shanghai-exhibition" target="_blank" rel="noopener noreferrer">走进「Letting Go... Holding On...」Crybaby 特展·上海站</a></h3>
-              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/toy-2.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="toy">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-toy">艺术潮玩</span>
-                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.3<i class="bar"><i style="width:83%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2025/10/the-monsters-10th-anniversary-exhibition-shanghai-inside-look" target="_blank" rel="noopener noreferrer">走进 THE MONSTERS 十周年全球巡展上海站</a></h3>
-              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/toy-3.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="toy">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-toy">艺术潮玩</span>
-                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 9<i class="bar"><i style="width:90%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2025/9/pop-mart-stock-declines-labubu-craze-fading-reports" target="_blank" rel="noopener noreferrer">「Labubu 热」退烧？POP MART 股价应声插水</a></h3>
-              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/toy-4.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="toy">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-toy">艺术潮玩</span>
-                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.1<i class="bar"><i style="width:71%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2025/6/how-labubu-avoid-being-the-next-bearbrick" target="_blank" rel="noopener noreferrer">Labubu 如何避免成为下一个 BE@RBRICK？</a></h3>
-              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-01.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="toy">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-toy">艺术潮玩</span>
-                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.8<i class="bar"><i style="width:78%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2025/6/pop-mart-uniqlo-ut-the-monsters-collection-release-info" target="_blank" rel="noopener noreferrer">POP MART x UNIQLO UT 最新联名系列「The Monsters」发布</a></h3>
-              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-02.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="toy">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-toy">艺术潮玩</span>
-                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.5<i class="bar"><i style="width:85%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://hypebeast.cn/2025/4/labubu-the-monsters-kerry-centre-info" target="_blank" rel="noopener noreferrer">THE MONSTERS 森林秘密基地登陆杭州嘉里中心</a></h3>
-              <div class="nc-foot"><span>来源：HB·POPMART</span><span>标签：艺术潮玩</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-03.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 6.6<i class="bar"><i style="width:66%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artnews.com/art-news/artists/venice-biennale-vcuarts-qatar-rethinks-art-and-tech-1234794090/" target="_blank" rel="noopener noreferrer">At Venice’s Palazzo Cavanis, VCUarts Qatar Rethinks How Art and Tech Is Taught</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-04.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.3<i class="bar"><i style="width:73%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artnews.com/list/art-news/news/best-museums-in-the-us-1234770566/" target="_blank" rel="noopener noreferrer">The 30 Best Art Museums in the US</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-05.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8<i class="bar"><i style="width:80%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-06.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.7<i class="bar"><i style="width:87%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artnews.com/art-news/news/francisco-correa-cordero-lubov-gallery-dead-1234794249/" target="_blank" rel="noopener noreferrer">Francisco Correa Cordero, Founder of Closely Watched New York Gallery Lubov, Dies</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-07.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 6.8<i class="bar"><i style="width:68%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artnews.com/author/maximiliano-duron/" target="_blank" rel="noopener noreferrer">Maximilíano Durón</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-08.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7.5<i class="bar"><i style="width:75%;background:var(--accent)"></i></i></span>
-              </div>
-              <h3><a href="https://www.artnews.com/art-news/news/met-museum-leonardo-da-vinci-ken-griffin-1234794238/" target="_blank" rel="noopener noreferrer">Met Museum Quietly Hangs a Leonardo da Vinci Painting, On Loan from Ken Griffin: ‘A Little Picture, Of Large-Scale Importance’</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
-            </div>
-            <div class="nc-thumb"><img src="assets/images/news-09.jpg" alt="" /></div>
-          </article>
-          <article class="news-card filter-target" data-cat="event">
-            <div class="nc-main">
-              <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.2<i class="bar"><i style="width:82%;background:var(--accent)"></i></i></span>
+                <span class="index-pill" style="margin-left:auto">6.8<i class="bar"><i style="width:68%;background:var(--accent)"></i></i></span>
               </div>
               <h3><a href="https://www.artnews.com/art-news/news/gagosian-london-basel-gallery-closures-1234794210/" target="_blank" rel="noopener noreferrer">Gagosian Gives Up London and Basel Spaces as Mega-Galleries Rethink Their Footprints</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-04.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.5<i class="bar"><i style="width:75%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/author/leigh-anne-miller/" target="_blank" rel="noopener noreferrer">Leigh Anne Miller</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-05.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.2<i class="bar"><i style="width:82%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/spanish-police-recover-16th-century-virgin-relief-1234794311/" target="_blank" rel="noopener noreferrer">Spanish Police Recover a 16th-Century Virgin Relief Stolen 16 Years Ago From Monastery</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-06.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.9<i class="bar"><i style="width:89%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/page/2/" target="_blank" rel="noopener noreferrer">More Stories Sign Up</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-07.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7<i class="bar"><i style="width:70%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2025/6/how-labubu-avoid-being-the-next-bearbrick" target="_blank" rel="noopener noreferrer">Labubu 如何避免成为下一个 BE@RBRICK？</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-08.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.7<i class="bar"><i style="width:77%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2025/6/pop-mart-uniqlo-ut-the-monsters-collection-release-info" target="_blank" rel="noopener noreferrer">POP MART x UNIQLO UT 最新联名系列「The Monsters」发布</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-09.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.4<i class="bar"><i style="width:84%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2025/4/labubu-the-monsters-kerry-centre-info" target="_blank" rel="noopener noreferrer">THE MONSTERS 森林秘密基地登陆杭州嘉里中心</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span></div>
             </div>
             <div class="nc-thumb"><img src="assets/images/news-10.jpg" alt="" /></div>
           </article>
-          <article class="news-card filter-target" data-cat="event">
+          <article class="news-card filter-target" data-cat="toy" data-region="asia" data-time="today">
             <div class="nc-main">
               <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 8.9<i class="bar"><i style="width:89%;background:var(--accent)"></i></i></span>
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">9.1<i class="bar"><i style="width:91%;background:var(--accent)"></i></i></span>
               </div>
-              <h3><a href="https://www.artnews.com/art-news/news/taryn-simon-guggenheim-show-new-work-rotunda-1234794169/" target="_blank" rel="noopener noreferrer">Taryn Simon's Guggenheim Show Will Fill Rotunda with Entirely New Body of Work for First Time in Museum's…</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+              <h3><a href="https://hypebeast.cn/2023/3/pop-mart-space-molly-gundam-recap" target="_blank" rel="noopener noreferrer">POP MART 释出全新 MEGA SPACE MOLLY 1000% RX-78-2 高达特别版</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span></div>
             </div>
             <div class="nc-thumb"><img src="assets/images/news-11.jpg" alt="" /></div>
           </article>
-          <article class="news-card filter-target" data-cat="event">
+          <article class="news-card filter-target" data-cat="toy" data-region="asia" data-time="today">
             <div class="nc-main">
               <div class="nc-meta">
-                <span class="tag tag-event">事件</span>
-                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
-                <span class="index-pill" style="margin-left:auto">影响 7<i class="bar"><i style="width:70%;background:var(--accent)"></i></i></span>
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.2<i class="bar"><i style="width:72%;background:var(--accent)"></i></i></span>
               </div>
-              <h3><a href="https://www.artnews.com/art-news/artists/na-kim-cloud-paintings-old-stone-mill-newport-1234794186/" target="_blank" rel="noopener noreferrer">Na Kim Wants You to Look Up</a></h3>
-              <div class="nc-foot"><span>来源：ARTnews</span><span>标签：事件</span></div>
+              <h3><a href="https://hypebeast.cn/2023/2/pop-mart-mega-space-molly-1000-chengdu" target="_blank" rel="noopener noreferrer">走进 POP MART 成都「炉火纯青·燃」特别活动</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span></div>
             </div>
             <div class="nc-thumb"><img src="assets/images/news-12.jpg" alt="" /></div>
           </article>
-        </div>
+          <article class="news-card filter-target" data-cat="toy" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.9<i class="bar"><i style="width:79%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2022/12/1198078" target="_blank" rel="noopener noreferrer">国内首个线上潮玩生态展，泡泡玛特举办虚拟潮玩艺术周</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-1.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.6<i class="bar"><i style="width:86%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2022/12/pop-mart-mega-labubu" target="_blank" rel="noopener noreferrer">POP MART MEGA 珍藏系列首款 LABUBU，如何以探索精神与玩家构建深度联结？</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-2.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">6.7<i class="bar"><i style="width:67%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/c/art-in-america/" target="_blank" rel="noopener noreferrer">Art In America Logo</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-3.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.4<i class="bar"><i style="width:74%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-in-america/columns/malo-chapuy-neo-medieval-feudalism-apocalypse-climate-change-1234794198/" target="_blank" rel="noopener noreferrer">Malo Chapuy’s Neo-Medieval Paintings Conjure Apocalyptic Visions</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-4.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.1<i class="bar"><i style="width:81%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-in-america/columns/claudia-rankine-asad-raza-absorption-1234794041/" target="_blank" rel="noopener noreferrer">We Asked Claudia Rankine to Name One Artwork She Considers a “Revelation”</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-01.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.8<i class="bar"><i style="width:88%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/author/claudia-rankine/" target="_blank" rel="noopener noreferrer">Claudia Rankine</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-02.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">6.9<i class="bar"><i style="width:69%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-in-america/features/art-heist-perfect-day-the-mastermind-how-to-steal-a-million-lemle-1234791022/" target="_blank" rel="noopener noreferrer">Why We Can’t Get Enough Juicy Art Heist Stories</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-03.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.6<i class="bar"><i style="width:76%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/author/joseph-l-underwood/" target="_blank" rel="noopener noreferrer">Joseph L. Underwood</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-04.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.3<i class="bar"><i style="width:83%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://robbreport.com/travel/destinations/favignana-the-odyssey-tourist-hotspot-1238532255/" target="_blank" rel="noopener noreferrer">RobbReport The Tiny Italian Island Featured in ‘The Odyssey’ Could Become a Tourist Hotspot</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-05.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">9<i class="bar"><i style="width:90%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://wwd.com/shop/shop-beauty/best-blackhead-removal-tools-1236350074/" target="_blank" rel="noopener noreferrer">WWD The 12 Best Blackhead Removal Tools for Clearing Your Skin This Summer, According to Dermatologists</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-06.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.1<i class="bar"><i style="width:71%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.sportico.com/personalities/executives/2026/edmonton-oilers-ceo-hugh-weber-1234941119/" target="_blank" rel="noopener noreferrer">Sportico Seattle Sounders, Reign Exec Weber Named Edmonton Oilers CEO</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-07.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.8<i class="bar"><i style="width:78%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.indiewire.com/awards/consider-this/tv-stars-who-have-yet-to-win-an-emmy-1235209046/" target="_blank" rel="noopener noreferrer">IndieWire Some of TV’s Top Stars Have Yet to Win an Emmy</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-08.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.5<i class="bar"><i style="width:85%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://pmc.com" target="_blank" rel="noopener noreferrer">PMC Fashion & Luxury</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-09.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">6.6<i class="bar"><i style="width:66%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://pmc.com/privacy-policy/#california" target="_blank" rel="noopener noreferrer">California Privacy Rights</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-10.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.3<i class="bar"><i style="width:73%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://pmc.com/opt-out" target="_blank" rel="noopener noreferrer">Your Privacy Choices</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-11.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8<i class="bar"><i style="width:80%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://magazineshop.us/collections/art-in-america" target="_blank" rel="noopener noreferrer">Purchase Back Issues</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-12.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.7<i class="bar"><i style="width:87%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://artnews.com/tips" target="_blank" rel="noopener noreferrer">Send Us a Tip Sign Up</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-1.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">6.8<i class="bar"><i style="width:68%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://preferences.mail.artnews.com/preferences?encbu=uid|base64_encode|strip&#038;ence=recipient_email|base64_encode|strip" target="_blank" rel="noopener noreferrer">Art In America Logo</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-2.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.5<i class="bar"><i style="width:75%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://vip.wordpress.com/?utm_source=vip_powered_wpcom&#038;utm_medium=web&#038;utm_campaign=VIP%20Footer%20Credit" target="_blank" rel="noopener noreferrer">Powered by WordPress.com VIP</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-3.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.2<i class="bar"><i style="width:82%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://sourcingjournal.com/" target="_blank" rel="noopener noreferrer">Sourcing Journal</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-4.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.9<i class="bar"><i style="width:89%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.hollywoodreporter.com/" target="_blank" rel="noopener noreferrer">The Hollywood Reporter</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-01.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7<i class="bar"><i style="width:70%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-collectors/top-200-profiles/?filter_top200year=2022" target="_blank" rel="noopener noreferrer">Browse the Top 200</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-02.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.7<i class="bar"><i style="width:77%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://w1.buysub.com/pubs/BA/INA/INA_website_AR_v3.jsp?cds_page_id=271958&#038;cds_mag_code=INA&#038;id=1733510816678&#038;lsid=43411243465085833&#038;vid=3&#038;cds_response_key=I3DWWSTE1" target="_blank" rel="noopener noreferrer">Subscribe to AiA Magazine</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-03.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.4<i class="bar"><i style="width:84%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/sponsored-content/armenian-arts-council-painter-haroutiun-galentz-comeback-europe-1234788228/" target="_blank" rel="noopener noreferrer">Armenian Arts Council</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-04.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">9.1<i class="bar"><i style="width:91%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/sponsored-content/bennett-prize-raised-award-artists-think-you-should-apply-1234780694/" target="_blank" rel="noopener noreferrer">The Bennett Prize</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-05.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.2<i class="bar"><i style="width:72%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/sponsored-content/micas-art-space-forefront-countrys-burgeoning-art-scene-1234791131/" target="_blank" rel="noopener noreferrer">Malta International Contemporary Art Space</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-06.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.9<i class="bar"><i style="width:79%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/sponsored-content/rusudan-petviashvili-divine-elegance-unbroken-brushstroke-1234788688/" target="_blank" rel="noopener noreferrer">Rusudan Petviashvili</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-07.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">Artforum · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.6<i class="bar"><i style="width:86%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artforum.com/features/jan-tumlir-jeffrey-stuker-algorithm-1234756309/" target="_blank" rel="noopener noreferrer">From Medusa to Nvidia: On the Algorithm’s Primal Scene</a></h3>
+              <div class="nc-foot"><span>来源：Artforum</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-08.jpg" alt="" /></div>
+          </article></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-01.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="exhibition" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">Artforum · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8<i class="bar"><i style="width:80%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artforum.com/columns/matters-of-spirit-1234755200/" target="_blank" rel="noopener noreferrer">Divine Alphabets: Two Los Angeles Exhibitions on Spirituality</a></h3>
+              <div class="nc-foot"><span>来源：Artforum</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-02.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="exhibition" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">Flash Art · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.7<i class="bar"><i style="width:87%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://flash---art.com/article/whitney-biennial-2026-whitney-museum-of-american-art-new-york/" target="_blank" rel="noopener noreferrer">Whitney Biennial 2026, Whitney Museum of American Art/ New York</a></h3>
+              <div class="nc-foot"><span>来源：Flash Art</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-03.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">6.8<i class="bar"><i style="width:68%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.facebook.com/artnewsmag/" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-04.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.5<i class="bar"><i style="width:75%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://twitter.com/artnews" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-05.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.2<i class="bar"><i style="width:82%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.instagram.com/artnews/" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-06.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.9<i class="bar"><i style="width:89%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.pinterest.com/artnewsmag/?eq=artnews&#038;etslf=3858" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-07.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7<i class="bar"><i style="width:70%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.linkedin.com/company/40908467/admin/" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-08.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.7<i class="bar"><i style="width:77%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.youtube.com/channel/UC08Z3HFs8ds6YtClAvbtVeQ" target="_blank" rel="noopener noreferrer">Icon Link Plus Icon</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-09.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.4<i class="bar"><i style="width:84%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="http://subscribe.artnews.com/art-in-america" target="_blank" rel="noopener noreferrer">Subscribe TO ART IN AMERICA</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-10.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="release" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">9.1<i class="bar"><i style="width:91%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/final-fantasy-x-25th-anniversary-daimaru-matsuzakaya-collection-favment-info" target="_blank" rel="noopener noreferrer">Daimaru Matsuzakaya 推出《Final Fantasy X》25周年纪念胶囊系列</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-11.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="release" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.2<i class="bar"><i style="width:72%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/needles-studious-fw26-poly-double-cloth-capsule-release-info" target="_blank" rel="noopener noreferrer">NEEDLES x STUDIOUS 发布 2026 秋冬「Poly Double Cloth」胶囊系列</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-12.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="release" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.9<i class="bar"><i style="width:79%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/saucony-westside-gunn-grid-jazz-9-awesome-god-release-info" target="_blank" rel="noopener noreferrer">Saucony 携手 Westside Gunn 发布 Grid Jazz 9「Awesome God」</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-1.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="release" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.6<i class="bar"><i style="width:86%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/wind-and-sea-fall-winter-fw-2026-tech-collection-release-info" target="_blank" rel="noopener noreferrer">WIND AND SEA 2026 秋冬「TECH COLLECTION」以高机能面料重塑系列阵容</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-2.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="release" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">6.7<i class="bar"><i style="width:67%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/thisisneverthat-fragment-design-first-collaboration-collection-release-info" target="_blank" rel="noopener noreferrer">thisisneverthat 首度联手 fragment design，推出「neverenough」胶囊系列</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-3.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="release" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.4<i class="bar"><i style="width:74%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/xinadu-echo-collection-release" target="_blank" rel="noopener noreferrer">XINADÜ 推出全新户外胶囊系列「ECHO」</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-4.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="partner" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.1<i class="bar"><i style="width:81%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/neighborhood-vans-authentic-44-pack-vn000xvj7vj-vn000xvjbla-closer-look-wider-release-info" target="_blank" rel="noopener noreferrer">OTW by Vans x NEIGHBORHOOD Authentic 44 联名鞋款近赏</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-01.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="partner" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.8<i class="bar"><i style="width:88%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/psg-nike-kd-6-metallic-silver-iu0593-001-release-info" target="_blank" rel="noopener noreferrer">PSG x Nike KD 6「Metallic Silver」官方近赏</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-02.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="partner" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">6.9<i class="bar"><i style="width:69%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/helinox-we11done-collaboration-collection-release-info" target="_blank" rel="noopener noreferrer">Helinox x WE11DONE 联名胶囊系列：飞镖垂褶解构露营椅张力</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-03.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="partner" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">Hypebeast · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.6<i class="bar"><i style="width:76%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/8/nike-kobe-mercurial-superfly-11-elite-mambacurial-iu3413-600-first-look-release-info" target="_blank" rel="noopener noreferrer">Kobe Bryant「Mambacurial」主题亮相 Nike Mercurial Superfly 11 Elite</a></h3>
+              <div class="nc-foot"><span>来源：Hypebeast</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-04.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="trade" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.3<i class="bar"><i style="width:83%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-collectors/top-200-collectors/top-200-collectors/" target="_blank" rel="noopener noreferrer">Top 200 Collectors</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-05.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="trade" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">9<i class="bar"><i style="width:90%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/clara-wu-tsai-joseph-tsai-divorce-1234794234/" target="_blank" rel="noopener noreferrer">Top 200 Collectors Clara Wu Tsai and Joseph Tsai to Divorce After Nearly 30 Years</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-06.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="trade" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.1<i class="bar"><i style="width:71%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/list/art-news/market/most-expensive-alberto-giacometti-works-ever-sold-1234792271/" target="_blank" rel="noopener noreferrer">The 10 Most Expensive Alberto Giacometti Works Ever Sold at Auction</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-07.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.8<i class="bar"><i style="width:78%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/entertainment" target="_blank" rel="noopener noreferrer">Entertainment 娱乐</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-08.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.5<i class="bar"><i style="width:85%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2026/3/pop-mart-sony-pictures-developing-labubu-feature-film-announcement-kasing-lung-paul-king" target="_blank" rel="noopener noreferrer">POP MART 联手 Sony Pictures 正式启动《Labubu》真人电影项目</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-09.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">6.6<i class="bar"><i style="width:66%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2025/12/pop-mart-uniqlo-the-monsters-collection-release-info-labubu-half-zip-sweatshirts-t-shirts" target="_blank" rel="noopener noreferrer">UNIQLO 再度携手 POP MART 扩展「The Monsters」系列</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-10.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.3<i class="bar"><i style="width:73%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/author/staff" target="_blank" rel="noopener noreferrer">Hypebeast Newsroom</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-11.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8<i class="bar"><i style="width:80%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2025/12/pop-mart-letting-go-holding-on-crybaby-shanghai-exhibition" target="_blank" rel="noopener noreferrer">走进「Letting Go... Holding On...」Crybaby 特展·上海站</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-12.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.7<i class="bar"><i style="width:87%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2025/10/the-monsters-10th-anniversary-exhibition-shanghai-inside-look" target="_blank" rel="noopener noreferrer">走进 THE MONSTERS 十周年全球巡展上海站</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-1.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="toy" data-region="asia" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">HB·POPMART · 今日</span>
+                <span class="index-pill" style="margin-left:auto">6.8<i class="bar"><i style="width:68%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://hypebeast.cn/2025/9/pop-mart-stock-declines-labubu-craze-fading-reports" target="_blank" rel="noopener noreferrer">「Labubu 热」退烧？POP MART 股价应声插水</a></h3>
+              <div class="nc-foot"><span>来源：HB·POPMART</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-2.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.5<i class="bar"><i style="width:75%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/c/art-news/product-recommendations/" target="_blank" rel="noopener noreferrer">ARTnews Recommends</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-3.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.2<i class="bar"><i style="width:82%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/market/great-estate-rush-that-is-reshaping-art-market-1234794331/" target="_blank" rel="noopener noreferrer">The Great Estate Rush That Is Reshaping the Art Market</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/toy-4.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.9<i class="bar"><i style="width:89%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/valerie-hillings-director-guggenheim-abu-dhabi-1234794298/" target="_blank" rel="noopener noreferrer">Guggenheim Veteran Valerie Hillings Tapped as Inaugural Director of Abu Dhabi Branch</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-01.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7<i class="bar"><i style="width:70%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/louvre-lends-islamic-masterpieces-to-smithsonian-1234794343/" target="_blank" rel="noopener noreferrer">The Louvre Lends Islamic ‘Masterpieces’ to the Smithsonian in Washington, D.C.</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-02.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.7<i class="bar"><i style="width:77%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/list/art-news/news/best-museums-in-the-us-1234770566/" target="_blank" rel="noopener noreferrer">The 30 Best Art Museums in the US</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-03.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.4<i class="bar"><i style="width:84%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-04.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">9.1<i class="bar"><i style="width:91%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/wyoming-association-of-archaeologists-lawsuit-nagpra-1234794355/" target="_blank" rel="noopener noreferrer">Wyoming Association of Archaeologists Sues Federal Government Over NAGPRA Regulations</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-05.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.2<i class="bar"><i style="width:72%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/author/harrison-jacobs/" target="_blank" rel="noopener noreferrer">Harrison Jacobs</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-06.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">7.9<i class="bar"><i style="width:79%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/australian-museum-returns-rapa-nui-ancestral-remains-easter-island-1234794357/" target="_blank" rel="noopener noreferrer">Australian Museum Returns 18 Ancestral Remains to Rapa Nui</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-07.jpg" alt="" /></div>
+          </article>
+          <article class="news-card filter-target" data-cat="event" data-region="us-eu" data-time="today">
+            <div class="nc-main">
+              <div class="nc-meta">
+                <span style="font-size:11.5px;color:var(--muted)">ARTnews · 今日</span>
+                <span class="index-pill" style="margin-left:auto">8.6<i class="bar"><i style="width:86%;background:var(--accent)"></i></i></span>
+              </div>
+              <h3><a href="https://www.artnews.com/art-news/news/fra-angelico-fiesole-altarpiece-blockbuster-museum-show-1234794348/" target="_blank" rel="noopener noreferrer">Fra Angelico’s Restored Fiesole Altarpiece Returns to Its Original Church Home After Blockbuster Museum Show</a></h3>
+              <div class="nc-foot"><span>来源：ARTnews</span></div>
+            </div>
+            <div class="nc-thumb"><img src="assets/images/news-08.jpg" alt="" /></div>
+          </article></div>
+</div></section><div id="site-footer"></div><script src="assets/js/main.js"></script></body></html>
 
-        <!-- ===== 右侧边栏 ===== -->
-        <aside>
-          <div class="widget">
-            <h4>来源分布</h4>
-            <div class="w-item"><span>ARTnews（🇺🇸）</span><span class="v" id="src-an">—</span></div>
-            <div class="w-item"><span>Artforum / Frieze 等（🇪🇺）</span><span class="v" id="src-eu">—</span></div>
-            <div class="w-item"><span>Hypebeast + 潮玩（🇭🇰）</span><span class="v" id="src-hb">—</span></div>
-            <div class="w-item"><span>雅昌艺术网（🇨🇳）</span><span class="v" id="src-yc">—</span></div>
-            <div class="w-item"><span>链接核验</span><span class="v">HTTP 200 ✓</span></div>
-          </div>
-          <div class="widget" style="background:var(--ink);border-color:var(--ink);color:var(--white)">
-            <h4 style="color:rgba(255,255,255,0.5);border-color:var(--line-dark)">订阅每日报告</h4>
-            <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:14px">每日 16:00 获取 60 条精选行业日报。</p>
-            <button class="btn btn-accent" style="width:100%;justify-content:center" data-modal-open>免费订阅日报</button>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
 
-  <div id="site-footer"></div>
-  <script src="assets/js/main.js"></script>
-</body>
-</html>
+
 
