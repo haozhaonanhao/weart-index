@@ -61,6 +61,8 @@ def main():
             title = re.sub(r"\s+", " ", title)
             if len(title) < 15: continue
             if re.search(r"/(tags?|category|author|about|contact|subscribe|login|beian)/", u, re.I): continue
+            # 过滤垃圾条目：社交图标/订阅/导航链接
+            if re.search(r"icon link|plus icon|subscribe|sign ?up|newsletter|log ?in|follow us|^\s*menu\s*$|youtube|instagram|twitter|facebook|linkedin|pinterest|tiktok|^icon\b", title, re.I): continue
             if name == "雅昌" and not re.search(r"/20(2[5-9]|[3-9]\d)/", u): continue
             raw.append({"title": title, "url": u, "source": name})
             count += 1
