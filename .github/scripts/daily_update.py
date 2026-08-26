@@ -4,6 +4,7 @@
 import urllib.request, re, html, os, sys, json
 from datetime import datetime, timedelta
 from html.parser import HTMLParser
+from urllib.parse import urlparse
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36"}
 
@@ -33,6 +34,28 @@ def fetch(url, timeout=20):
 def strip_tags(s):
     return re.sub(r"<[^>]+>", " ", s)
 
+def same_domain(url, source_name):
+    """域名白名单：只接受与源站同域的文章链接，排除页脚/侧栏的外部链接"""
+    host = (urlparse(url).netloc or "").lower()
+    host = host.split(":")[0]
+    allowed = {
+        "ARTnews": "artnews.com",
+        "Artforum": "artforum.com",
+        "Frieze": "frieze.com",
+        "Hyperallergic": "hyperallergic.com",
+        "e-flux": "e-flux.com",
+        "Flash Art": "flash---art.com",
+        "ArtDaily": "artdaily.com",
+        "Hypebeast": "hypebeast.cn",
+        "HB·POPMART": "hypebeast.cn",
+        "HB·KAWS": "hypebeast.cn",
+        "HB·BEARBRICK": "hypebeast.cn",
+        "雅昌": "artron.net",
+    }
+    if source_name in allowed:
+        return host == allowed[source_name] or host.endswith("." + allowed[source_name])
+    return True
+
 def classify(title):
     t = title.lower()
     if re.search(r"展览|展出|个展|双年展|艺博会|biennial|exhibition|retrospective|biennale|triennial", t): return "exhibition"
@@ -61,8 +84,12 @@ def main():
             title = re.sub(r"\s+", " ", title)
             if len(title) < 15: continue
             if re.search(r"/(tags?|category|author|about|contact|subscribe|login|beian)/", u, re.I): continue
-            # 过滤垃圾条目：社交图标/订阅/导航链接
-            if re.search(r"icon link|plus icon|subscribe|sign ?up|newsletter|log ?in|follow us|^\s*menu\s*$|youtube|instagram|twitter|facebook|linkedin|pinterest|tiktok|^icon\b", title, re.I): continue
+            # 域名白名单：排除页脚/侧栏的外部链接
+            if not same_domain(u, name): continue
+            # 过滤垃圾条目：社交图标/订阅/导航/页脚
+            if re.search(r"icon link|plus icon|subscribe|sign ?up|newsletter|log ?in|follow us|^\s*menu\s*$|youtube|instagram|twitter|facebook|linkedin|pinterest|tiktok|^icon\b|logo|privacy|back issues|powered by|cookies|careers|contact us|terms of|advertise|about us|^home\b|sourcing journal", title, re.I): continue
+            # 排除带 utm/preferences 参数或明显非文章的 URL
+            if re.search(r"utm_|preferences|mailto:|#comments|/category/|/tag/|/page/\d", u, re.I): continue
             if name == "雅昌" and not re.search(r"/20(2[5-9]|[3-9]\d)/", u): continue
             raw.append({"title": title, "url": u, "source": name})
             count += 1
